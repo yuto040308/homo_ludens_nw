@@ -50,6 +50,10 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   # view_source_mapのインストール
   gem "view_source_map"
+  # better_errorsとbinding_of_callerのインストール
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'pry-byebug'
 end
 
 group :test do
@@ -79,3 +83,9 @@ gem 'annotate'
 
 # kaminariのインストール
 gem 'kaminari', '~> 0.17.0'
+
+# ransackのインストール
+gem 'ransack'
+
+# font-awesome-sassのインストール
+gem 'font-awesome-sass', '~> 5.4.1'
