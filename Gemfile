@@ -48,6 +48,8 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  # view_source_mapのインストール
+  gem "view_source_map"
 end
 
 group :test do
@@ -68,7 +70,12 @@ gem 'devise'
 gem 'refile', require: "refile/rails", github: 'manfe/refile'
 gem 'refile-mini_magick'
 
-# bootstrapのインストール
+# bootstrapのインストール。なぜかバージョン指定しないと動かない
 gem 'bootstrap', '~> 4.1.1'
 gem 'jquery-rails'
 
+# annotateのインストール
+gem 'annotate'
+
+# kaminariのインストール
+gem 'kaminari', '~> 0.17.0'
