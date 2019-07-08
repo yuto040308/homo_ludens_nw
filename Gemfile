@@ -64,6 +64,11 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # deviseインストール
 gem 'devise'
 
-# bootstrapインストール なぜかバージョン指定しないと動かなかった。
+# refile, refile-mini_magickインストール
+gem 'refile', require: "refile/rails", github: 'manfe/refile'
+gem 'refile-mini_magick'
+
+# bootstrapのインストール
 gem 'bootstrap', '~> 4.1.1'
 gem 'jquery-rails'
+
