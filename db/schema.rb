@@ -10,7 +10,57 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_08_083009) do
+ActiveRecord::Schema.define(version: 2019_07_09_035057) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string "category_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "event_joins", force: :cascade do |t|
+    t.integer "event_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.integer "play_id"
+    t.integer "user_id"
+    t.string "event_title"
+    t.text "event_explain"
+    t.string "event_image_id"
+    t.string "event_place"
+    t.integer "event_people_min"
+    t.integer "event_people_max"
+    t.integer "honorarium"
+    t.datetime "event_hold_start_time"
+    t.datetime "event_hold_finish_time"
+    t.datetime "event_start_time"
+    t.datetime "event_finish_time"
+    t.integer "event_confirm_flg"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "plays", force: :cascade do |t|
+    t.integer "category_id"
+    t.string "play_title"
+    t.text "play_explain"
+    t.string "play_image_id"
+    t.integer "play_delete_flg"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "taxes", force: :cascade do |t|
+    t.float "tax"
+    t.datetime "tax_start_day"
+    t.datetime "tax_finish_day"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
