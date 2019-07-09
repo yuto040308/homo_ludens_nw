@@ -10,7 +10,15 @@
   </head>
 
   <body>
-    <%= yield %>
+    <!-- トップ画面のヘッダーは背景透過なので、処理を分ける -->
+    <% if @top_flg != nil %>
+      <%= yield %>
+    <% else %>
+      <!-- 部分テンプレート読んでみる "_header.html.erb"が呼ばれる -->
+      <%= render 'layouts/header' %>
+      <%= yield %>
+    <% end %>
+    
 
     <!-- フッター -->
     <div class="container-fluid">
