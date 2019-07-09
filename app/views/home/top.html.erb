@@ -1,0 +1,90 @@
+
+
+<div class="container-fluid">
+    <!-- メインメッセージの領域 -->
+    
+    <!-- 画像貼り付け用の領域-->
+    <div class="header-image">
+        <!-- 上方向（余白）の領域 -->
+        <!-- ロゴや検索ボタンはあとから追加します-->
+        <!-- 余裕あったら、rowで分割した方が綺麗かも -->
+        <div style="height: 150px;" class="d-flex align-items-center justify-content-center">
+
+            <div style="height: 150px; width: 120px;">
+                <br>
+                <br>
+                <p class="text-white">ここにロゴ</p>
+            </div>
+
+            <div style="height: 150px; width: 120px;">
+            </div>
+            
+            <h3><a href="#">PLAY</a></h3>
+            <span class="mx-2"></span>
+            <h3 class="mx-5"><a href="#">EVENT</a></h3>
+            <span class="mx-2"></span>
+            <h3 class="mr-5"><a href="#">MYPAGE</a></h3>
+            <span class="mx-2"></span>
+            <h3><a href="#">LOGOUT</a></h3>
+
+            <div style="height: 150px; width: 120px;">
+            </div>
+
+            <i class="fas fa-search"></i>
+        </div>
+
+
+
+        <!--余白-->
+        <div style="height: 130px">
+        </div>
+
+        <!-- テキスト領域 -->
+        <div>
+            <h1 class="text-center text-white">さあ、新しい遊びを教わろう</h1>
+            <div class="d-flex align-items-center justify-content-center mt-5">
+                <!-- ボタンは時間があったら、デザインを変えよう -->
+                <button type="button" class="btn btn-outline-light btn-lg">ログイン</button>
+                <!-- ボタン間のマージン設定：合計15rem -->
+                <span class="mx-5"></span>
+                <span class="mx-5"></span>
+                <span class="mx-5"></span>
+                <button type="button" class="btn btn-outline-light btn-lg">新規登録</button>
+            </div>
+            
+        </div>
+
+    </div>
+
+    <!--          -->
+    <!-- 説明文部分 -->
+    <!--          -->
+    <div style="height: 1300px;" class="bg-peachpuff">
+
+        <!-- 説明文上マージン -->
+        <div style="height: 100px"></div>
+        <h1 class="text-center">Homo ludens NetWork</h1>
+        <p class="text-center">ホモルーデンスネットワークとは</p>
+        <!-- 説明文下マージン -->
+        <div style="height: 50px"></div>
+
+        <!-- 1つ目の説明文 -->
+        <div style="height: 100px" class="d-flex align-items-center justify-content-center">
+            <span class="top-number mr-5">①</span>
+            <p class="lead">遊びをその道の極め人から格安料金で教わることが出来ます</p>
+        </div>
+        <%= image_tag  "/assets/images/top-nouhaou.jpg", width: "550", height: "250", class: "mx-auto d-block" %>
+
+        <!-- 説明文との間の余白 -->
+        <div style="height: 100px"></div>
+
+        <!-- 2つ目の説明文 -->
+        <div style="height: 110px" class="d-flex align-items-center justify-content-center">
+            <span class="top-number mr-5">②</span>
+            <p class="lead">極め人となり、イベントを主催して、謝礼を頂けます　　　</p>
+        </div>
+        <%= image_tag  "/assets/images/top-event.jpg", width: "650", height: "250", class: "mx-auto d-block" %>
+
+    </div>
+    
+</div>

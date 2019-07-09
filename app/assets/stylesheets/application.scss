@@ -1,0 +1,43 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_self
+ */
+ @import "bootstrap";
+ @import "font-awesome-sprockets";
+ @import "font-awesome";
+
+ // bootstrapでpのボトムにパディングがかかっているので、削除
+ p {
+     margin-top: 0px;
+     margin-bottom: 0px;
+ }
+
+.header-image {
+    background-image: url("/assets/images/top-image.jpg");
+    height: 600px;
+    background-size: cover;
+}
+.fa-search {
+    // フォントサイズを5倍にする。
+    font-size: 4em;
+    color: white;
+}
+// topページ説明文用
+.bg-peachpuff {
+    background-color: #ffce9f;
+}
+
+// topページの説明文に使う①とか②用
+.top-number {
+    font-size: 125px;
+}

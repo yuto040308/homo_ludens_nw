@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HomoLudensNw</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%= yield %>
+
+    <!-- フッター -->
+    <div class="container-fluid">
+      <div style="height: 50px;" class="d-flex align-items-center justify-content-end bg-dark">
+        <p class="text-white text-right mr-4">©️Homo ludens network All Rights Reserved.</p>
+      </div>
+    </div>
+
+  </body>
+</html>
