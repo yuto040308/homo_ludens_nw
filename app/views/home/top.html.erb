@@ -44,12 +44,12 @@
             <h1 class="text-center text-white">さあ、新しい遊びを教わろう</h1>
             <div class="d-flex align-items-center justify-content-center mt-5">
                 <!-- ボタンは時間があったら、デザインを変えよう -->
-                <button type="button" class="btn btn-outline-light btn-lg">ログイン</button>
+                <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-light btn-lg" %>
                 <!-- ボタン間のマージン設定：合計15rem -->
                 <span class="mx-5"></span>
                 <span class="mx-5"></span>
                 <span class="mx-5"></span>
-                <button type="button" class="btn btn-outline-light btn-lg">新規登録</button>
+                <%= link_to "新規登録", new_user_registration_path, class: "btn btn-outline-light btn-lg" %>
             </div>
             
         </div>
