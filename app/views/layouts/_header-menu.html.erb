@@ -14,9 +14,23 @@
 
 <!-- ログインしていたら、マイページとログアウトもメニューに出す。 -->
 <% if user_signed_in? %>
-    <h3 class="mr-5"><%= link_to "MYPAGE", user_path(current_user.id) %></h3>
+
+    <!-- 管理者の場合 -->
+    <% if current_user.admin_flg == 1 %>
+
+        <h3 class="mr-5"><%= link_to "MYPAGE", admin_user_path %></h3>
+
+    <!-- ユーザーの場合 -->
+    <% else %>
+
+        <h3 class="mr-5"><%= link_to "MYPAGE", user_path(current_user.id) %></h3>
+
+    <% end %>
+
     <span class="mx-2"></span>
     <h3><%= link_to "LOGOUT", destroy_user_session_path, method: :delete %></h3>
+
+<!-- ログインしていない場合は、マイページ、ログアウトの代わりに余白を入れる -->
 <% else %>
     <!-- メニューが無くなるので、メニューの横幅分補足する。 -->
     <div style="height: 150px; width: 290px;"></div>

@@ -1,2 +1,46 @@
-<h1>Users#admin</h1>
-<p>Find me in app/views/users/admin.html.erb</p>
+<div class="container-fluid">
+
+    <!-- 上部の余白 -->
+    <div style="height: 200px;"></div>
+
+    <!-- mx-auto: センタリング -->
+    <div style="width: 900px;" class="mx-auto">
+        <!-- タブ部分 -->
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <!-- 要素に属性:data-toggle="tab"を追加するだけで、Javascriptの記述なしでナビゲーションを有効化できる。 -->
+            <li class="nav-item"><a class="nav-link active" id="play-tab" data-toggle="tab" href="#play" role="tab" aria-controls="play" aria-selected="true">遊び一覧</a></li>
+            <li class="nav-item"><a class="nav-link" id="event-tab" data-toggle="tab" href="#event" role="tab" aria-controls="event" aria-selected="false">イベント一覧</a></li>
+            <li class="nav-item"><a class="nav-link" id="user-tab" data-toggle="tab" href="#user" role="tab" aria-controls="user" aria-selected="false">ユーザー一覧</a></li>
+        </ul>
+        <!-- パネル部分 -->
+        <!-- パネル部分には、tab-contentクラスをもったdivタグが必要 -->
+        <div class="tab-content mt-5" id="myTabContent">
+
+            <!-- パネルの要素にはtab-paneクラスを指定し、最初のタブには、active+showクラスを追加。パネルをフェードインさせるためにfadeクラスを追加している。 -->
+            <!-- 遊び一覧のパネル -->
+            <div class="tab-pane fade show active" id="play" role="tabpanel" aria-labelledby="play-tab">
+                <h3>遊び一覧</h3>
+                遊び一覧のコンテンツが入ります。
+            </div>
+
+            <!-- イベント一覧のパネル -->
+            <div class="tab-pane fade" id="event" role="tabpanel" aria-labelledby="event-tab">
+                <h3>イベント一覧</h3>
+                イベント一覧のコンテンツが入ります。
+            </div>
+
+            <!-- ユーザー一覧のパネル -->
+            <div class="tab-pane fade" id="user" role="tabpanel" aria-labelledby="user-tab">
+                <h3>ユーザー一覧</h3>
+                ユーザー一覧のコンテンツが入ります。
+            </div>
+
+        </div>
+    </div>
+
+    
+
+    <!-- 下部の余白 -->
+    <div style="height: 200px;"></div>
+
+</div>

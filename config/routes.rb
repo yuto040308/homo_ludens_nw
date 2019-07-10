@@ -2,14 +2,7 @@ Rails.application.routes.draw do
   # deviseは先頭に記述する必要がある
   devise_for :users
 
-  # resources指定
-  # index create new edit show update destroy が自動設定される
-  resources :users, only: [:edit, :show, :update, :destroy]
-  resources :plays, only: [:index, :show]
-  # 全て使用するので、絞らない
-  resources :events
-
-  # resourcesで指定仕切れなかった分をここで指定
+  # resourcesで指定できないをここで指定。 前に書いておかないと、users/:idが邪魔をして、adminページに行かない。
 
   # homeコントローラ関連
   get     "/"                     => "home#top",          as: "top"
@@ -37,6 +30,13 @@ Rails.application.routes.draw do
   get     "events/admin/:id"      => "events#admin_show",   as: "admin_show_event"
   delete  "events/admin/:id"      => "events#admin_destroy",as: "admin_destroy_event"
   patch   "events/admin/:id"      => "events#admin_accept", as: "admin_accept_event"
+
+  # resources指定
+  # index create new edit show update destroy が自動設定される
+  resources :users, only: [:edit, :show, :update, :destroy]
+  resources :plays, only: [:index, :show]
+  # 全て使用するので、絞らない
+  resources :events
 
   # rails routes の内容をコピー 2019/7/9時点
 =begin
