@@ -1,6 +1,26 @@
 <div class="container-fluid bg-peachpuff">
-    <h1>Plays#index</h1>
-    <p>Find me in app/views/plays/index.html.erb</p>
+
+    <div class="row">
+        <% @plays.each do |play| %>
+            <div class="col-4">
+                <div class="card" style="max-width: 25rem;">
+                    <!--カード上部にレイアウトされる画像: card-img-top -->
+                    <!--画像はサンプルです。-->
+                    <%= attachment_image_tag play, :play_image, format: "jpg",class: "card-img-top" %>
+                    <!-- カード本文:card-body -->
+                    <div class="card-body">
+                        <!-- カード見出し:card-title -->
+                        <h4 class="card-title">カードの見出し</h4>
+                        <!-- カードの副見出し:card-subtitle -->
+                        <h6>カードの副見出し</h6>
+                        <!-- カードの内容文:card-text -->
+                        <p class="card-text">カードの内容文が入ります。</p>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    </div>
+
 </div>
 
 
