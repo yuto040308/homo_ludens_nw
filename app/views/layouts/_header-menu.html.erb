@@ -7,14 +7,14 @@
 <div style="height: 150px; width: 120px;">
 </div>
 
-<h3><a href="#">PLAY</a></h3>
+<h3><%= link_to "PLAY", plays_path %></h3>
 <span class="mx-2"></span>
-<h3 class="mx-5"><a href="#">EVENT</a></h3>
+<h3 class="mx-5"><%= link_to "EVENT", events_path %></h3>
 <span class="mx-2"></span>
 
 <!-- ログインしていたら、マイページとログアウトもメニューに出す。 -->
 <% if user_signed_in? %>
-    <h3 class="mr-5"><a href="#">MYPAGE</a></h3>
+    <h3 class="mr-5"><%= link_to "MYPAGE", user_path(current_user.id) %></h3>
     <span class="mx-2"></span>
     <h3><%= link_to "LOGOUT", destroy_user_session_path, method: :delete %></h3>
 <% else %>
