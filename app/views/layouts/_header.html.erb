@@ -1,32 +1,5 @@
 <!-- ヘッダーの部分テンプレート -->
 <div style="height: 150px;" class="d-flex align-items-center justify-content-center bg-dark">
-
-    <div style="height: 150px; width: 120px;">
-        <br>
-        <br>
-        <p class="text-white"><a href="/">ここにロゴ</a></p>
-    </div>
-
-    <div style="height: 150px; width: 120px;">
-    </div>
-    
-    <h3><a href="#">PLAY</a></h3>
-    <span class="mx-2"></span>
-    <h3 class="mx-5"><a href="#">EVENT</a></h3>
-    <span class="mx-2"></span>
-
-    <!-- ログインしていたら、マイページとログアウトもメニューに出す。 -->
-    <% if user_signed_in? %>
-        <h3 class="mr-5"><a href="#">MYPAGE</a></h3>
-        <span class="mx-2"></span>
-        <h3><%= link_to "LOGOUT", destroy_user_session_path, method: :delete %></h3>
-    <% else %>
-        <!-- メニューが無くなるので、メニューの横幅分補足する。 -->
-        <div style="height: 150px; width: 290px;"></div>
-    <% end %>
-
-    <div style="height: 150px; width: 120px;">
-    </div>
-
-    <i class="fas fa-search"></i>
+    <!-- 部分テンプレート読んでみる "_header-menu.html.erb"が呼ばれる -->
+    <%= render 'layouts/header-menu' %>
 </div>

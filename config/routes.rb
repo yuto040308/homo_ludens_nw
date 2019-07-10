@@ -2,14 +2,7 @@ Rails.application.routes.draw do
   # deviseは先頭に記述する必要がある
   devise_for :users
 
-  # resources指定
-  # index create new edit show update destroy が自動設定される
-  resources :users, only: [:edit, :show, :update, :destroy]
-  resources :plays, only: [:index, :show]
-  # 全て使用するので、絞らない
-  resources :events
-
-  # resourcesで指定仕切れなかった分をここで指定
+  # resourcesで指定できないをここで指定。 前に書いておかないと、users/:idが邪魔をして、adminページに行かない。
 
   # homeコントローラ関連
   get     "/"                     => "home#top",          as: "top"
@@ -22,9 +15,9 @@ Rails.application.routes.draw do
 
   # playsコントローラ関連
   get     "plays/admin"           => "plays#admin_index",   as: "admin_index_play"
-  get     "plays/admin/:id"       => "plays#admin_show",    as: "admin_show_play"
   get     "plays/admin/new"       => "plays#admin_new",     as: "admin_new_play"
-  post    "plays/admin/:id"       => "plays#admin_create",  as: "admin_create_play"
+  get     "plays/admin/:id"       => "plays#admin_show",    as: "admin_show_play"
+  post    "plays/admin"           => "plays#admin_create",  as: "admin_create_play"
   get     "plays/admin/:id/edit"  => "plays#admin_edit",    as: "admin_edit_play"
   patch   "plays/admin/:id"       => "plays#admin_update",  as: "admin_update_play"
   delete  "plays/admin/:id"       => "plays#admin_destroy", as: "admin_destroy_play"
@@ -37,6 +30,13 @@ Rails.application.routes.draw do
   get     "events/admin/:id"      => "events#admin_show",   as: "admin_show_event"
   delete  "events/admin/:id"      => "events#admin_destroy",as: "admin_destroy_event"
   patch   "events/admin/:id"      => "events#admin_accept", as: "admin_accept_event"
+
+  # resources指定
+  # index create new edit show update destroy が自動設定される
+  resources :users, only: [:edit, :show, :update, :destroy]
+  resources :plays, only: [:index, :show]
+  # 全て使用するので、絞らない
+  resources :events
 
   # rails routes の内容をコピー 2019/7/9時点
 =begin
@@ -77,7 +77,7 @@ Rails.application.routes.draw do
          admin_index_play GET    /plays/admin(.:format)                                                                   plays#admin_index
           admin_show_play GET    /plays/admin/:id(.:format)                                                               plays#admin_show
            admin_new_play GET    /plays/admin/new(.:format)                                                               plays#admin_new
-        admin_create_play POST   /plays/admin/:id(.:format)                                                               plays#admin_create
+        admin_create_play POST   /plays/admin(.:format)                                                                   plays#admin_create
           admin_edit_play GET    /plays/admin/:id/edit(.:format)                                                          plays#admin_edit
         admin_update_play PATCH  /plays/admin/:id(.:format)                                                               plays#admin_update
        admin_destroy_play DELETE /plays/admin/:id(.:format)                                                               plays#admin_destroy
