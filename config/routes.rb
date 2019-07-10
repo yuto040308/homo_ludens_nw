@@ -15,9 +15,9 @@ Rails.application.routes.draw do
 
   # playsコントローラ関連
   get     "plays/admin"           => "plays#admin_index",   as: "admin_index_play"
-  get     "plays/admin/:id"       => "plays#admin_show",    as: "admin_show_play"
   get     "plays/admin/new"       => "plays#admin_new",     as: "admin_new_play"
-  post    "plays/admin/:id"       => "plays#admin_create",  as: "admin_create_play"
+  get     "plays/admin/:id"       => "plays#admin_show",    as: "admin_show_play"
+  post    "plays/admin"           => "plays#admin_create",  as: "admin_create_play"
   get     "plays/admin/:id/edit"  => "plays#admin_edit",    as: "admin_edit_play"
   patch   "plays/admin/:id"       => "plays#admin_update",  as: "admin_update_play"
   delete  "plays/admin/:id"       => "plays#admin_destroy", as: "admin_destroy_play"
@@ -77,7 +77,7 @@ Rails.application.routes.draw do
          admin_index_play GET    /plays/admin(.:format)                                                                   plays#admin_index
           admin_show_play GET    /plays/admin/:id(.:format)                                                               plays#admin_show
            admin_new_play GET    /plays/admin/new(.:format)                                                               plays#admin_new
-        admin_create_play POST   /plays/admin/:id(.:format)                                                               plays#admin_create
+        admin_create_play POST   /plays/admin(.:format)                                                                   plays#admin_create
           admin_edit_play GET    /plays/admin/:id/edit(.:format)                                                          plays#admin_edit
         admin_update_play PATCH  /plays/admin/:id(.:format)                                                               plays#admin_update
        admin_destroy_play DELETE /plays/admin/:id(.:format)                                                               plays#admin_destroy

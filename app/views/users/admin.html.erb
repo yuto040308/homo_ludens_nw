@@ -20,7 +20,9 @@
             <!-- 遊び一覧のパネル -->
             <div class="tab-pane fade show active" id="play" role="tabpanel" aria-labelledby="play-tab">
                 <h3>遊び一覧</h3>
-                遊び一覧のコンテンツが入ります。
+                遊び一覧のコンテンツが入ります。<br>
+                <!-- button_to: buttonのヘルパー button_toは標準でpostで送られてしまうので、getに指定した。 -->
+                <%= button_to "追加", admin_new_play_path, class: "btn btn-primary rounded-pill", method: :get %>
             </div>
 
             <!-- イベント一覧のパネル -->

@@ -1,2 +1,85 @@
-<h1>Plays#admin_new</h1>
-<p>Find me in app/views/plays/admin_new.html.erb</p>
+<div class="container">
+
+    <h1 class="my-5">遊び新規作成</h1>
+
+    
+
+    <%= form_for @play, url: admin_create_play_path do |f| %>
+
+        <hr>
+
+        <!-- 画像の領域 -->
+        <div class="row my-4">
+            <!-- 左端の余白 -->
+            <div class="col-1"></div>
+            <div class="col-4"><h5>画像</h5></div>
+            <div class="col-6"><%= f.attachment_field :play_image %></div>
+            <!-- 右端の余白 -->
+            <div class="col-1"></div>
+        </div>
+        <hr>
+
+        <!-- タイトルの領域 -->
+        <div class="row my-4">
+            <!-- 左端の余白 -->
+            <div class="col-1"></div>
+            <div class="col-4"><h5>タイトル</h5></div>
+            <div class="col-4">
+                <div class="field form-group">
+                    <%= f.text_field :play_title, class: "form-control" %>
+                </div>
+            </div>
+            <!-- 右端の余白 -->
+            <div class="col-3"></div>
+        </div>
+
+        <hr>
+
+        <!-- ジャンルの領域 -->
+        <div class="row my-4">
+            <!-- 左端の余白 -->
+            <div class="col-1"></div>
+            <div class="col-4"><h5>ジャンル</h5></div>
+            <div class="col-2">
+                <div class="field form-group">
+                    <!--
+                    <select class="form-control">
+                        <%# @categories.each do |category| %>
+                            <option><%#= category.category_name %></option>
+                        <%# end %>
+                    </select>
+                    -->
+                    <!-- map関数を使うことによって、カテゴリ名は表示され、value値にはidが入る -->
+                    <!-- 第二引数は配列で指定する。[["インドア",1],["アウトドア",2]] -->
+                    <!-- 第二引数の1項目目が画面に表示され、2項目目がvalue値にセットされる -->
+                    <%= f.select :category_id, @categories.map{|t| [t.category_name, t.id]} %>
+                    <%#= f.number_field :category_id, class: "form-control" %>
+                </div>
+            </div>
+            <!-- 右端の余白 -->
+            <div class="col-5"></div>
+        </div>
+        <hr>
+
+        <!-- 説明の領域 -->
+        <div class="row my-4">
+            <!-- 左端の余白 -->
+            <div class="col-1"></div>
+            <div class="col-4"><h5>説明文</h5></div>
+            <div class="col-6">
+                <div class="field form-group">
+                    <%= f.text_area :play_explain, class: "form-control", rows: "15" %>
+                </div>
+            </div>
+            <!-- 右端の余白 -->
+            <div class="col-1"></div>
+        </div>
+
+        <%= f.submit "更新", class: "btn btn-primary btn-block" %>
+
+    <% end %>
+
+    
+    
+
+</div>
