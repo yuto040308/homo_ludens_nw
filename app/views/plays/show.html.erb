@@ -1,2 +1,48 @@
-<h1>Plays#show</h1>
-<p>Find me in app/views/plays/show.html.erb</p>
+<div class="container-fluid bg-lemonchiffon">
+
+    <!-- 上マージン -->
+    <div class="m-150"></div>
+
+    <!-- TOP画像 -->
+    <!-- mx-auto d-block指定で、画像を中央揃えにすることができる。 -->
+    <%= attachment_image_tag @play, :play_image, format: "jpeg", fallback: "no_image.jpg", size: "800x400", class: "img-thumbnail mx-auto d-block mb-5" %>
+    
+    <!-- 見出し -->
+    <div class="row">
+        <!-- 左の余白 -->
+        <div class="col-2"></div>
+
+        <!-- 通し番号 -->
+        <div class="col-1"><h1><%= @play.id %></h1></div>
+
+        <!-- タイトル -->
+        <div class="col-7"><h2><%= @play.play_title %><h2></div>
+
+        <!-- 右の余白 -->
+        <div class="col-2"></div>
+    </div>
+
+    <!-- 枠線 -->
+    <!-- hrにbootstrapで中央揃えができなかったため、html構文で指定 -->
+    <hr class="hr-play" align="center">
+
+    
+
+    <!-- 本文 -->
+    <p class="x-250 y-50"><%= @play.play_explain %></p>
+
+    <!-- イベント一覧はあとで追加する。 -->
+    <h1 class="text-center mb-5">開催中イベント</h1>
+
+    <!-- 戻るボタン 一覧に戻す -->
+    <!-- bootstrapのボタンはinline-blockのため、d-blockを書かないと、中央に寄らない -->
+    <div class="mx-auto w-400">
+        <%= button_to "戻る", plays_path, class: "btn btn-danger btn-lg btn-block mx-auto d-block", method: :get %>
+    </div>
+    
+
+    <!-- 下マージン -->
+    <div class="m-300"></div>
+
+
+</div>

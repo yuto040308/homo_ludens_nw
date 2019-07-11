@@ -12,9 +12,22 @@ class EventsController < ApplicationController
   end
 
   def new
+    @event = Event.new
+    # プルダウンで遊びを選択させるため、遊びの一覧を渡す
+    @plays = Play.all
   end
 
   def create
+    event = Event.new(event_params)
+    event.user_id = current_user.id
+
+    # save成功時はマイページ、失敗時はnew画面に戻す
+    if event.save
+      redirect_to user_path(current_user.id)
+    else
+      render "new"
+    end
+
   end
 
   def edit
@@ -40,4 +53,11 @@ class EventsController < ApplicationController
 
   def admin_accept
   end
+
+  # ストロングパラメーター
+  private
+  def event_params
+    params.require(:event).permit(:id ,:event_title, :event_explain, :event_image_id, :event_place, :event_people_min, :event_people_max, :honorarium, :event_hold_start_time, :event_hold_finish_time, :event_start_time, :event_finish_time)
+  end
+
 end
