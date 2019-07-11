@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   def index
+    @events = Event.all
   end
 
   def show
@@ -57,7 +58,7 @@ class EventsController < ApplicationController
   # ストロングパラメーター
   private
   def event_params
-    params.require(:event).permit(:id ,:event_title, :event_explain, :event_image_id, :event_place, :event_people_min, :event_people_max, :honorarium, :event_hold_start_time, :event_hold_finish_time, :event_start_time, :event_finish_time)
+    params.require(:event).permit(:id, :play_id, :event_title, :event_explain, :event_image, :event_place, :event_people_min, :event_people_max, :honorarium, :event_hold_start_time, :event_hold_finish_time, :event_start_time, :event_finish_time)
   end
 
 end
