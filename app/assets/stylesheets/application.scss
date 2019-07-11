@@ -37,7 +37,78 @@
     background-color: #ffce9f;
 }
 
+// 遊び詳細ページ用
+.bg-lemonchiffon {
+    background-color: #fffacd;
+}
+
 // topページの説明文に使う①とか②用
 .top-number {
     font-size: 125px;
+}
+
+// 余白 150px用
+.m-150 {
+    height: 150px;
+}
+
+.h-200 {
+    height: 200px;
+}
+
+// 余白 300px用
+.m-300 {
+    height: 300px;
+}
+
+// 余白 400px用
+.m-400 {
+    height: 300px;
+}
+
+// 横幅 400px用
+.w-400 {
+    width: 400px;
+}
+
+// 左右余白 250px用
+.x-250 {
+    margin: {
+        right: 250px;
+        left: 250px;
+    }
+}
+
+// 引数を使ったミックスインを定義
+@mixin y-margin($value){
+    margin: {
+        top: $value;
+        bottom: $value;
+    }
+}
+
+// 上下マージン 50px用
+.y-50 {
+    @include y-margin(50px);
+}
+
+// 遊び詳細ページのhr用
+.hr-play {
+    width: 70%;
+    border-top: 1px dashed #bbb;
+
+    // sass記法で記載
+    &:after {
+        content: '\002702';
+        display: inline-block;
+        position: relative;
+        top: -12px;
+        left: 80px;
+        padding: 0 3px;
+        background: #f0f0f0;
+        color: #bbb;
+        font: {
+            size: 18px;
+        }
+    }
 }

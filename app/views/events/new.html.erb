@@ -1,2 +1,219 @@
-<h1>Events#new</h1>
-<p>Find me in app/views/events/new.html.erb</p>
+<div class="container">
+
+    <h1 class="my-5">イベント新規作成</h1>
+
+    <%= form_for @event do |f| %>
+
+        <hr>
+
+        <!-- 画像の領域 -->
+        <div class="row my-3">
+            <!-- 左端の余白 -->
+            <div class="col-1"></div>
+            <div class="col-4"><h5>画像</h5></div>
+            <div class="col-6"><%= f.attachment_field :event_image %></div>
+            <!-- 右端の余白 -->
+            <div class="col-1"></div>
+        </div>
+        <hr>
+
+        <!-- タイトルの領域 -->
+        <div class="row my-3">
+            <!-- 左端の余白 -->
+            <div class="col-1"></div>
+            <div class="col-4"><h5>タイトル</h5></div>
+            <div class="col-4">
+                <div class="field form-group">
+                    <%= f.text_field :event_title, class: "form-control" %>
+                </div>
+            </div>
+            <!-- 右端の余白 -->
+            <div class="col-3"></div>
+        </div>
+        <hr>
+        
+        <!-- 遊び選択の領域 -->
+        <div class="row my-4">
+            <!-- 左端の余白 -->
+            <div class="col-1"></div>
+            <div class="col-4"><h5>遊びジャンル</h5></div>
+            <div class="col-2">
+                <div class="field form-group">
+                    <!-- map関数を使うことによって、カテゴリ名は表示され、value値にはidが入る -->
+                    <!-- 第二引数は配列で指定する。[["インドア",1],["アウトドア",2]] -->
+                    <!-- 第二引数の1項目目が画面に表示され、2項目目がvalue値にセットされる -->
+                    <%= f.select :play_id, @plays.map{|t| [t.play_title, t.id]} %>
+                </div>
+            </div>
+            <!-- 右端の余白 -->
+            <div class="col-5"></div>
+        </div>
+        <hr>
+
+        <!-- 最小催行人数の領域 -->
+        <!-- input type="range"にvue-JSを組み合わせてやってみる？ -->
+        <div class="row my-3">
+            <!-- 左端の余白 -->
+            <div class="col-1"></div>
+            <div class="col-4"><h5>最小催行人数</h5></div>
+            <div class="col-3">
+                <div class="form-group">
+
+                    <!-- スライダーは時間あるときにやってみよう
+                    <input type="range" value="1" min="1" max="99" step="1" oninput="document.getElementById('output1').value=this.value">
+
+                    <output id="output1">1</output>
+                    -->
+                    <%#= f.range_field :event_people_min ,min:1 ,maxlength:100 %>
+                    <!-- 数値 -->
+                    <%= f.number_field :event_people_min ,min:1,max:99,step:1, class: "form-control" %>
+
+                    
+                </div>
+            </div>
+            <!-- 右端の余白 -->
+            <div class="col-4">人</div>
+        </div>
+        <hr>
+
+        <!-- 最大催行人数の領域 -->
+        <div class="row my-3">
+            <!-- 左端の余白 -->
+            <div class="col-1"></div>
+            <div class="col-4"><h5>最大催行人数</h5></div>
+            <div class="col-3">
+                <div class="form-group">
+                    <%= f.number_field :event_people_max ,min:1,max:99,step:1, class: "form-control" %>
+                </div>
+            </div>
+            <!-- 右端の余白 -->
+            <div class="col-4">人</div>
+        </div>
+        <hr>
+
+        <!-- イベント開始時刻の領域 -->
+        <div class="row my-3">
+            <!-- 左端の余白 -->
+            <div class="col-1"></div>
+            <div class="col-4"><h5>イベント開始時刻</h5></div>
+            <div class="col-4">
+                <div class="form-group">
+                    <!-- 標準は世界時間なので、config/application.rb に設定を追加して、日本時間で設定する。　 -->
+                    <%= f.datetime_field :event_hold_start_time, class: "form-control" %>
+                </div>
+            </div>
+            <!-- 右端の余白 -->
+            <div class="col-3"></div>
+        </div>
+        <hr>
+
+        <!-- イベント終了時刻の領域 -->
+        <div class="row my-3">
+            <!-- 左端の余白 -->
+            <div class="col-1"></div>
+            <div class="col-4"><h5>イベント終了時刻</h5></div>
+            <div class="col-4">
+                <div class="form-group">
+                    <!-- 標準は世界時間なので、config/application.rb に設定を追加して、日本時間で設定する。　 -->
+                    <%= f.datetime_field :event_hold_finish_time, class: "form-control" %>
+                </div>
+            </div>
+            <!-- 右端の余白 -->
+            <div class="col-3"></div>
+        </div>
+        <hr>
+
+        <!-- 募集開始時刻の領域 -->
+        <div class="row my-3">
+            <!-- 左端の余白 -->
+            <div class="col-1"></div>
+            <div class="col-4"><h5>募集開始時刻</h5></div>
+            <div class="col-4">
+                <div class="form-group">
+                    <!-- 標準は世界時間なので、config/application.rb に設定を追加して、日本時間で設定する。　 -->
+                    <%= f.datetime_field :event_start_time, class: "form-control" %>
+                </div>
+            </div>
+            <!-- 右端の余白 -->
+            <div class="col-3"></div>
+        </div>
+        <hr>
+
+        <!-- 募集終了時刻の領域 -->
+        <div class="row my-3">
+            <!-- 左端の余白 -->
+            <div class="col-1"></div>
+            <div class="col-4"><h5>募集終了時刻</h5></div>
+            <div class="col-4">
+                <!-- 標準は世界時間なので、config/application.rb に設定を追加して、日本時間で設定する。　 -->
+                <%= f.datetime_field :event_finish_time, class: "form-control" %>
+            </div>
+            <!-- 右端の余白 -->
+            <div class="col-3"></div>
+        </div>
+        <hr>
+
+        <!-- 謝礼金の領域 -->
+        <div class="row my-3">
+            <!-- 左端の余白 -->
+            <div class="col-1"></div>
+            <div class="col-4"><h5>謝礼金</h5></div>
+            <div class="col-3">
+                <div class="form-group">
+                    <%= f.number_field :honorarium ,min:0,max:100000,step:500, class: "form-control" %>
+                </div>
+            </div>
+            <!-- 右端の余白 -->
+            <div class="col-4">円</div>
+        </div>
+        <hr>
+
+        <!-- 開催場所の領域 -->
+        <div class="row my-3">
+            <!-- 左端の余白 -->
+            <div class="col-1"></div>
+            <div class="col-4"><h5>開催場所</h5></div>
+            <div class="col-4">
+                <div class="field form-group">
+                    <%= f.text_field :event_place, class: "form-control" %>
+                </div>
+            </div>
+            <!-- 右端の余白 -->
+            <div class="col-3"></div>
+        </div>
+        <hr>
+
+        <!-- 説明の領域 -->
+        <div class="row my-3">
+            <!-- 左端の余白 -->
+            <div class="col-1"></div>
+            <div class="col-4"><h5>説明</h5></div>
+            <div class="col-5">
+                <div class="field form-group">
+                    <%= f.text_area :event_explain, class: "form-control", rows: "15" %>
+                </div>
+            </div>
+            <!-- 右端の余白 -->
+            <div class="col-2"></div>
+        </div>
+        <hr>
+
+        <div class="w-400 mx-auto mb-3">
+            <%= f.submit "作成", class: "btn btn-primary btn-block" %>
+        </div>
+
+ 
+
+    <% end %>
+
+    <div class="w-400 mx-auto">
+        <%= button_to "戻る", user_path(current_user.id), class: "btn btn-danger btn-block",method: :get %>
+    </div>
+
+    <!-- 下の余白 -->
+    <div class="h-200"></div>
+
+    <!-- 改行を保存する方法？ -->
+    <%#= simple_format(h(@hoge)) %>
+
+</div>
