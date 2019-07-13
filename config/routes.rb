@@ -66,7 +66,7 @@ Rails.application.routes.draw do
                           PATCH  /users/:id(.:format)                                                                     users#update
                           PUT    /users/:id(.:format)                                                                     users#update
                           DELETE /users/:id(.:format)                                                                     users#destroy          # 退会機能
-               event_user GET    /users/:id/event(.:format)                                                               users#event
+               event_user GET    /users/:id/event(.:format)                                                               users#event            # 主催者情報ページの表示
                admin_user GET    /users/admin(.:format)                                                                   users#admin            # 管理者マイページを表示
          admin_index_user GET    /users/admin/index(.:format)                                                             users#admin_index
           admin_show_user GET    /users/admin/:id(.:format)                                                               users#admin_show
