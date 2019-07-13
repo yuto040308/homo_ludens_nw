@@ -67,7 +67,7 @@ Rails.application.routes.draw do
                           PUT    /users/:id(.:format)                                                                     users#update
                           DELETE /users/:id(.:format)                                                                     users#destroy
                event_user GET    /users/:id/event(.:format)                                                               users#event
-               admin_user GET    /users/admin(.:format)                                                                   users#admin
+               admin_user GET    /users/admin(.:format)                                                                   users#admin            # 管理者マイページを表示
          admin_index_user GET    /users/admin/index(.:format)                                                             users#admin_index
           admin_show_user GET    /users/admin/:id(.:format)                                                               users#admin_show
 
@@ -75,7 +75,7 @@ Rails.application.routes.draw do
                     plays GET    /plays(.:format)                                                                         plays#index
                      play GET    /plays/:id(.:format)                                                                     plays#show             # 遊び詳細ページを表示
          admin_index_play GET    /plays/admin(.:format)                                                                   plays#admin_index
-          admin_show_play GET    /plays/admin/:id(.:format)                                                               plays#admin_show
+          admin_show_play GET    /plays/admin/:id(.:format)                                                               plays#admin_show       # (管理者)遊び詳細ページを表示
            admin_new_play GET    /plays/admin/new(.:format)                                                               plays#admin_new
         admin_create_play POST   /plays/admin(.:format)                                                                   plays#admin_create
           admin_edit_play GET    /plays/admin/:id/edit(.:format)                                                          plays#admin_edit

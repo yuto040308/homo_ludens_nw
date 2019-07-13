@@ -15,6 +15,9 @@ class UsersController < ApplicationController
   end
 
   def admin
+    @users = User.all
+    @plays = Play.all
+    @events = Event.all
   end
 
   def admin_index
