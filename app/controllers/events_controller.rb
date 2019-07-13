@@ -8,6 +8,29 @@ class EventsController < ApplicationController
   end
 
   def join
+    event = Event.find(params[:id])
+    event_join = EventJoin.new
+
+    # すでに参加している場合は保存できなくする
+    if EventJoin.find_by(event_id: event.id, user_id: current_user.id) != nil
+      # 処理しません
+      
+    # 参加をまだしていない場合
+    else
+
+      # 値をセットする
+      event_join.event_id = event.id
+      event_join.user_id = current_user.id
+      
+
+      # save成功時は参加完了ページ、失敗時はイベント詳細画面に戻す
+      if event_join.save
+        redirect_to complete_event_path
+      else
+        redirect_to event_path(event.id)
+      end
+    end
+
   end
 
   def complete
