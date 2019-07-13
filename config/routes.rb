@@ -61,11 +61,11 @@ Rails.application.routes.draw do
                       top GET    /                                                                                        home#top
 
 
-                edit_user GET    /users/:id/edit(.:format)                                                                users#edit
-                     user GET    /users/:id(.:format)                                                                     users#show
+                edit_user GET    /users/:id/edit(.:format)                                                                users#edit             # ユーザー編集ページを表示
+                     user GET    /users/:id(.:format)                                                                     users#show             # マイページを表示
                           PATCH  /users/:id(.:format)                                                                     users#update
                           PUT    /users/:id(.:format)                                                                     users#update
-                          DELETE /users/:id(.:format)                                                                     users#destroy
+                          DELETE /users/:id(.:format)                                                                     users#destroy          # 退会機能
                event_user GET    /users/:id/event(.:format)                                                               users#event
                admin_user GET    /users/admin(.:format)                                                                   users#admin            # 管理者マイページを表示
          admin_index_user GET    /users/admin/index(.:format)                                                             users#admin_index
@@ -83,17 +83,17 @@ Rails.application.routes.draw do
        admin_destroy_play DELETE /plays/admin/:id(.:format)                                                               plays#admin_destroy
 
 
-                   events GET    /events(.:format)                                                                        events#index
+                   events GET    /events(.:format)                                                                        events#index           # イベント一覧ページを表示
                           POST   /events(.:format)                                                                        events#create
                 new_event GET    /events/new(.:format)                                                                    events#new
-               edit_event GET    /events/:id/edit(.:format)                                                               events#edit
+               edit_event GET    /events/:id/edit(.:format)                                                               events#edit            # イベント編集ページを表示
                     event GET    /events/:id(.:format)                                                                    events#show
                           PATCH  /events/:id(.:format)                                                                    events#update
                           PUT    /events/:id(.:format)                                                                    events#update
-                          DELETE /events/:id(.:format)                                                                    events#destroy
+                          DELETE /events/:id(.:format)                                                                    events#destroy         # イベント削除機能
                join_event GET    /events/:id/join(.:format)                                                               events#join
            complete_event GET    /events/complete(.:format)                                                               events#complete        # 参加完了ページを表示
-             cansel_event DELETE /events/:id/cansel(.:format)                                                             events#cansel
+             cansel_event DELETE /events/:id/cansel(.:format)                                                             events#cansel          # イベント参加キャンセル機能
               admin_event GET    /events/admin(.:format)                                                                  events#admin
          admin_show_event GET    /events/admin/:id(.:format)                                                              events#admin_show
       admin_destroy_event DELETE /events/admin/:id(.:format)                                                              events#admin_destroy
