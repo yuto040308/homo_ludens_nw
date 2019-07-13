@@ -61,11 +61,11 @@ Rails.application.routes.draw do
                       top GET    /                                                                                        home#top
 
 
-                edit_user GET    /users/:id/edit(.:format)                                                                users#edit
-                     user GET    /users/:id(.:format)                                                                     users#show
+                edit_user GET    /users/:id/edit(.:format)                                                                users#edit             # ユーザー編集ページを表示
+                     user GET    /users/:id(.:format)                                                                     users#show             # マイページを表示
                           PATCH  /users/:id(.:format)                                                                     users#update
                           PUT    /users/:id(.:format)                                                                     users#update
-                          DELETE /users/:id(.:format)                                                                     users#destroy
+                          DELETE /users/:id(.:format)                                                                     users#destroy          # 退会機能
                event_user GET    /users/:id/event(.:format)                                                               users#event
                admin_user GET    /users/admin(.:format)                                                                   users#admin            # 管理者マイページを表示
          admin_index_user GET    /users/admin/index(.:format)                                                             users#admin_index
@@ -83,7 +83,7 @@ Rails.application.routes.draw do
        admin_destroy_play DELETE /plays/admin/:id(.:format)                                                               plays#admin_destroy
 
 
-                   events GET    /events(.:format)                                                                        events#index
+                   events GET    /events(.:format)                                                                        events#index           # イベント一覧ページを表示
                           POST   /events(.:format)                                                                        events#create
                 new_event GET    /events/new(.:format)                                                                    events#new
                edit_event GET    /events/:id/edit(.:format)                                                               events#edit

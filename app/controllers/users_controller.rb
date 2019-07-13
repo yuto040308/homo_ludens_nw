@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
   def show
+    @user = current_user
+    # 参加しているイベントだけDBから持ってくる
+    @events = Event.where(user_id: @user.id)
+
   end
 
   def edit
@@ -9,6 +13,14 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    user = current_user
+    # 退会フラグを立てる
+    user.resignation_flg = 1
+    user.save
+
+    # トップページに戻す
+    redirect_to top_path
+
   end
 
   def event

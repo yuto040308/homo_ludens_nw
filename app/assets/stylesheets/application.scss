@@ -112,6 +112,15 @@
     }
 }
 
+// ユーザーマイページ　ユーザー画像用
+.user-img {
+    border: {
+        radius: 50%;
+    }
+    width: 200px;
+    height: 200px;
+}
+
 // topページの説明文に使う①とか②用
 .top-number {
     font-size: 125px;
@@ -149,6 +158,11 @@
 // 余白 400px用
 .m-400 {
     height: 300px;
+}
+
+// 横幅 200px用
+.w-200 {
+    width: 200px;
 }
 
 // 横幅 300px用
