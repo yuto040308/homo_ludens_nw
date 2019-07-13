@@ -2,7 +2,16 @@ class UsersController < ApplicationController
   def show
     @user = current_user
     # 参加しているイベントだけDBから持ってくる
+    @event_joins = EventJoin.where(user_id: @user.id)
+
+    # 主催しているイベントだけDBから持ってくる
     @events = Event.where(user_id: @user.id)
+
+    # 参加者の数を計算して、@event_counts_arrayに格納する処理
+    @event_counts_array = Array.new
+    @events.each do |event|
+      @event_counts_array.push(EventJoin.where(event_id: event.id).count)
+    end
 
   end
 

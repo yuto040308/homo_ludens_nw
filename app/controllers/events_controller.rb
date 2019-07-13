@@ -62,9 +62,24 @@ class EventsController < ApplicationController
   end
 
   def destroy
+    # 主催しているイベントを取得する。
+    event = Event.find(params[:id])
+
+    event.destroy
+
+    # マイページに戻す
+    redirect_to user_path
   end
 
   def cansel
+    # イベント参加しているレコードを取得する。
+    event_join = EventJoin.find_by(event_id: params[:id], user_id: current_user.id)
+
+    event_join.destroy
+
+    # マイページに戻す
+    redirect_to user_path
+    
   end
 
   def admin_index

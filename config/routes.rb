@@ -86,14 +86,14 @@ Rails.application.routes.draw do
                    events GET    /events(.:format)                                                                        events#index           # イベント一覧ページを表示
                           POST   /events(.:format)                                                                        events#create
                 new_event GET    /events/new(.:format)                                                                    events#new
-               edit_event GET    /events/:id/edit(.:format)                                                               events#edit
+               edit_event GET    /events/:id/edit(.:format)                                                               events#edit            # イベント編集ページを表示
                     event GET    /events/:id(.:format)                                                                    events#show
                           PATCH  /events/:id(.:format)                                                                    events#update
                           PUT    /events/:id(.:format)                                                                    events#update
-                          DELETE /events/:id(.:format)                                                                    events#destroy
+                          DELETE /events/:id(.:format)                                                                    events#destroy         # イベント削除機能
                join_event GET    /events/:id/join(.:format)                                                               events#join
            complete_event GET    /events/complete(.:format)                                                               events#complete        # 参加完了ページを表示
-             cansel_event DELETE /events/:id/cansel(.:format)                                                             events#cansel
+             cansel_event DELETE /events/:id/cansel(.:format)                                                             events#cansel          # イベント参加キャンセル機能
               admin_event GET    /events/admin(.:format)                                                                  events#admin
          admin_show_event GET    /events/admin/:id(.:format)                                                              events#admin_show
       admin_destroy_event DELETE /events/admin/:id(.:format)                                                              events#admin_destroy

@@ -129,16 +129,94 @@
 
             <!-- 参加イベント一覧のパネル -->
             <div class="tab-pane fade" id="event" role="tabpanel" aria-labelledby="event-tab">
-                <h3>参加イベント</h3>
-                参加イベント一覧のコンテンツが入ります。
+                <h3 class="mb-5">参加イベント</h3>
+                
+                <!-- カード部分 -->
+                <div class="row mx-auto w-800">
+                    <% @event_joins.each do |event_join| %>
+                        <div class="col-4">
+                            <div class="card mx-auto" style="max-width: 20rem;">
+                                <!--カード上部にレイアウトされる画像: card-img-top -->
+                                <!--画像はサンプルです。-->
+                                <a href="/events/<%= event_join.event.id %>"><%= attachment_image_tag event_join.event, :event_image, format: "jpg",class: "card-img-top",size:"200x200" %></a>
+                                <!-- カード本文:card-body -->
+                                <div class="card-body">
+                                    <!-- カード見出し:card-title -->
+                                    <h5 class="card-title"><%= event_join.event.event_title %></h5>
+                                    
+                                    <!-- カードの内容文:card-text -->
+                                    <p class="card-text mb-5">
+                                        
+                                        <p class="mb-3">開催期間</p>
+                                        <p><%= event_join.event.event_hold_start_time.strftime("%Y月%m月%d日(#{%w(日 月 火 水 木 金 土)[event_join.event.event_hold_start_time.wday]})%H:%M") %></p>
+                                        <p class="text-center">〜</p>
+                                        <p class="mb-3"><%= event_join.event.event_hold_finish_time.strftime("%Y月%m月%d日(#{%w(日 月 火 水 木 金 土)[event_join.event.event_hold_finish_time.wday]})%H:%M") %></p>
+                                        <p class="mb-3"><%= event_join.event.event_explain %></p>
+
+                                        <!-- button_to: buttonのヘルパー button_toは標準でpostで送られてしまうので、getに指定した。 -->
+                                        <%= button_to "キャンセル", cansel_event_path(event_join.event.id), class: "btn btn-danger mx-auto d-block w-200", method: :delete, "data-confirm" => "イベント参加をキャンセルします。よろしいでしょうか？" %>
+
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
+                    <% end %>
+                </div>
+
             </div>
 
             <!-- ユーザー一覧のパネル -->
             <div class="tab-pane fade" id="sponsor" role="tabpanel" aria-labelledby="sponsor-tab">
-                <h3>主催イベント</h3>
-                主催イベント一覧のコンテンツが入ります。
+                <h3 class="mb-5">主催イベント</h3>
+
+                <!-- カード部分 -->
+                <div class="row mx-auto w-800">
+
+                <!-- 参加人数を格納する変数 -->
+                <% i = 0 %>
+                    <% @events.each do |event| %>
+
+                    
+                        <div class="col-4">
+                            <div class="card mx-auto" style="max-width: 20rem;">
+                                <!--カード上部にレイアウトされる画像: card-img-top -->
+                                <!--画像はサンプルです。-->
+                                <a href="/events/<%= event.id %>"><%= attachment_image_tag event, :event_image, format: "jpg",class: "card-img-top",size:"200x200" %></a>
+                                <!-- カード本文:card-body -->
+                                <div class="card-body">
+                                    <!-- カード見出し:card-title -->
+                                    <h5 class="card-title"><%= event.event_title %></h5>
+                                    
+                                    <!-- カードの内容文:card-text -->
+                                    <p class="card-text mb-5">
+                                        
+                                        <p class="mb-3">開催期間</p>
+                                        <p><%= event.event_hold_start_time.strftime("%Y月%m月%d日(#{%w(日 月 火 水 木 金 土)[event.event_hold_start_time.wday]})%H:%M") %></p>
+                                        <p class="text-center">〜</p>
+                                        <p class="mb-5"><%= event.event_hold_finish_time.strftime("%Y月%m月%d日(#{%w(日 月 火 水 木 金 土)[event.event_hold_finish_time.wday]})%H:%M") %></p>
+                                        
+                                        <p class="mb-3">現在参加者</p>
+                                        <p class="mb-5"><%= @event_counts_array[i].to_s + "/" + event.event_people_min.to_s + "人"%></p>
+                                        <%= button_to "編集", edit_event_path(event.id), class: "btn btn-outline-success mx-auto d-block w-200 mb-3", method: :get %>
+                                        <!-- button_to: buttonのヘルパー button_toは標準でpostで送られてしまうので、getに指定した。 -->
+                                        <%= button_to "キャンセル", event_path(event.id), class: "btn btn-outline-danger mx-auto d-block w-200", method: :delete, "data-confirm" => "イベントを削除します。よろしいでしょうか？" %>
+
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 参加人数を表示する処理に使う -->
+                        <% i = i + 1 %>
+                    <% end %>
+                </div>
+
+                <!-- 表とボタンのマージン -->
+                <div class="h-40"></div>
+
                 <!-- button_to: buttonのヘルパー button_toは標準でpostで送られてしまうので、getに指定した。 -->
-                <%= button_to "新規作成", new_event_path, class: "btn btn-primary rounded-pill", method: :get %>
+                <%= button_to "新規作成", new_event_path, class: "btn btn-outline-primary rounded-pill w-200", method: :get %>
             </div>
 
         </div>
