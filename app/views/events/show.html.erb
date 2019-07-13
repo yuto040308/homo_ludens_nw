@@ -1,2 +1,109 @@
-<h1>Events#show</h1>
-<p>Find me in app/views/events/show.html.erb</p>
+<div class="event-img-fix">
+    <%= image_tag  "/assets/images/show-event.jpg", class: "event-show-img" %>
+    <p>イベント・講義</p>	
+</div>
+
+<div class="container-fluid bg-lightskyblue">
+
+    <!-- 上部余白 -->
+    <div class="h-80"></div>
+
+    <!-- 説明画像と、タイトル、説明文を分ける -->
+    <div class="row">
+        <!-- 画像部分 -->
+        <div class="col-6">
+            <%= attachment_image_tag @event, :event_image, format: "jpg", size:"500x400",class: "mx-auto d-block" %>
+        </div>
+        <!-- タイトル、説明文部分 -->
+        <div class="col-6">
+            <h1 class="mb-3"><%= @event.event_title %></h1>
+
+            <h5><%= @event.event_explain %></h5>
+        </div>
+    </div>
+    
+    <div class="h-120"></div>
+
+    <div class="row">
+        <!-- 左部分の余白 -->
+        <div class="col-1"></div>
+
+        <div class="col-10">
+            <h1>プログラム</h1>
+            <!-- hrにbootstrapで中央揃えができなかったため、html構文で指定 -->
+            <hr align="center">
+            <div class="row">
+                <div class="col-3"><p class="text-center">開催日時</p></div>
+                <div class="col-9">
+                    <%= @event.event_hold_start_time.strftime("%Y月%m月%d日(#{%w(日 月 火 水 木 金 土)[@event.event_hold_start_time.wday]})%H:%M") %>
+                    〜
+                    <%= @event.event_hold_finish_time.strftime("%Y月%m月%d日(#{%w(日 月 火 水 木 金 土)[@event.event_hold_finish_time.wday]})%H:%M") %>
+                </div>
+            </div>
+            <hr align="center">
+
+            <div class="row">
+                <div class="col-3"><p class="text-center">募集開始日時</p></div>
+                <div class="col-9">
+                    <%= @event.event_start_time.strftime("%Y月%m月%d日(#{%w(日 月 火 水 木 金 土)[@event.event_start_time.wday]})%H:%M") %>
+                </div>
+            </div>
+            <hr align="center">
+
+            <div class="row">
+                <div class="col-3"><p class="text-center">募集終了日時</p></div>
+                <div class="col-9">
+                    <%= @event.event_finish_time.strftime("%Y月%m月%d日(#{%w(日 月 火 水 木 金 土)[@event.event_finish_time.wday]})%H:%M") %>
+                </div>
+            </div>
+            <hr align="center">
+
+            <div class="row">
+                <div class="col-3"><p class="text-center">場所</p></div>
+                <div class="col-9">
+                    <%= @event.event_place %>
+                </div>
+            </div>
+            <hr align="center">
+
+            <div class="row">
+                <div class="col-3"><p class="text-center">最小催行人数</p></div>
+                <div class="col-9">
+                    <%= @event.event_people_min.to_s + "人" %>
+                </div>
+            </div>
+            <hr align="center">
+
+            <div class="row">
+                <div class="col-3"><p class="text-center">最大催行人数</p></div>
+                <div class="col-9">
+                    <%= @event.event_people_max.to_s + "人" %>
+                </div>
+            </div>
+            <hr align="center">
+
+            <div class="row">
+                <div class="col-3"><p class="text-center">現在参加人数</p></div>
+                <div class="col-9">これは参加機能できたら実装します。</div>
+            </div>
+            <hr align="center">
+
+            <div class="row">
+                <div class="col-3"><p class="text-center">主催者</p></div>
+                <div class="col-9"><a href="<%= "/users/#{@event.user.id}/event "%>"><%= @event.user.nickname %></a></div>
+            </div>
+            <hr align="center">
+
+        </div>
+
+        <!-- 右部分の余白 -->
+        <div class="col-1"></div>
+    </div>
+
+    <%= button_to "参加する", join_event_path(@event.id), class: "btn btn-info mx-auto d-block w-400", method: :get %>
+    
+    <!-- 下部分の余白 -->
+    <div class="m-150"></div>
+
+</div>
+

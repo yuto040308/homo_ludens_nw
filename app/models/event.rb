@@ -3,4 +3,5 @@ class Event < ApplicationRecord
     attachment :event_image
 
     belongs_to :play, optional: true
+    belongs_to :user, optional: true
 end

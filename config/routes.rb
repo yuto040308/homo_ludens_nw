@@ -73,7 +73,7 @@ Rails.application.routes.draw do
 
 
                     plays GET    /plays(.:format)                                                                         plays#index
-                     play GET    /plays/:id(.:format)                                                                     plays#show
+                     play GET    /plays/:id(.:format)                                                                     plays#show             # 遊び詳細ページを表示
          admin_index_play GET    /plays/admin(.:format)                                                                   plays#admin_index
           admin_show_play GET    /plays/admin/:id(.:format)                                                               plays#admin_show
            admin_new_play GET    /plays/admin/new(.:format)                                                               plays#admin_new
@@ -92,7 +92,7 @@ Rails.application.routes.draw do
                           PUT    /events/:id(.:format)                                                                    events#update
                           DELETE /events/:id(.:format)                                                                    events#destroy
                join_event GET    /events/:id/join(.:format)                                                               events#join
-           complete_event GET    /events/complete(.:format)                                                               events#complete
+           complete_event GET    /events/complete(.:format)                                                               events#complete        # 参加完了ページを表示
              cansel_event DELETE /events/:id/cansel(.:format)                                                             events#cansel
               admin_event GET    /events/admin(.:format)                                                                  events#admin
          admin_show_event GET    /events/admin/:id(.:format)                                                              events#admin_show

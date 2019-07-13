@@ -34,9 +34,30 @@
     <!-- イベント一覧はあとで追加する。 -->
     <h1 class="text-center mb-5">開催中イベント</h1>
 
+    <div class="row mx-auto w-1000">
+        <% @events.each do |event| %>
+            <div class="col-4">
+                <div class="card mx-auto" style="max-width: 20rem;">
+                    <!--カード上部にレイアウトされる画像: card-img-top -->
+                    <!--画像はサンプルです。-->
+                    <a href="/events/<%= event.id %>"><%= attachment_image_tag event, :event_image, format: "jpg",class: "card-img-top",size:"190x290" %></a>
+                    <!-- カード本文:card-body -->
+                    <div class="card-body">
+                        <!-- カード見出し:card-title -->
+                        <h4 class="card-title"><%= event.event_title %></h4>
+                        
+                        <!-- カードの内容文:card-text -->
+                        <p class="card-text mb-5"><%= event.event_explain %></p>
+                    </div>
+                </div>
+            </div>
+
+        <% end %>
+    </div>
+
     <!-- 戻るボタン 一覧に戻す -->
     <!-- bootstrapのボタンはinline-blockのため、d-blockを書かないと、中央に寄らない -->
-    <div class="mx-auto w-400">
+    <div class="mx-auto w-400 mt-5">
         <%= button_to "戻る", plays_path, class: "btn btn-danger btn-lg btn-block mx-auto d-block", method: :get %>
     </div>
     
