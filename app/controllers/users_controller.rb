@@ -16,9 +16,18 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:id])
   end
 
   def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      #パスワード変更するとログアウトしてしまうので、もう一度強制的にサインインさせてる。
+      sign_in(@user, bypass: true)
+      redirect_to user_path(@user.id)
+    else
+      render "edit"
+    end
   end
 
   def destroy
@@ -33,6 +42,7 @@ class UsersController < ApplicationController
   end
 
   def event
+    @user = User.find(params[:id])
   end
 
   def admin
@@ -46,4 +56,11 @@ class UsersController < ApplicationController
 
   def admin_show
   end
+
+  # ストロングパラメータ
+  private
+  def user_params
+    params.require(:user).permit(:id, :name_kanji_sei, :name_kanji_mei, :name_kana_sei, :name_kana_mei, :nickname, :email, :password, :phone_number, :payment_method, :user_image, :user_profile)
+  end
+
 end

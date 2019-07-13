@@ -1,2 +1,151 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<div class="container-fluid">
+
+    <!-- 上部の余白 -->
+    <div class="h-120"></div>
+
+    <%= form_for @user do |f| %>
+
+        <!-- ユーザー画像部分と、ユーザー名、ニックネーム欄を分割する -->
+        <div class="row">
+            <!-- 画像部分 -->
+            <div class="col-sm-5">
+                <!-- mx-auto d-block指定で、画像を中央揃えにすることができる。 -->
+                <%= attachment_image_tag @user, :user_image, format: "jpeg", fallback: "no_image.jpg", size: "300x300", class: "img-thumbnail mx-auto d-block mb-5" %>
+                <%= f.attachment_field :user_image, class: "mx-auto d-block" %>
+            </div>
+            <div class="col-sm-7">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <h3 class="mb-5">ユーザー名</h3>
+                        <h3 class="mb-5">ユーザーメイ</h3>
+                        <h3 class="mb-5">ニックネーム</h3>
+                    </div>
+                    <div class="col-sm-6">
+                        <!-- ユーザー漢字名フォーム -->
+                        <div class="row mb-5">
+                            <div class="col-sm-6"><%= f.text_field :name_kanji_sei, class: "form-control" %></div>
+                            <div class="col-sm-6"><%= f.text_field :name_kanji_mei, class: "form-control" %></div>
+                        </div>
+
+                        <!-- ユーザーカナ名フォーム -->
+                        <div class="row mb-5">
+                            <div class="col-sm-6"><%= f.text_field :name_kana_sei, class: "form-control" %></div>
+                            <div class="col-sm-6"><%= f.text_field :name_kana_mei, class: "form-control" %></div>
+                        </div>
+
+                        <!-- ニックネーム入力フォーム -->
+                        <div><%= f.text_field :nickname, class: "form-control" %></div>
+                        
+                    </div>
+                    <div class="col-sm-2"></div>
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- 左部分の余白 -->
+            <div class="col-sm-1"></div>
+
+            <div class="col-sm-10">
+                <hr>
+
+                <!-- メールアドレス部分 -->
+                <div class="row">
+                    <!-- 余白 -->
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-3">
+                        メールアドレス
+                    </div>
+                    <div class="col-sm-7">
+                        <%= f.text_field :email, class: "form-control" %>
+                    </div>
+                    <!-- 余白 -->
+                    <div class="col-sm-1"></div>
+                </div>
+                <hr>
+
+                <!-- パスワード部分 -->
+                <div class="row">
+                    <!-- 余白 -->
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-3">
+                        パスワード
+                    </div>
+                    <div class="col-sm-7">
+                        <%= f.password_field :password, autofocus: true, autocomplete: "パスワード" %>
+                    </div>
+                    <!-- 余白 -->
+                    <div class="col-sm-1"></div>
+                </div>
+                <hr>
+
+                <!-- 電話番号部分 -->
+                <div class="row">
+                    <!-- 余白 -->
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-3">
+                        電話番号
+                    </div>
+                    <div class="col-sm-7">
+                        <%= f.text_field :phone_number, class: "form-control" %>
+                    </div>
+                    <!-- 余白 -->
+                    <div class="col-sm-1"></div>
+                </div>
+                <hr>
+
+
+                <!-- 支払い方法 -->
+                <div class="field form-group row">
+                    <!-- 余白 -->
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-3">
+                        支払い方法
+                    </div>
+                    <div class="col-sm-7　btn-group" data-toggle="buttons">
+                        <label class="btn btn-outline-secondary">
+                        <%= f.radio_button :payment_method, 0 %><span class="mr-2"></span>銀行振込
+                        </label>
+                        <label class="btn btn-outline-secondary"">
+                        <%= f.radio_button :payment_method, 1 %><span class="mr-2"></span>クレジットカード
+                        </label>
+                    </div>
+                    <!-- 余白 -->
+                    <div class="col-sm-1"></div>
+                </div>
+                <hr>
+
+                <!-- プロフィール -->
+                <div class="field form-group row">
+                    <!-- 余白 -->
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-3">
+                        プロフィール
+                    </div>
+                    <div class="col-sm-7">
+                        <%= f.text_area :user_profile, class: "form-control", rows: "15" %>
+                    </div>
+                    <!-- 余白 -->
+                    <div class="col-sm-1"></div>
+                </div>
+                <hr>
+
+
+
+            </div>
+
+            <!-- 右部分の余白 -->
+            <div class="col-sm-1"></div>
+        </div>
+
+
+        <%= f.submit "更新",class: "btn btn-info mx-auto d-block btn-lg" %>
+    <% end %>
+
+    <!-- 下部の余白 -->
+    <div class="h-200"></div>
+
+
+</div>
+
