@@ -20,7 +20,47 @@
             <!-- 遊び一覧のパネル -->
             <div class="tab-pane fade show active" id="play" role="tabpanel" aria-labelledby="play-tab">
                 <h3>遊び一覧</h3>
-                遊び一覧のコンテンツが入ります。<br>
+                <p class="mb-3">遊び一覧のコンテンツが入ります。</p>
+
+                <table class="table">
+                    <thead>
+                        <colgroup span="1" style="width:15%;">  <!-- 画像の列 -->
+                        <colgroup span="1" style="width:20%;">  <!-- カテゴリの列 -->
+                        <colgroup span="1" style="width:20%;">  <!-- 遊び名の列 -->
+                        <colgroup span="1" style="width:30%;">  <!-- 説明の列 -->
+                        <colgroup span="1" style="width:15%;">  <!-- ボタンの列 -->
+
+                        <th></th>
+                        <th>カテゴリ</th>
+                        <th>遊び名</th>
+                        <th>説明</th>
+                        <th></th>
+                    </div>
+                        
+                    </thead>
+                    
+                    <tbody>
+                        <% @plays.each do |play| %>
+                        
+                            <tr>
+                                <td><a href="<%= "/plays/admin/#{play.id}" %>"><%= attachment_image_tag play, :play_image, format: "jpeg", fallback: "no_image.jpg", size: "100x100" %></a></td>
+                                <!-- align-middle: セル内で上下方向中央揃えする。 -->
+                                <td class="align-middle"><div class="d-flex align-items-center"><%= play.category.category_name %></div></td>
+                                <td class="align-middle"><a href="<%= "/plays/admin/#{play.id}" %>"><%= play.play_title %></a></td>
+                                <td class="align-middle"><%= play.play_explain %></td>
+                                <td class="align-middle">
+                                    <%= button_to "編集", admin_new_play_path, class: "btn btn-outline-success btn-block mb-2", method: :get %>
+                                    <%= button_to "削除", admin_new_play_path, class: "btn btn-outline-danger btn-block", method: :get %>
+                                </td>
+                            </tr>
+                            
+                        <% end %>
+                    </tbody>
+
+                </table>
+
+
+
                 <!-- button_to: buttonのヘルパー button_toは標準でpostで送られてしまうので、getに指定した。 -->
                 <%= button_to "追加", admin_new_play_path, class: "btn btn-primary rounded-pill", method: :get %>
             </div>
