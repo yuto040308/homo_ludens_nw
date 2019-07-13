@@ -14,7 +14,7 @@ class EventsController < ApplicationController
     # すでに参加している場合は保存できなくする
     if EventJoin.find_by(event_id: event.id, user_id: current_user.id) != nil
       # 処理しません
-      
+      redirect_to event_path(event.id)
     # 参加をまだしていない場合
     else
 

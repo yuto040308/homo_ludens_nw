@@ -27,11 +27,40 @@
     height: 600px;
     background-size: cover;
 }
+
+// フォントのサイズと色を設定できるミックスインを定義
+@mixin font-size-color($value, $color){
+    font: {
+        size: $value;
+    }
+    color: $color;
+    
+}
+
 .fa-search {
     // フォントサイズを5倍にする。
     font-size: 4em;
     color: white;
+    text-align: center;
 }
+
+// 完了ボタンのレイアウト
+.fa-check-circle{
+    // 6倍で指定
+    @include font-size-color(7em, #4c6ef5);
+}
+
+// fontを中央揃えさせるための設定
+.align-center {
+    text-align: center;
+}
+
+
+
+.fsize-40 {
+    font-size: 40px;
+}
+
 // topページ説明文用
 .bg-peachpuff {
     background-color: #ffce9f;
@@ -122,15 +151,27 @@
     height: 300px;
 }
 
+// 横幅 300px用
+.w-300 {
+    width: 300px;
+}
+
 // 横幅 400px用
 .w-400 {
     width: 400px;
+}
+
+// 横幅 1000px用(遊び詳細ページのイベント一覧で使用想定)
+.w-1000 {
+    width: 1000px;
 }
 
 // 横幅 1100px用(遊び、イベント一覧ページで使用想定)
 .w-1100 {
     width: 1100px;
 }
+
+
 
 // 左右余白 250px用
 .x-250 {

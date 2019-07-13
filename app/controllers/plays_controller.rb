@@ -5,6 +5,7 @@ class PlaysController < ApplicationController
 
   def show
     @play = Play.find(params[:id])
+    @events = Event.where(play_id: @play.id)
   end
 
   def admin_index
