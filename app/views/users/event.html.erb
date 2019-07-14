@@ -8,8 +8,32 @@
     <div class="h-120"></div>
 
     <!-- TOP画像 -->
+    <!-- mx-auto d-block指定で、画像を中央揃えにすることができる。 -->
+    <%= attachment_image_tag @user, :user_image, format: "jpeg", fallback: "no_image.jpg", size: "300x200", class: "img-thumbnail mx-auto d-block mb-5" %>
 
-    <%= @user.id %>
-    <h1>Users#event</h1>
-    <p>Find me in app/views/users/event.html.erb</p>
+    <div class="row">
+        <!-- 左側の余白 -->
+        <div class="col-sm-1"></div>
+
+        <div class="col-sm-10">
+            <h2><%= @user.nickname %></h2>
+            <!-- 枠線みにくいかも -->
+            <hr class="hr-user">
+
+            <p><%= @user.user_profile %></p>
+        </div>
+
+        <!-- 右側の余白 -->
+        <div class="col-sm-1"></div>
+    </div>
+    
+    <!-- 戻るボタン イベント一覧に戻す -->
+    <!-- bootstrapのボタンはinline-blockのため、d-blockを書かないと、中央に寄らない -->
+    <div class="mx-auto w-400 mt-5">
+        <%= button_to "イベント一覧に戻る", events_path, class: "btn btn-danger btn-lg btn-block mx-auto d-block", method: :get %>
+    </div>
+
+    <!-- 下マージン -->
+    <div class="h-200"></div>
+
 </div>
