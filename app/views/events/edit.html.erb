@@ -1,2 +1,210 @@
-<h1>Events#edit</h1>
-<p>Find me in app/views/events/edit.html.erb</p>
+<div class="container-fluid">
+
+    <!-- 上部マージン -->
+    <div class="h-80"></div>
+
+    <%= form_for @event do |f| %>
+        <div class="row">
+            <div class="col-sm-1"></div>
+
+            <div class="col-sm-10">
+                <h1>イベント編集</h1>
+                <%= attachment_image_tag @event, :event_image, format: "jpeg", fallback: "no_image.jpg",class: "user-img mx-auto d-block mb-5" %>
+
+                <!-- 名前:画像の領域 -->
+                <div class="row">
+                    <!-- 左マージン -->
+                    <div class="col-sm-1"></div>
+
+                    <div class="col-sm-4">画像</div>
+                    <div class="col-sm-5"><p class="text-center"><%= f.attachment_field :event_image %></p></div>
+
+                    <!-- 右マージン -->
+                    <div class="col-sm-2"></div>
+                </div>
+                <hr>
+
+                <!-- 名前:タイトルの領域 -->
+                <div class="row">
+                    <!-- 左マージン -->
+                    <div class="col-sm-1"></div>
+
+                    <div class="col-sm-4">タイトル</div>
+                    <div class="col-sm-5">
+                        <div class="field form-group">
+                            <%= f.text_field :event_title, autofocus: true, class: "form-control" %>
+                        </div>
+                    </div>
+                    <!-- 右マージン -->
+                    <div class="col-sm-2"></div>
+                </div>
+                <hr>
+
+                <!-- 最小催行人数の領域 -->
+                <div class="row">
+                    <!-- 左マージン -->
+                    <div class="col-sm-1"></div>
+
+                    <div class="col-sm-4">最小催行人数</div>
+                    <div class="col-sm-5">
+                        <div class="field form-group">
+                            <%= f.number_field :event_people_min ,min:1,max:99,step:1, class: "form-control" %>
+                        </div>
+                    </div>
+                    <!-- 右マージン -->
+                    <div class="col-sm-2"></div>
+                </div>
+                <hr>
+
+                <!-- 最大催行人数の領域 -->
+                <div class="row">
+                    <!-- 左マージン -->
+                    <div class="col-sm-1"></div>
+
+                    <div class="col-sm-4">最大催行人数</div>
+                    <div class="col-sm-5">
+                        <div class="field form-group">
+                            <%= f.number_field :event_people_max ,min:1,max:99,step:1, class: "form-control" %>
+                        </div>
+                    </div>
+                    <!-- 右マージン -->
+                    <div class="col-sm-2"></div>
+                </div>
+                <hr>
+
+                <!-- イベント開始時刻の領域 -->
+                <div class="row">
+                    <!-- 左マージン -->
+                    <div class="col-sm-1"></div>
+
+                    <div class="col-sm-4">イベント開始時刻</div>
+                    <div class="col-sm-5">
+                        <div class="field form-group">
+                            <!-- 標準は世界時間なので、config/application.rb に設定を追加して、日本時間で設定する。　 -->
+                            <%= f.datetime_field :event_hold_start_time, class: "form-control" %>
+                        </div>
+                    </div>
+                    <!-- 右マージン -->
+                    <div class="col-sm-2"></div>
+                </div>
+                <hr>
+
+                <!-- イベント終了時刻の領域 -->
+                <div class="row">
+                    <!-- 左マージン -->
+                    <div class="col-sm-1"></div>
+
+                    <div class="col-sm-4">イベント終了時刻</div>
+                    <div class="col-sm-5">
+                        <div class="field form-group">
+                            <!-- 標準は世界時間なので、config/application.rb に設定を追加して、日本時間で設定する。　 -->
+                            <%= f.datetime_field :event_hold_finish_time, class: "form-control" %>
+                        </div>
+                    </div>
+                    <!-- 右マージン -->
+                    <div class="col-sm-2"></div>
+                </div>
+                <hr>
+
+                <!-- 募集開始時刻の領域 -->
+                <div class="row">
+                    <!-- 左マージン -->
+                    <div class="col-sm-1"></div>
+
+                    <div class="col-sm-4">イベント終了時刻</div>
+                    <div class="col-sm-5">
+                        <div class="field form-group">
+                            <!-- 標準は世界時間なので、config/application.rb に設定を追加して、日本時間で設定する。　 -->
+                            <%= f.datetime_field :event_start_time, class: "form-control" %>
+                        </div>
+                    </div>
+                    <!-- 右マージン -->
+                    <div class="col-sm-2"></div>
+                </div>
+                <hr>
+
+                <!-- 募集終了時刻の領域 -->
+                <div class="row">
+                    <!-- 左マージン -->
+                    <div class="col-sm-1"></div>
+
+                    <div class="col-sm-4">イベント終了時刻</div>
+                    <div class="col-sm-5">
+                        <div class="field form-group">
+                            <!-- 標準は世界時間なので、config/application.rb に設定を追加して、日本時間で設定する。　 -->
+                            <%= f.datetime_field :event_finish_time, class: "form-control" %>
+                        </div>
+                    </div>
+                    <!-- 右マージン -->
+                    <div class="col-sm-2"></div>
+                </div>
+                <hr>
+
+                <!-- 謝礼金の領域 -->
+                <div class="row">
+                    <!-- 左マージン -->
+                    <div class="col-sm-1"></div>
+
+                    <div class="col-sm-4">謝礼金</div>
+                    <div class="col-sm-5">
+                        <div class="field form-group">
+                            <!-- 標準は世界時間なので、config/application.rb に設定を追加して、日本時間で設定する。　 -->
+                            <%= f.number_field :honorarium ,min:0,max:100000,step:500, class: "form-control" %>
+                        </div>
+                    </div>
+                    <!-- 右マージン -->
+                    <div class="col-sm-2"></div>
+                </div>
+                <hr>
+
+                <!-- 開催場所の領域 -->
+                <div class="row">
+                    <!-- 左マージン -->
+                    <div class="col-sm-1"></div>
+
+                    <div class="col-sm-4">イベント終了時刻</div>
+                    <div class="col-sm-5">
+                        <div class="field form-group">
+                            <%= f.text_field :event_place, class: "form-control" %>
+                        </div>
+                    </div>
+                    <!-- 右マージン -->
+                    <div class="col-sm-2"></div>
+                </div>
+                <hr>
+
+                <!-- 説明の領域 -->
+                <div class="row">
+                    <!-- 左マージン -->
+                    <div class="col-sm-1"></div>
+
+                    <div class="col-sm-4">イベント終了時刻</div>
+                    <div class="col-sm-5">
+                        <div class="field form-group">
+                            <%= f.text_area :event_explain, class: "form-control", rows: "15" %>
+                        </div>
+                    </div>
+                    <!-- 右マージン -->
+                    <div class="col-sm-2"></div>
+                </div>
+                <hr>
+
+                
+
+                
+
+
+
+            </div>
+
+            <div class="col-sm-1"></div>
+        </div>
+
+    <%= f.submit "更新", class: "btn btn-outline-warning w-200 mx-auto d-block mt-5" %>
+
+    <% end %>
+
+    <!-- 下マージン -->
+    <div class="h-200"></div>
+    
+</div>
