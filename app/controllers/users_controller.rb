@@ -49,6 +49,12 @@ class UsersController < ApplicationController
     @users = User.all
     @plays = Play.all
     @events = Event.all
+
+    # 参加者の数を計算して、@event_counts_arrayに格納する処理
+    @event_counts_array = Array.new
+    @events.each do |event|
+      @event_counts_array.push(EventJoin.where(event_id: event.id).count)
+    end
   end
 
   def admin_index

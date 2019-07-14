@@ -92,6 +92,23 @@ class EventsController < ApplicationController
   end
 
   def admin_accept
+    event = Event.find(params[:id])
+    event.event_confirm_flg = 1
+    event.save
+
+    # マイページに戻す
+    redirect_to admin_user_path
+
+  end
+
+  def admin_rescission
+    event = Event.find(params[:id])
+    event.event_confirm_flg = 0
+    event.save
+
+    # マイページに戻す
+    redirect_to admin_user_path
+
   end
 
   # ストロングパラメーター
