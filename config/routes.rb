@@ -98,7 +98,7 @@ Rails.application.routes.draw do
              cansel_event DELETE /events/:id/cansel(.:format)                                                             events#cansel          # イベント参加キャンセル機能
               admin_event GET    /events/admin(.:format)                                                                  events#admin
          admin_show_event GET    /events/admin/:id(.:format)                                                              events#admin_show
-      admin_destroy_event DELETE /events/admin/:id(.:format)                                                              events#admin_destroy
+      admin_destroy_event DELETE /events/admin/:id(.:format)                                                              events#admin_destroy   # イベント削除機能
        admin_accept_event PATCH  /events/admin/:id/accept(.:format)                                                       events#admin_accept    # イベント承認
    admin_rescission_event PATCH  /events/admin/:id/rescission(.:format)                                                   events#admin_rescission# イベント承認キャンセル
  
