@@ -50,7 +50,7 @@
                                 <td class="align-middle"><%= play.play_explain %></td>
                                 <td class="align-middle">
                                     <%= button_to "編集", admin_edit_play_path(play.id), class: "btn btn-outline-success btn-block mb-2", method: :get %>
-                                    <%= button_to "削除", admin_new_play_path, class: "btn btn-outline-danger btn-block", method: :get %>
+                                    <%= button_to "削除", admin_destroy_play_path(play.id), class: "btn btn-outline-danger btn-block", method: :delete %>
                                 </td>
                             </tr>
                             

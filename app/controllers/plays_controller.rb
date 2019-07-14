@@ -51,6 +51,11 @@ class PlaysController < ApplicationController
   end
 
   def admin_destroy
+    play = Play.find(params[:id])
+
+    play.destroy
+    # マイページに戻す
+    redirect_to admin_user_path
   end
 
   # ストロングパラメーター
