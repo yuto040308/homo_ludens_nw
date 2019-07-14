@@ -76,7 +76,7 @@ class EventsController < ApplicationController
     event.destroy
 
     # マイページに戻す
-    redirect_to user_path
+    redirect_to user_path(current_user.id)
   end
 
   def cansel
@@ -97,6 +97,13 @@ class EventsController < ApplicationController
   end
 
   def admin_destroy
+    # 主催しているイベントを取得する。
+    event = Event.find(params[:id])
+
+    event.destroy
+
+    # マイページに戻す
+    redirect_to admin_user_path
   end
 
   def admin_accept

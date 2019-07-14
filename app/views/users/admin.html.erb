@@ -73,16 +73,18 @@
                 <table class="table">
                     <thead>
                         <colgroup span="1" style="width:15%;">  <!-- 画像の列 -->
-                        <colgroup span="1" style="width:30%;">  <!-- イベントの列 -->
+                        <colgroup span="1" style="width:20%;">  <!-- イベントの列 -->
                         <colgroup span="1" style="width:20%;">  <!-- 遊びカテゴリ名の列 -->
                         <colgroup span="1" style="width:20%;">  <!-- 承認状況の列 -->
                         <colgroup span="1" style="width:15%;">  <!-- 催行人数の列 -->
+                        <colgroup span="1" style="width:10%;"> <!-- 削除ボタンの列 -->
 
                         <th></th>
                         <th>イベント</th>
                         <th>遊びカテゴリ</th>
                         <th>承認状況</th>
                         <th>催行人数</th>
+                        <th></th>
                     </div>
                         
                     </thead>
@@ -114,6 +116,9 @@
                                     
                                 </td>
                                 <td class="align-middle"><%= @event_counts_array[i].to_s + "/" + event.event_people_min.to_s + "人" %></td>
+                                <td class="align-middle">
+                                    <%= button_to "削除", admin_destroy_event_path(event.id), class: "btn btn-outline-danger mt-2", method: :delete, "data-confirm" => "このイベントを削除します。よろしいでしょうか？" %>
+                                </td>
                             </tr>
 
                             <!-- iをインクリメント -->
