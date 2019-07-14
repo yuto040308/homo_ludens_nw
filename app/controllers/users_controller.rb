@@ -92,6 +92,7 @@ class UsersController < ApplicationController
   end
 
   def admin_show
+    @user = User.find(params[:id])
   end
 
   # ストロングパラメータ

@@ -2,7 +2,8 @@ class Event < ApplicationRecord
     # refileでattachment_fieldを使う場合、ここに指定しないと動かない _idは外す
     attachment :event_image
 
-    has_many :event_joins
+    # イベントが削除された場合は、それに紐づく参加テーブルも削除する。
+    has_many :event_joins, :dependent => :destroy
 
     belongs_to :play, optional: true
     belongs_to :user, optional: true
