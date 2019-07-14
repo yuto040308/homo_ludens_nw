@@ -12,6 +12,7 @@ class PlaysController < ApplicationController
   end
 
   def admin_show
+    @play = Play.find(params[:id])
   end
 
   def admin_new
