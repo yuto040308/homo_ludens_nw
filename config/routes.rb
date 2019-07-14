@@ -80,8 +80,8 @@ Rails.application.routes.draw do
           admin_show_play GET    /plays/admin/:id(.:format)                                                               plays#admin_show       # (管理者)遊び詳細ページを表示
            admin_new_play GET    /plays/admin/new(.:format)                                                               plays#admin_new
         admin_create_play POST   /plays/admin(.:format)                                                                   plays#admin_create
-          admin_edit_play GET    /plays/admin/:id/edit(.:format)                                                          plays#admin_edit
-        admin_update_play PATCH  /plays/admin/:id(.:format)                                                               plays#admin_update
+          admin_edit_play GET    /plays/admin/:id/edit(.:format)                                                          plays#admin_edit       # 管理者遊び編集ページを表示
+        admin_update_play PATCH  /plays/admin/:id(.:format)                                                               plays#admin_update     # 管理者遊び更新機能  
        admin_destroy_play DELETE /plays/admin/:id(.:format)                                                               plays#admin_destroy
 
 

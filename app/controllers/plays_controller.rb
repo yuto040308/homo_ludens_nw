@@ -34,9 +34,20 @@ class PlaysController < ApplicationController
   end
 
   def admin_edit
+    @play = Play.find(params[:id])
+    # カテゴリ表示のため、取得
+    @categories = Category.all
   end
 
   def admin_update
+    play = Play.find(params[:id])
+
+    if play.update(play_params)
+      redirect_to admin_user_path
+    else
+      render "admin_edit"
+    end
+
   end
 
   def admin_destroy
