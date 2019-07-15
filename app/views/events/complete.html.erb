@@ -1,0 +1,23 @@
+<div class="container-fluid bg-lemonchiffon">
+
+    <!-- 上部余白 -->
+    <div class="h-80"></div>
+
+    <!-- font-awesomeを利用する場合は、text-align:centerを指定する必要がある。 -->
+    <div class="align-center mb-3" >
+        <i class="fas fa-check-circle"></i>
+    </div>
+    
+    <h1 class="text-center">ご参加ありがとうございます</h1>
+    <p class="text-center mb-5">ご参加を承りました。キャンセル時はキャンセル期日までにお願いします。</p>
+
+    <!-- 戻るボタン 一覧に戻す -->
+    <!-- bootstrapのボタンはinline-blockのため、d-blockを書かないと、中央に寄らない -->
+    <div class="mx-auto w-300">
+        <%= button_to "イベント一覧に戻る", events_path, class: "btn btn-danger btn-lg btn-block mx-auto d-block", method: :get %>
+    </div>
+
+    <!-- 下部分の余白 -->
+    <div class="m-150"></div>
+
+</div>

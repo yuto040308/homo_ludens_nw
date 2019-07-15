@@ -1,0 +1,141 @@
+<div class="container-fluid">
+    <!-- 上部マージン -->
+    <div class="h-80"></div>
+
+    <div class="row">
+        <div class="col-sm-1"></div>
+
+        <div class="col-sm-10">
+            <h1>イベント詳細</h1>
+            <%= attachment_image_tag @event, :event_image, format: "jpeg", fallback: "no_image.jpg",class: "mx-auto d-block mb-5 w-400" %>
+
+            <!-- タイトルの領域 -->
+            <div class="row">
+                <!-- 左マージン -->
+                <div class="col-sm-1"></div>
+
+                <div class="col-sm-4">タイトル</div>
+                <div class="col-sm-5"><p class="text-center"><%= @event.event_title %></p></div>
+
+                <!-- 右マージン -->
+                <div class="col-sm-2"></div>
+            </div>
+            <hr>
+
+            <!-- 遊び名の領域 -->
+            <div class="row">
+                <!-- 左マージン -->
+                <div class="col-sm-1"></div>
+
+                <div class="col-sm-4">遊び名</div>
+                <div class="col-sm-5"><p class="text-center"><%= @event.play.play_title %></p></div>
+
+                <!-- 右マージン -->
+                <div class="col-sm-2"></div>
+            </div>
+            <hr>
+
+            <!-- 開催時刻の領域 -->
+            <div class="row">
+                <!-- 左マージン -->
+                <div class="col-sm-1"></div>
+
+                <div class="col-sm-4">開催時刻</div>
+                <div class="col-sm-5">
+                    <%= @event.event_hold_start_time.strftime("%Y月%m月%d日(#{%w(日 月 火 水 木 金 土)[@event.event_hold_start_time.wday]})%H:%M") %>
+                    〜
+                    <%= @event.event_hold_finish_time.strftime("%Y月%m月%d日(#{%w(日 月 火 水 木 金 土)[@event.event_hold_finish_time.wday]})%H:%M") %>
+                </div>
+
+                <!-- 右マージン -->
+                <div class="col-sm-2"></div>
+            </div>
+            <hr>
+
+            <!-- 募集時刻の領域 -->
+            <div class="row">
+                <!-- 左マージン -->
+                <div class="col-sm-1"></div>
+
+                <div class="col-sm-4">募集時刻</div>
+                <div class="col-sm-5">
+                    <%= @event.event_start_time.strftime("%Y月%m月%d日(#{%w(日 月 火 水 木 金 土)[@event.event_start_time.wday]})%H:%M") %>
+                    〜
+                    <%= @event.event_finish_time.strftime("%Y月%m月%d日(#{%w(日 月 火 水 木 金 土)[@event.event_finish_time.wday]})%H:%M") %>
+                </div>
+
+                <!-- 右マージン -->
+                <div class="col-sm-2"></div>
+            </div>
+            <hr>
+
+            <!-- 謝礼金の領域 -->
+            <div class="row">
+                <!-- 左マージン -->
+                <div class="col-sm-1"></div>
+
+                <div class="col-sm-4">謝礼金</div>
+                <div class="col-sm-5">
+                    <p class="text-center"><%= @event.honorarium.to_s + "円" %></p>
+                </div>
+
+                <!-- 右マージン -->
+                <div class="col-sm-2"></div>
+            </div>
+            <hr>
+
+            <!-- 開催場所の領域 -->
+            <div class="row">
+                <!-- 左マージン -->
+                <div class="col-sm-1"></div>
+
+                <div class="col-sm-4">開催場所</div>
+                <div class="col-sm-5">
+                    <p class="text-center"><%= @event.event_place %></p>
+                </div>
+
+                <!-- 右マージン -->
+                <div class="col-sm-2"></div>
+            </div>
+            <hr>
+
+            <!-- 説明の領域 -->
+            <div class="row">
+                <!-- 左マージン -->
+                <div class="col-sm-1"></div>
+
+                <div class="col-sm-4">説明</div>
+                <div class="col-sm-5">
+                    <p class="text-center"><%= @event.event_explain %></p>
+                </div>
+
+                <!-- 右マージン -->
+                <div class="col-sm-2"></div>
+            </div>
+            <hr>
+
+
+        </div>
+
+        <div class="col-sm-1"></div>
+    </div>
+
+    <div class="d-flex justify-content-center">
+        <!-- button_to: buttonのヘルパー button_toは標準でpostで送られてしまうので、getに指定した。 -->
+        <!-- 承認フラグの状態で表示させるボタンを変える -->
+        <% if @event.event_confirm_flg == nil %>
+            <%= button_to "承認", admin_accept_event_path(@event.id), class: "btn btn-outline-info w-200 mx-auto d-block mt-5", method: :patch, "data-confirm" => "このイベントを承認します。よろしいでしょうか？" %>
+        <% else %>
+            <% if @event.event_confirm_flg == 0 %>
+                <%= button_to "承認", admin_accept_event_path(@event.id), class: "btn btn-outline-info w-200 mx-auto d-block mt-5", method: :patch, "data-confirm" => "このイベントを承認します。よろしいでしょうか？" %>
+            <% else %>
+                <%= button_to "承認取消", admin_rescission_event_path(@event.id), class: "btn btn-outline-warning w-200 mx-auto d-block mt-5", method: :patch, "data-confirm" => "このイベントの承認を取り消します。よろしいでしょうか？" %>
+            <% end %>
+        <% end %>
+        <span class="mx-5"></span>
+        <%= button_to "削除", admin_destroy_play_path(@event.id), class: "btn btn-outline-danger w-200 mx-auto d-block mt-5", method: :delete, "data-confirm" => "このイベントを削除します。よろしいでしょうか？" %>
+    </div>
+
+    <!-- 下マージン -->
+    <div class="h-200"></div>
+</div>

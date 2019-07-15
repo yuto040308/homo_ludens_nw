@@ -1,0 +1,37 @@
+<div class="container-fluid bg-azure">
+
+    <!-- 上マージン -->
+    <div class="m-150"></div>
+
+    <div class="row mx-auto w-1100">
+        <% @events.each do |event| %>
+            <div class="col-4">
+                <div class="card mx-auto" style="max-width: 23rem;">
+                    <!--カード上部にレイアウトされる画像: card-img-top -->
+                    <!--画像はサンプルです。-->
+                    <a href="/events/<%= event.id %>"><%= attachment_image_tag event, :event_image, format: "jpg", class: "card-img-top",size:"190x290" %></a>
+                    <!-- カード本文:card-body -->
+                    <div class="card-body">
+                        <!-- カード見出し:card-title -->
+                        <h4 class="card-title"><%= event.event_title %></h4>
+                        
+                        <!-- カードの内容文:card-text -->
+                        <p class="card-text mb-5"><%= event.event_explain %></p>
+
+                        <!-- カードの副見出し:card-subtitle -->
+                        <h6><%= "#" + event.play.play_title %></h6>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    </div>
+
+
+    
+    
+
+    <!-- 下マージン -->
+    <div class="m-300"></div>
+
+</div>
+
