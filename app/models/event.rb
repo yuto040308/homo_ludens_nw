@@ -27,4 +27,101 @@ class Event < ApplicationRecord
         end
 
     end
+
+    # 開催開始時刻が現在時刻（日本時間）よりも後か確認する関数
+    def event_hold_start_time_now_after?
+
+        # 現在時刻の取得
+        time_now = DateTime.now
+        # 現在時刻を日本時刻に変換
+        time_now_tokyo = time_now.in_time_zone('Tokyo')
+
+        # 現在時刻(日本時間)を上回っているか
+        if self.event_hold_start_time.in_time_zone('Tokyo') > time_now_tokyo
+            return true
+        else
+            return false
+        end
+
+    end
+
+    # 開催終了時刻が現在時刻（日本時間）よりも後か確認する関数
+    def event_hold_finish_time_now_after?
+
+        # 現在時刻の取得
+        time_now = DateTime.now
+        # 現在時刻を日本時刻に変換
+        time_now_tokyo = time_now.in_time_zone('Tokyo')
+
+        # 現在時刻(日本時間)を上回っているか
+        if self.event_hold_finish_time.in_time_zone('Tokyo') > time_now_tokyo
+            return true
+        else
+            return false
+        end
+
+    end
+
+    # 募集開始時刻が現在時刻（日本時間）よりも後か確認する関数
+    def event_start_time_now_after?
+
+        # 現在時刻の取得
+        time_now = DateTime.now
+        # 現在時刻を日本時刻に変換
+        time_now_tokyo = time_now.in_time_zone('Tokyo')
+
+        # 現在時刻(日本時間)を上回っているか
+        if self.event_start_time.in_time_zone('Tokyo') > time_now_tokyo
+            return true
+        else
+            return false
+        end
+
+    end
+
+    # 募集終了時刻が現在時刻（日本時間）よりも後か確認する関数
+    def event_finish_time_now_after?
+
+        # 現在時刻の取得
+        time_now = DateTime.now
+        # 現在時刻を日本時刻に変換
+        time_now_tokyo = time_now.in_time_zone('Tokyo')
+
+        # 現在時刻(日本時間)を上回っているか
+        if self.event_finish_time.in_time_zone('Tokyo') > time_now_tokyo
+            return true
+        else
+            return false
+        end
+
+    end
+
+    # 開催開始時刻 < 開催終了時刻 で成り立っているか確認する関数
+    def event_hold_time_from_to?
+        if self.event_hold_start_time < self.event_hold_finish_time
+            return true
+        else
+            return false
+        end
+    end
+
+    # イベント募集開始時刻 < イベント募集終了時刻 で成り立っているか確認する関数
+    def event_hold_time_from_to?
+        if self.event_start_time < self.event_finish_time
+            return true
+        else
+            return false
+        end
+    end
+
+    # 募集終了時刻がイベント開始時刻より前か確認する関数
+    def event_collect_hold_time?
+        if self.event_finish_time < self.event_hold_start_time
+            return true
+        else
+            return false
+        end
+
+    end
+
 end
