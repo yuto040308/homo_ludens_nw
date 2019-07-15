@@ -8,6 +8,8 @@ class Play < ApplicationRecord
     
     belongs_to :category, optional: true
 
+    # 遊びタイトル、遊び説明分の空白を不許可にするバリデーション設定
+    validates :play_title, :play_explain, presence: true
 
 
 end

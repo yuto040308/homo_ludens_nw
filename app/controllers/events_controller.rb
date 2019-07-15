@@ -94,6 +94,7 @@ class EventsController < ApplicationController
   end
 
   def admin_show
+    @event = Event.find(params[:id])
   end
 
   def admin_destroy

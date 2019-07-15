@@ -74,8 +74,8 @@
 
         <!-- 電話番号 -->
         <div class="field form-group">
-          <%= f.label :"phone-number" %><span class="badge badge-warning ml-2">必須</span><br />
-          <%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number",class: "form-control" %>
+          <%= f.label :"phone-number" %><span class="ml-2">("-"は不要です)</span><span class="badge badge-warning ml-2">必須</span><br />
+          <%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number", maxlength: "11", class: "form-control" %>
         </div>
 
         <!-- 支払い方法 -->
