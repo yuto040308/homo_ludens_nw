@@ -3,6 +3,25 @@ class ApplicationController < ActionController::Base
     # deviseのストロングパラメータを呼び出す。
     before_action :configure_permitted_parameters, if: :devise_controller?
 
+    # devise標準で動くメゾット、sign_in(ログイン)が完了した場合に後から呼ばれるメゾット
+    def after_sign_in_path_for(resourse)
+        
+        # 管理者フラグが立っている場合は、管理者マイページに遷移させる
+		if current_user.admin_flg == 1
+            admin_user_path
+
+        # 一般ユーザーの場合、遊び一覧のページに遷移させるd
+		else
+            plays_path
+        end
+    end
+    
+    # devise標準で動くメゾット、sign_up(新規作成)が完了した場合に後から呼ばれるメゾット
+    def after_sign_up_path_for(resourse)
+        # 標準で、遊び一覧のページに戻す
+        plays_path
+    end
+
     #デバイスでeメールパスワード以外を許可する
 	protected
     def configure_permitted_parameters

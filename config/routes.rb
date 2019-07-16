@@ -74,7 +74,7 @@ Rails.application.routes.draw do
           admin_show_user GET    /users/admin/:id(.:format)                                                               users#admin_show       # 管理者ユーザー詳細ページの表示
 
 
-                    plays GET    /plays(.:format)                                                                         plays#index
+                    plays GET    /plays(.:format)                                                                         plays#index            # 遊び一覧ページを表示
                      play GET    /plays/:id(.:format)                                                                     plays#show             # 遊び詳細ページを表示
          admin_index_play GET    /plays/admin(.:format)                                                                   plays#admin_index
           admin_show_play GET    /plays/admin/:id(.:format)                                                               plays#admin_show       # (管理者)遊び詳細ページを表示
