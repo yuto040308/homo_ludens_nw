@@ -15,12 +15,25 @@ class ApplicationController < ActionController::Base
             plays_path
         end
     end
-    
+
     # devise標準で動くメゾット、sign_up(新規作成)が完了した場合に後から呼ばれるメゾット
     def after_sign_up_path_for(resourse)
         # 標準で、遊び一覧のページに戻す
         plays_path
     end
+
+    # 管理者フラグをチェックし、ユーザーが管理者ページにアクセスした場合にTOPページに戻す
+    def admin_flg_check?
+		if current_user == nil
+			redirect_to "/"
+		else
+			if current_user.admin_flg == 1
+                # 管理者は何も制御しない
+			else
+				redirect_to "/"
+			end
+		end
+	end
 
     #デバイスでeメールパスワード以外を許可する
 	protected

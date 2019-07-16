@@ -1,4 +1,8 @@
 class PlaysController < ApplicationController
+
+  # 管理者ページはユーザーが見れないように制御をかける
+  before_action :admin_flg_check?, only: [:admin_show, :admin_new, :admin_create, :admin_edit, :admin_update, :admin_destroy]
+
   def index
     @plays = Play.all
   end

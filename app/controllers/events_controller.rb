@@ -1,4 +1,8 @@
 class EventsController < ApplicationController
+
+  # 管理者ページはユーザーが見れないように制御をかける
+  before_action :admin_flg_check?, only: [:admin_show, :admin_destroy, :admin_accept, :admin_rescission]
+
   def index
     # 承認フラグ立っているイベントのみ表示されるようにする
     @events = Event.where(event_confirm_flg: 1)

@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+
+  # 管理者ページはユーザーが見れないように制御をかける
+  before_action :admin_flg_check?, only: [:admin, :admin_show]
+
   def show
     @user = current_user
     # 参加しているイベントだけDBから持ってくる
