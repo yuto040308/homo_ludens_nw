@@ -140,8 +140,10 @@
         </div>
 
 
-        <%= f.submit "更新",class: "btn btn-info mx-auto d-block btn-lg" %>
+        <%= f.submit "更新",class: "btn btn-outline-success btn-lg mx-auto d-block w-200 mb-5" %>
     <% end %>
+
+    <%= button_to "戻る", user_path(current_user.id), class: "btn btn-outline-secondary btn-lg mx-auto d-block w-200", method: :get %>
 
     <!-- 下部の余白 -->
     <div class="h-200"></div>

@@ -136,6 +136,8 @@
         <%= button_to "削除", admin_destroy_play_path(@event.id), class: "btn btn-outline-danger w-200 mx-auto d-block mt-5", method: :delete, "data-confirm" => "このイベントを削除します。よろしいでしょうか？" %>
     </div>
 
+    <%= button_to "戻る", admin_user_path, class: "btn btn-outline-secondary w-200 mx-auto d-block mt-5", method: :get %>
+
     <!-- 下マージン -->
     <div class="h-200"></div>
 </div>
