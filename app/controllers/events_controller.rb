@@ -55,14 +55,26 @@ class EventsController < ApplicationController
       # 整合性が合わない場合は、元の画面に戻す
       if @event.event_hold_time_from_to? && @event.event_collect_time_from_to?
 
-        # save成功時はマイページ、失敗時はnew画面に戻す
-        if @event.save
-          redirect_to user_path(current_user.id)
+        # イベント開始時刻 < 募集終了時刻になっているか確認。整合性が合わない場合は元の画面に戻す
+        if @event.event_collect_hold_time?
+          # save成功時はマイページ、失敗時はnew画面に戻す
+          if @event.save
+            redirect_to user_path(current_user.id)
+          else
+            # プルダウンで遊びを選択させるため、遊びの一覧を渡す
+            @plays = Play.all
+            render "new"
+          end
+
+        # 整合性が合わない場合、エラーメッセージを渡す
         else
+          flash[:notice] = "イベント開始時刻は、募集終了時刻より後の時刻で入力してください"
           # プルダウンで遊びを選択させるため、遊びの一覧を渡す
           @plays = Play.all
           render "new"
         end
+
+        
 
       # 整合性が合わない場合、エラーメッセージを渡す
       else
