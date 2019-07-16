@@ -3,6 +3,7 @@
     <!-- 上部マージン -->
     <div class="h-80"></div>
 
+
     <%= form_for @event do |f| %>
         <div class="row">
             <div class="col-sm-1"></div>
@@ -10,6 +11,12 @@
             <div class="col-sm-10">
                 <h1>イベント編集</h1>
                 <%= attachment_image_tag @event, :event_image, format: "jpeg", fallback: "no_image.jpg",class: "user-img mx-auto d-block mb-5" %>
+
+                <ul>
+                    <% @event.errors.full_messages.each do |error| %>
+                        <li><%= error %></li>
+                    <% end %>
+                </ul>
 
                 <!-- 名前:画像の領域 -->
                 <div class="row">

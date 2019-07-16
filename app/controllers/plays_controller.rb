@@ -48,11 +48,13 @@ class PlaysController < ApplicationController
   end
 
   def admin_update
-    play = Play.find(params[:id])
+    @play = Play.find(params[:id])
 
-    if play.update(play_params)
+    if @play.update(play_params)
       redirect_to admin_user_path
     else
+      # カテゴリ表示のため、取得
+      @categories = Category.all
       render "admin_edit"
     end
 

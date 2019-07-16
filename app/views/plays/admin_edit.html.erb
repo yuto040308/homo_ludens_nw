@@ -11,6 +11,13 @@
                 <h1>遊び編集</h1>
                 <%= attachment_image_tag @play, :play_image, format: "jpeg", fallback: "no_image.jpg",class: "user-img mx-auto d-block mb-5" %>
 
+                <!-- エラー文を表示させる -->
+                <ul>
+                    <% @play.errors.full_messages.each do |error| %>
+                        <li><%= error %></li>
+                    <% end %>
+                </ul>
+
                 <!-- 名前:画像の領域 -->
                 <div class="row">
                     <!-- 左マージン -->
@@ -87,6 +94,8 @@
     <%= f.submit "更新", class: "btn btn-outline-warning w-200 mx-auto d-block mt-5" %>
 
     <% end %>
+
+    <%= button_to "戻る", admin_user_path, class:"btn btn-outline-secondary w-200 mx-auto d-block mt-5", method: :get %>
 
     <!-- 下マージン -->
     <div class="h-200"></div>

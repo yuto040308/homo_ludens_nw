@@ -4,6 +4,12 @@
 
     <%= flash[:notice] %>
 
+    <ul>
+        <% @event.errors.full_messages.each do |error| %>
+            <li><%= error %></li>
+        <% end %>
+    </ul>
+
     <%= form_for @event do |f| %>
 
         <hr>

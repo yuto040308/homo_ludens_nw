@@ -12,9 +12,14 @@
                 <!-- mx-auto d-block指定で、画像を中央揃えにすることができる。 -->
                 <%= attachment_image_tag @user, :user_image, format: "jpeg", fallback: "no_image.jpg", size: "300x300", class: "img-thumbnail mx-auto d-block mb-5" %>
                 <%= f.attachment_field :user_image, class: "mx-auto d-block" %>
+
+                
+
             </div>
             <div class="col-sm-7">
                 <div class="row">
+
+
                     <div class="col-sm-4">
                         <h3 class="mb-5">ユーザー名</h3>
                         <h3 class="mb-5">ユーザーメイ</h3>
@@ -43,7 +48,26 @@
             </div>
         </div>
 
+        <!-- エラー文を表示させる -->
+        <div class="row mt-5">
+            <!-- 左部分の余白 -->
+            <div class="col-sm-2"></div>
+            <!-- 左部分の余白 -->
+            <div class="col-sm-9">
+                <ul>
+                    <% @user.errors.full_messages.each do |error| %>
+                        <li><%= error %></li>
+                    <% end %>
+                </ul>
+            </div>
+            <!-- 左部分の余白 -->
+            <div class="col-sm-1"></div>
+        </div>
+
         <div class="row">
+
+            
+
             <!-- 左部分の余白 -->
             <div class="col-sm-1"></div>
 
