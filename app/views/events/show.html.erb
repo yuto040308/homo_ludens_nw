@@ -100,7 +100,13 @@
         <div class="col-1"></div>
     </div>
 
-    <%= button_to "参加する", join_event_path(@event.id), class: "btn btn-info mx-auto d-block w-400", method: :get %>
+    <!-- 参加状態によって、参加ボタンを押せないように制御する。 -->
+    <% if @event_join_flg == 1 %>
+        <%= button_to "参加済み", join_event_path(@event.id), class: "btn btn-warning mx-auto d-block w-400", method: :get, disabled: true %>
+    <% else %>
+        <%= button_to "参加する", join_event_path(@event.id), class: "btn btn-info mx-auto d-block w-400", method: :get %>
+    <% end %>
+    
     
     <!-- 下部分の余白 -->
     <div class="m-150"></div>

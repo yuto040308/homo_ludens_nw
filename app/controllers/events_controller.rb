@@ -1,10 +1,20 @@
 class EventsController < ApplicationController
   def index
-    @events = Event.all
+    # 承認フラグ立っているイベントのみ表示されるようにする
+    @events = Event.where(event_confirm_flg: 1)
+    #@events = Event.all
   end
 
   def show
     @event = Event.find(params[:id])
+
+    # ユーザーがイベントに参加済みかを検索し、参加済みの場合フラグを立てる
+    if EventJoin.find_by(event_id: @event.id, user_id: current_user.id) != nil
+      @event_join_flg = 1
+    else
+      @event_join_flg = 0
+    end
+    
   end
 
   def join
