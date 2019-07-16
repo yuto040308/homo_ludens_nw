@@ -32,6 +32,9 @@ class EventsController < ApplicationController
       end
     end
     # 処理終了
+
+    # イベント参加者をカウントする処理
+    @event_count = EventJoin.where(event_id: @event.id).count
     
   end
 

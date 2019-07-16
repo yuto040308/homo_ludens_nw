@@ -84,7 +84,17 @@
 
             <div class="row">
                 <div class="col-3"><p class="text-center">現在参加人数</p></div>
-                <div class="col-9">これは参加機能できたら実装します。</div>
+                <div class="col-9"><%= @event_count.to_s + "人"%></div>
+            </div>
+            <hr align="center">
+
+            <!-- 現在かかる費用 -->
+            <div class="row">
+                <div class="col-3"><p class="text-center">1人当たりの参加費</p></div>
+                <div class="col-9">
+                    <%= (((@tax + 1.0) * @event.honorarium) / @event_count).to_i.to_s + "円" %>
+                    <footer class="blockquote-footer"><cite>＊参加人数に応じて参加費が変動します。<br>参加人数が多くなればその分だけ参加費が安くなります。</cite></footer>
+                </div>
             </div>
             <hr align="center">
 

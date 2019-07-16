@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
 				redirect_to "/"
 			end
 		end
-	end
+    end
 
     #デバイスでeメールパスワード以外を許可する
 	protected
