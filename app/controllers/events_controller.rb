@@ -43,15 +43,46 @@ class EventsController < ApplicationController
   end
 
   def create
-    event = Event.new(event_params)
-    event.user_id = current_user.id
+    @event = Event.new(event_params)
+    @event.user_id = current_user.id
 
-    # save成功時はマイページ、失敗時はnew画面に戻す
-    if event.save
-      redirect_to user_path(current_user.id)
+    # 現在時刻よりも後に入力されているか確認し、エラーの場合は元の画面に戻す
+    if @event.event_hold_start_time_now_after? && @event.event_hold_finish_time_now_after? &&
+       @event.event_start_time_now_after? && @event.event_finish_time_now_after?
+
+
+      # 募集開始時刻 < 募集終了時刻、開催開始時刻 < 開催終了時刻 になっているか確認し、
+      # 整合性が合わない場合は、元の画面に戻す
+      if @event.event_hold_time_from_to? && @event.event_collect_time_from_to?
+
+        # save成功時はマイページ、失敗時はnew画面に戻す
+        if @event.save
+          redirect_to user_path(current_user.id)
+        else
+          # プルダウンで遊びを選択させるため、遊びの一覧を渡す
+          @plays = Play.all
+          render "new"
+        end
+
+      # 整合性が合わない場合、エラーメッセージを渡す
+      else
+        flash[:notice] = "開始時刻 < 終了時刻 で入力してください"
+        # プルダウンで遊びを選択させるため、遊びの一覧を渡す
+        @plays = Play.all
+        render "new"
+      end
+
+      
+
+    # エラーの場合
     else
+      flash[:notice] = "現在時刻よりも後の時刻を入力してください"
+      # プルダウンで遊びを選択させるため、遊びの一覧を渡す
+      @plays = Play.all
       render "new"
     end
+
+    
 
   end
 

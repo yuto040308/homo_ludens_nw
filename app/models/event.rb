@@ -31,6 +31,11 @@ class Event < ApplicationRecord
     # 開催開始時刻が現在時刻（日本時間）よりも後か確認する関数
     def event_hold_start_time_now_after?
 
+        # 空かどうか確認
+        if self.event_hold_start_time == nil
+            return false
+        end
+
         # 現在時刻の取得
         time_now = DateTime.now
         # 現在時刻を日本時刻に変換
@@ -47,6 +52,11 @@ class Event < ApplicationRecord
 
     # 開催終了時刻が現在時刻（日本時間）よりも後か確認する関数
     def event_hold_finish_time_now_after?
+
+        # 空かどうか確認
+        if self.event_hold_finish_time == nil
+            return false
+        end
 
         # 現在時刻の取得
         time_now = DateTime.now
@@ -65,6 +75,11 @@ class Event < ApplicationRecord
     # 募集開始時刻が現在時刻（日本時間）よりも後か確認する関数
     def event_start_time_now_after?
 
+        # 空かどうか確認
+        if self.event_start_time == nil
+            return false
+        end
+
         # 現在時刻の取得
         time_now = DateTime.now
         # 現在時刻を日本時刻に変換
@@ -82,6 +97,11 @@ class Event < ApplicationRecord
     # 募集終了時刻が現在時刻（日本時間）よりも後か確認する関数
     def event_finish_time_now_after?
 
+        # 空かどうか確認
+        if self.event_finish_time == nil
+            return false
+        end
+
         # 現在時刻の取得
         time_now = DateTime.now
         # 現在時刻を日本時刻に変換
@@ -98,6 +118,12 @@ class Event < ApplicationRecord
 
     # 開催開始時刻 < 開催終了時刻 で成り立っているか確認する関数
     def event_hold_time_from_to?
+        
+        # 空かどうか確認
+        if self.event_hold_start_time == nil || self.event_hold_finish_time == nil
+            return false
+        end
+
         if self.event_hold_start_time < self.event_hold_finish_time
             return true
         else
@@ -106,7 +132,13 @@ class Event < ApplicationRecord
     end
 
     # イベント募集開始時刻 < イベント募集終了時刻 で成り立っているか確認する関数
-    def event_hold_time_from_to?
+    def event_collect_time_from_to?
+
+        # 空かどうか確認
+        if self.event_start_time == nil || self.event_finish_time == nil
+            return false
+        end
+
         if self.event_start_time < self.event_finish_time
             return true
         else
@@ -116,6 +148,12 @@ class Event < ApplicationRecord
 
     # 募集終了時刻がイベント開始時刻より前か確認する関数
     def event_collect_hold_time?
+
+        # 空かどうか確認
+        if self.event_finish_time == nil || self.event_hold_start_time == nil
+            return false
+        end
+
         if self.event_finish_time < self.event_hold_start_time
             return true
         else

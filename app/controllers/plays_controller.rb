@@ -23,12 +23,15 @@ class PlaysController < ApplicationController
 
   def admin_create
 
-    play = Play.new(play_params)
+    @play = Play.new(play_params)
 
     # save成功時は管理者ページ、失敗時はnew画面に戻す
-    if play.save
+    if @play.save
       redirect_to admin_user_path
     else
+      # render先に@categoriesがないため、作成する必要あり
+      # プルダウンでジャンルを選択させるため、ジャンルの一覧を渡す
+      @categories = Category.all
       render "admin_new"
     end
 
