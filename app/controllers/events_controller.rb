@@ -18,6 +18,20 @@ class EventsController < ApplicationController
     else
       @event_join_flg = 0
     end
+
+    # 
+    # 消費税を計算させる処理
+    #
+    taxes = Tax.all
+    @tax = 0.00
+    # 全レコード回して、最適な税率を持ってくる
+    taxes.each do |tax|
+      if tax.tax_start_finish_now? 
+        @tax = tax.tax
+        break
+      end
+    end
+    # 処理終了
     
   end
 

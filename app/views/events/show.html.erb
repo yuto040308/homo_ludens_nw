@@ -88,6 +88,13 @@
             </div>
             <hr align="center">
 
+            <!-- 消費税の項目 -->
+            <div class="row">
+                <div class="col-3"><p class="text-center">イベント謝礼費総額</p></div>
+                <div class="col-9"><%= @event.honorarium.to_s + "円(税抜)　/　" + ((@tax + 1.0) * @event.honorarium).to_i.to_s + "円(税込)" %></div>
+            </div>
+            <hr align="center">
+
             <div class="row">
                 <div class="col-3"><p class="text-center">主催者</p></div>
                 <div class="col-9"><a href="<%= "/users/#{@event.user.id}/event "%>"><%= @event.user.nickname %></a></div>
