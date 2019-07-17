@@ -177,10 +177,16 @@ class EventsController < ApplicationController
 
   def cansel
     # イベント参加しているレコードを取得する。
+    event = Event.find(params[:id])
     event_join = EventJoin.find_by(event_id: params[:id], user_id: current_user.id)
 
-    flash[:notice] = "参加キャンセルが完了しました"
-    event_join.destroy
+    # 募集終了日をすぎていたら、キャンセルできないようにする。
+    if event.event_finish_time_now_after?
+      flash[:notice] = "参加キャンセルが完了しました"
+      event_join.destroy
+    else
+      flash[:notice] = "募集終了日を過ぎているため、キャンセル出来ません。"
+    end
 
     # マイページに戻す
     redirect_to user_path
