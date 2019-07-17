@@ -31,6 +31,7 @@ class PlaysController < ApplicationController
 
     # save成功時は管理者ページ、失敗時はnew画面に戻す
     if @play.save
+      flash[:notice] = "遊びを新規作成しました"
       redirect_to admin_user_path
     else
       # render先に@categoriesがないため、作成する必要あり
@@ -51,6 +52,7 @@ class PlaysController < ApplicationController
     @play = Play.find(params[:id])
 
     if @play.update(play_params)
+      flash[:notice] = "遊びを更新しました"
       redirect_to admin_user_path
     else
       # カテゴリ表示のため、取得
@@ -64,6 +66,7 @@ class PlaysController < ApplicationController
     play = Play.find(params[:id])
 
     play.destroy
+    flash[:notice] = "遊びを削除しました"
     # マイページに戻す
     redirect_to admin_user_path
   end

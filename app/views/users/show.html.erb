@@ -9,6 +9,13 @@
 
     <!-- mx-auto: センタリング -->
     <div style="width: 900px;" class="mx-auto">
+
+        <!-- ログイン完了メッセージの場合、表示しない -->
+        <% if flash[:notice] == "translation missing: ja.devise.sessions.user.signed_in" %>
+        <% else %>
+            <p class="mb-3"><%= flash[:notice] %></p>
+        <% end %>
+
         <!-- タブ部分 -->
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <!-- 要素に属性:data-toggle="tab"を追加するだけで、Javascriptの記述なしでナビゲーションを有効化できる。 -->

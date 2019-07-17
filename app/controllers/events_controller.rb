@@ -90,6 +90,7 @@ class EventsController < ApplicationController
         if @event.event_collect_hold_time?
           # save成功時はマイページ、失敗時はnew画面に戻す
           if @event.save
+            flash[:notice] = "イベント新規作成が完了しました"
             redirect_to user_path(current_user.id)
           else
             # プルダウンで遊びを選択させるため、遊びの一覧を渡す
@@ -137,6 +138,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
 
     if @event.update(event_params)
+      flash[:notice] = "イベント更新が完了しました"
       redirect_to user_path(current_user.id)
     else
       render "edit"
@@ -146,6 +148,8 @@ class EventsController < ApplicationController
   def destroy
     # 主催しているイベントを取得する。
     event = Event.find(params[:id])
+
+    flash[:notice] = "イベント削除が完了しました"
 
     event.destroy
 
@@ -157,6 +161,7 @@ class EventsController < ApplicationController
     # イベント参加しているレコードを取得する。
     event_join = EventJoin.find_by(event_id: params[:id], user_id: current_user.id)
 
+    flash[:notice] = "参加キャンセルが完了しました"
     event_join.destroy
 
     # マイページに戻す
@@ -175,6 +180,7 @@ class EventsController < ApplicationController
     # 主催しているイベントを取得する。
     event = Event.find(params[:id])
 
+    flash[:notice] = "イベント削除が完了しました"
     event.destroy
 
     # マイページに戻す
@@ -185,6 +191,7 @@ class EventsController < ApplicationController
     event = Event.find(params[:id])
     event.event_confirm_flg = 1
     event.save
+    flash[:notice] = "イベントを承認しました"
 
     # マイページに戻す
     redirect_to admin_user_path
@@ -195,6 +202,7 @@ class EventsController < ApplicationController
     event = Event.find(params[:id])
     event.event_confirm_flg = 0
     event.save
+    flash[:notice] = "イベントの承認を解除しました"
 
     # マイページに戻す
     redirect_to admin_user_path
