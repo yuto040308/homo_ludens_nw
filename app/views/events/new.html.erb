@@ -2,7 +2,12 @@
 
     <h1 class="my-5">イベント新規作成</h1>
 
-    <%= flash[:notice] %>
+    <!-- ログイン完了メッセージの場合、表示しない -->
+    <% if flash[:notice] == "translation missing: ja.devise.sessions.user.signed_in" %>
+    <% else %>
+        <%= flash[:notice] %>
+    <% end %>
+    
 
     <ul>
         <% @event.errors.full_messages.each do |error| %>
