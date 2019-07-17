@@ -19,6 +19,13 @@ class EventsController < ApplicationController
       @event_join_flg = 0
     end
 
+    # 自分自身が作成したイベントに参加できないようにする
+    if @event.user_id == current_user.id
+      @event_my_flg = 1
+    else
+      @event_my_flg = 0
+    end
+
     # 
     # 消費税を計算させる処理
     #

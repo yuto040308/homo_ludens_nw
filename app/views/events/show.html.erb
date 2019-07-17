@@ -121,7 +121,12 @@
     <% if @event_join_flg == 1 %>
         <%= button_to "参加済み", join_event_path(@event.id), class: "btn btn-warning mx-auto d-block w-400 mb-3", method: :get, disabled: true %>
     <% else %>
-        <%= button_to "参加する", join_event_path(@event.id), class: "btn btn-info mx-auto d-block w-400 mb-3", method: :get %>
+        <!-- 自分自身が開催したイベントに参加できないようにする -->
+        <% if @event_my_flg = 1 %>
+            <!-- 何も表示しない -->
+        <% else %>
+            <%= button_to "参加する", join_event_path(@event.id), class: "btn btn-info mx-auto d-block w-400 mb-3", method: :get %>
+        <% end %>
     <% end %>
     
     <%= button_to "戻る", events_path, class: "btn btn-secondary mx-auto d-block w-400 mb-3", method: :get %>
