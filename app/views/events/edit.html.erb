@@ -36,7 +36,7 @@
                     <!-- 左マージン -->
                     <div class="col-sm-1"></div>
 
-                    <div class="col-sm-4">タイトル</div>
+                    <div class="col-sm-4">タイトル<span class="badge badge-warning ml-3">必須</span></div>
                     <div class="col-sm-5">
                         <div class="field form-group">
                             <%= f.text_field :event_title, autofocus: true, class: "form-control" %>
@@ -52,7 +52,7 @@
                     <!-- 左マージン -->
                     <div class="col-sm-1"></div>
 
-                    <div class="col-sm-4">最小催行人数</div>
+                    <div class="col-sm-4">最小催行人数<span class="badge badge-warning ml-3">必須</span></div>
                     <div class="col-sm-5">
                         <div class="field form-group">
                             <%= f.number_field :event_people_min ,min:1,max:99,step:1, class: "form-control" %>
@@ -68,7 +68,7 @@
                     <!-- 左マージン -->
                     <div class="col-sm-1"></div>
 
-                    <div class="col-sm-4">最大催行人数</div>
+                    <div class="col-sm-4">最大催行人数<span class="badge badge-warning ml-3">必須</span></div>
                     <div class="col-sm-5">
                         <div class="field form-group">
                             <%= f.number_field :event_people_max ,min:1,max:99,step:1, class: "form-control" %>
@@ -84,7 +84,7 @@
                     <!-- 左マージン -->
                     <div class="col-sm-1"></div>
 
-                    <div class="col-sm-4">イベント開始時刻</div>
+                    <div class="col-sm-4">イベント開始時刻<span class="badge badge-warning ml-3">必須</span></div>
                     <div class="col-sm-5">
                         <div class="field form-group">
                             <!-- 標準は世界時間なので、config/application.rb に設定を追加して、日本時間で設定する。　 -->
@@ -101,7 +101,7 @@
                     <!-- 左マージン -->
                     <div class="col-sm-1"></div>
 
-                    <div class="col-sm-4">イベント終了時刻</div>
+                    <div class="col-sm-4">イベント終了時刻<span class="badge badge-warning ml-3">必須</span></div>
                     <div class="col-sm-5">
                         <div class="field form-group">
                             <!-- 標準は世界時間なので、config/application.rb に設定を追加して、日本時間で設定する。　 -->
@@ -118,7 +118,7 @@
                     <!-- 左マージン -->
                     <div class="col-sm-1"></div>
 
-                    <div class="col-sm-4">イベント終了時刻</div>
+                    <div class="col-sm-4">イベント終了時刻<span class="badge badge-warning ml-3">必須</span></div>
                     <div class="col-sm-5">
                         <div class="field form-group">
                             <!-- 標準は世界時間なので、config/application.rb に設定を追加して、日本時間で設定する。　 -->
@@ -135,7 +135,7 @@
                     <!-- 左マージン -->
                     <div class="col-sm-1"></div>
 
-                    <div class="col-sm-4">イベント終了時刻</div>
+                    <div class="col-sm-4">イベント終了時刻<span class="badge badge-warning ml-3">必須</span></div>
                     <div class="col-sm-5">
                         <div class="field form-group">
                             <!-- 標準は世界時間なので、config/application.rb に設定を追加して、日本時間で設定する。　 -->
@@ -152,7 +152,7 @@
                     <!-- 左マージン -->
                     <div class="col-sm-1"></div>
 
-                    <div class="col-sm-4">謝礼金</div>
+                    <div class="col-sm-4">謝礼金<span class="badge badge-warning ml-3">必須</span></div>
                     <div class="col-sm-5">
                         <div class="field form-group">
                             <!-- 標準は世界時間なので、config/application.rb に設定を追加して、日本時間で設定する。　 -->
@@ -169,7 +169,7 @@
                     <!-- 左マージン -->
                     <div class="col-sm-1"></div>
 
-                    <div class="col-sm-4">イベント終了時刻</div>
+                    <div class="col-sm-4">イベント終了時刻<span class="badge badge-warning ml-3">必須</span></div>
                     <div class="col-sm-5">
                         <div class="field form-group">
                             <%= f.text_field :event_place, class: "form-control" %>
@@ -185,7 +185,7 @@
                     <!-- 左マージン -->
                     <div class="col-sm-1"></div>
 
-                    <div class="col-sm-4">イベント終了時刻</div>
+                    <div class="col-sm-4">イベント終了時刻<span class="badge badge-warning ml-3">必須</span></div>
                     <div class="col-sm-5">
                         <div class="field form-group">
                             <%= f.text_area :event_explain, class: "form-control", rows: "15" %>
@@ -207,9 +207,11 @@
             <div class="col-sm-1"></div>
         </div>
 
-    <%= f.submit "更新", class: "btn btn-outline-warning w-200 mx-auto d-block mt-5" %>
+    <%= f.submit "更新", class: "btn btn-outline-warning w-200 mx-auto d-block mt-4" %>
 
     <% end %>
+
+    <%= button_to "戻る", user_path(current_user.id), class: "btn btn-outline-secondary w-200 mx-auto d-block mt-4",method: :get %>
 
     <!-- 下マージン -->
     <div class="h-200"></div>

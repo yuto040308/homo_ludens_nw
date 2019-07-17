@@ -29,7 +29,7 @@
         <div class="row my-4">
             <!-- 左端の余白 -->
             <div class="col-1"></div>
-            <div class="col-4"><h5>タイトル</h5></div>
+            <div class="col-4"><h5>タイトル<span class="badge badge-warning ml-3">必須</span></h5></div>
             <div class="col-4">
                 <div class="field form-group">
                     <%= f.text_field :play_title, class: "form-control" %>
@@ -45,7 +45,7 @@
         <div class="row my-4">
             <!-- 左端の余白 -->
             <div class="col-1"></div>
-            <div class="col-4"><h5>ジャンル</h5></div>
+            <div class="col-4"><h5>ジャンル<span class="badge badge-warning ml-3">必須</span></h5></div>
             <div class="col-2">
                 <div class="field form-group">
                     <!--
@@ -71,7 +71,7 @@
         <div class="row my-4">
             <!-- 左端の余白 -->
             <div class="col-1"></div>
-            <div class="col-4"><h5>説明文</h5></div>
+            <div class="col-4"><h5>説明文<span class="badge badge-warning ml-3">必須</span></h5></div>
             <div class="col-6">
                 <div class="field form-group">
                     <%= f.text_area :play_explain, class: "form-control", rows: "15" %>

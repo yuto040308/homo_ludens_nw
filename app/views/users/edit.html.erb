@@ -21,9 +21,9 @@
 
 
                     <div class="col-sm-4">
-                        <h3 class="mb-5">ユーザー名</h3>
-                        <h3 class="mb-5">ユーザーメイ</h3>
-                        <h3 class="mb-5">ニックネーム</h3>
+                        <h4 class="mb-5">ユーザー名<span class="badge badge-warning ml-3">必須</span></h4>
+                        <h4 class="mb-5">ユーザーメイ<span class="badge badge-warning ml-3">必須</span></h4>
+                        <h4 class="mb-5">ニックネーム<span class="badge badge-warning ml-3">必須</span></h4>
                     </div>
                     <div class="col-sm-6">
                         <!-- ユーザー漢字名フォーム -->
@@ -79,7 +79,7 @@
                     <!-- 余白 -->
                     <div class="col-sm-1"></div>
                     <div class="col-sm-3">
-                        メールアドレス
+                        メールアドレス<span class="badge badge-warning ml-3">必須</span>
                     </div>
                     <div class="col-sm-7">
                         <%= f.text_field :email, class: "form-control" %>
@@ -94,7 +94,7 @@
                     <!-- 余白 -->
                     <div class="col-sm-1"></div>
                     <div class="col-sm-3">
-                        パスワード
+                        パスワード<span class="badge badge-warning ml-3">必須</span>
                     </div>
                     <div class="col-sm-7">
                         <%= f.password_field :password, autofocus: true, autocomplete: "パスワード" %>
@@ -109,7 +109,7 @@
                     <!-- 余白 -->
                     <div class="col-sm-1"></div>
                     <div class="col-sm-3">
-                        電話番号
+                        電話番号<span class="badge badge-warning ml-3">必須</span>
                     </div>
                     <div class="col-sm-7">
                         <%= f.text_field :phone_number, class: "form-control" %>
@@ -164,10 +164,10 @@
         </div>
 
 
-        <%= f.submit "更新",class: "btn btn-outline-success btn-lg mx-auto d-block w-200 mb-5" %>
+        <%= f.submit "更新",class: "btn btn-outline-success btn-lg mx-auto d-block w-200 mt-3" %>
     <% end %>
 
-    <%= button_to "戻る", user_path(current_user.id), class: "btn btn-outline-secondary btn-lg mx-auto d-block w-200", method: :get %>
+    <%= button_to "戻る", user_path(current_user.id), class: "btn btn-outline-secondary btn-lg mx-auto d-block w-200 mt-5", method: :get %>
 
     <!-- 下部の余白 -->
     <div class="h-200"></div>

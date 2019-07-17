@@ -34,7 +34,7 @@
         <div class="row my-3">
             <!-- 左端の余白 -->
             <div class="col-1"></div>
-            <div class="col-4"><h5>タイトル</h5></div>
+            <div class="col-4"><h5>タイトル<span class="badge badge-warning ml-3">必須</span></h5></div>
             <div class="col-4">
                 <div class="field form-group">
                     <%= f.text_field :event_title, class: "form-control" %>
@@ -49,7 +49,7 @@
         <div class="row my-4">
             <!-- 左端の余白 -->
             <div class="col-1"></div>
-            <div class="col-4"><h5>遊びジャンル</h5></div>
+            <div class="col-4"><h5>遊びジャンル<span class="badge badge-warning ml-3">必須</span></h5></div>
             <div class="col-2">
                 <div class="field form-group">
                     <!-- map関数を使うことによって、カテゴリ名は表示され、value値にはidが入る -->
@@ -68,7 +68,7 @@
         <div class="row my-3">
             <!-- 左端の余白 -->
             <div class="col-1"></div>
-            <div class="col-4"><h5>最小催行人数</h5></div>
+            <div class="col-4"><h5>最小催行人数<span class="badge badge-warning ml-3">必須</span></h5></div>
             <div class="col-3">
                 <div class="form-group">
 
@@ -93,7 +93,7 @@
         <div class="row my-3">
             <!-- 左端の余白 -->
             <div class="col-1"></div>
-            <div class="col-4"><h5>最大催行人数</h5></div>
+            <div class="col-4"><h5>最大催行人数<span class="badge badge-warning ml-3">必須</span></h5></div>
             <div class="col-3">
                 <div class="form-group">
                     <%= f.number_field :event_people_max ,min:1,max:99,step:1, class: "form-control" %>
@@ -108,7 +108,7 @@
         <div class="row my-3">
             <!-- 左端の余白 -->
             <div class="col-1"></div>
-            <div class="col-4"><h5>イベント開始時刻</h5></div>
+            <div class="col-4"><h5>イベント開始時刻<span class="badge badge-warning ml-3">必須</span></h5></div>
             <div class="col-4">
                 <div class="form-group">
                     <!-- 標準は世界時間なので、config/application.rb に設定を追加して、日本時間で設定する。　 -->
@@ -124,7 +124,7 @@
         <div class="row my-3">
             <!-- 左端の余白 -->
             <div class="col-1"></div>
-            <div class="col-4"><h5>イベント終了時刻</h5></div>
+            <div class="col-4"><h5>イベント終了時刻<span class="badge badge-warning ml-3">必須</span></h5></div>
             <div class="col-4">
                 <div class="form-group">
                     <!-- 標準は世界時間なので、config/application.rb に設定を追加して、日本時間で設定する。　 -->
@@ -140,7 +140,7 @@
         <div class="row my-3">
             <!-- 左端の余白 -->
             <div class="col-1"></div>
-            <div class="col-4"><h5>募集開始時刻</h5></div>
+            <div class="col-4"><h5>募集開始時刻<span class="badge badge-warning ml-3">必須</span></h5></div>
             <div class="col-4">
                 <div class="form-group">
                     <!-- 標準は世界時間なので、config/application.rb に設定を追加して、日本時間で設定する。　 -->
@@ -156,7 +156,7 @@
         <div class="row my-3">
             <!-- 左端の余白 -->
             <div class="col-1"></div>
-            <div class="col-4"><h5>募集終了時刻</h5></div>
+            <div class="col-4"><h5>募集終了時刻<span class="badge badge-warning ml-3">必須</span></h5></div>
             <div class="col-4">
                 <!-- 標準は世界時間なので、config/application.rb に設定を追加して、日本時間で設定する。　 -->
                 <%= f.datetime_field :event_finish_time, class: "form-control" %>
@@ -170,7 +170,7 @@
         <div class="row my-3">
             <!-- 左端の余白 -->
             <div class="col-1"></div>
-            <div class="col-4"><h5>謝礼金</h5></div>
+            <div class="col-4"><h5>謝礼金<span class="badge badge-warning ml-3">必須</span></h5></div>
             <div class="col-3">
                 <div class="form-group">
                     <%= f.number_field :honorarium ,min:0,max:100000,step:500, class: "form-control" %>
@@ -185,7 +185,7 @@
         <div class="row my-3">
             <!-- 左端の余白 -->
             <div class="col-1"></div>
-            <div class="col-4"><h5>開催場所</h5></div>
+            <div class="col-4"><h5>開催場所<span class="badge badge-warning ml-3">必須</span></h5></div>
             <div class="col-4">
                 <div class="field form-group">
                     <%= f.text_field :event_place, class: "form-control" %>
@@ -200,7 +200,7 @@
         <div class="row my-3">
             <!-- 左端の余白 -->
             <div class="col-1"></div>
-            <div class="col-4"><h5>説明</h5></div>
+            <div class="col-4"><h5>説明<span class="badge badge-warning ml-3">必須</span></h5></div>
             <div class="col-5">
                 <div class="field form-group">
                     <%= f.text_area :event_explain, class: "form-control", rows: "15" %>

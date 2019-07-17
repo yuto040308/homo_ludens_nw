@@ -36,7 +36,7 @@
                     <!-- 左マージン -->
                     <div class="col-sm-1"></div>
 
-                    <div class="col-sm-4">タイトル</div>
+                    <div class="col-sm-4">タイトル<span class="badge badge-warning ml-3">必須</span></div>
                     <div class="col-sm-5">
                         <div class="field form-group">
                             <%= f.text_field :play_title, autofocus: true, class: "form-control" %>
@@ -52,7 +52,7 @@
                     <!-- 左マージン -->
                     <div class="col-sm-1"></div>
 
-                    <div class="col-sm-4">ジャンル</div>
+                    <div class="col-sm-4">ジャンル<span class="badge badge-warning ml-3">必須</span></div>
                     <div class="col-sm-5">
                         <div class="field form-group">
                             <!-- map関数を使うことによって、カテゴリ名は表示され、value値にはidが入る -->
@@ -72,7 +72,7 @@
                     <!-- 左マージン -->
                     <div class="col-sm-1"></div>
 
-                    <div class="col-sm-4">メールアドレス</div>
+                    <div class="col-sm-4">説明<span class="badge badge-warning ml-3">必須</span></div>
                     <div class="col-sm-5">
                         <div class="field form-group">
                             <%= f.text_area :play_explain, class: "form-control", rows: "15" %>
