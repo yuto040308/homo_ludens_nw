@@ -95,15 +95,26 @@ class EventsController < ApplicationController
 
         # イベント開始時刻 < 募集終了時刻になっているか確認。整合性が合わない場合は元の画面に戻す
         if @event.event_collect_hold_time?
-          # save成功時はマイページ、失敗時はnew画面に戻す
-          if @event.save
-            flash[:notice] = "イベント新規作成が完了しました"
-            redirect_to user_path(current_user.id)
+
+          # 最小催行人数<最大催行人数になっているかチェックする
+          if @event.event_join_peoples_min_max?
+            # save成功時はマイページ、失敗時はnew画面に戻す
+            if @event.save
+              flash[:notice] = "イベント新規作成が完了しました"
+              redirect_to user_path(current_user.id)
+            else
+              # プルダウンで遊びを選択させるため、遊びの一覧を渡す
+              @plays = Play.all
+              render "new"
+            end
           else
+            flash[:notice] = "最大催行人数は、最小催行人数以上で入力してください"
             # プルダウンで遊びを選択させるため、遊びの一覧を渡す
             @plays = Play.all
             render "new"
           end
+
+          
 
         # 整合性が合わない場合、エラーメッセージを渡す
         else

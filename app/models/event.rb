@@ -162,4 +162,20 @@ class Event < ApplicationRecord
 
     end
 
+    # 最小催行人数<最大催行人数の関係を確認する関数
+    def event_join_peoples_min_max?
+
+        # 空かどうか確認
+        if self.event_people_min == nil || self.event_people_max == nil
+            return false
+        end
+
+        if self.event_people_min <= self.event_people_max
+            return true
+        else
+            return false
+        end
+
+    end
+
 end

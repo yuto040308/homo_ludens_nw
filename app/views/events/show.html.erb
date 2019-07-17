@@ -92,6 +92,10 @@
             <div class="row">
                 <div class="col-3"><p class="text-center">1人当たりの参加費</p></div>
                 <div class="col-9">
+                    <!-- 参加人数が0人の時にエラーじゃなくする 0の割り算を防ぐ -->
+                    <% if @event_count == 0 %>
+                        <% @event_count = 1%>
+                    <% end %>
                     <%= (((@tax + 1.0) * @event.honorarium) / @event_count).to_i.to_s + "円" %>
                     <footer class="blockquote-footer"><cite>＊参加人数に応じて参加費が変動します。<br>参加人数が多くなればその分だけ参加費が安くなります。</cite></footer>
                 </div>
@@ -122,7 +126,7 @@
         <%= button_to "参加済み", join_event_path(@event.id), class: "btn btn-warning mx-auto d-block w-400 mb-3", method: :get, disabled: true %>
     <% else %>
         <!-- 自分自身が開催したイベントに参加できないようにする -->
-        <% if @event_my_flg = 1 %>
+        <% if @event_my_flg == 1 %>
             <!-- 何も表示しない -->
         <% else %>
             <%= button_to "参加する", join_event_path(@event.id), class: "btn btn-info mx-auto d-block w-400 mb-3", method: :get %>

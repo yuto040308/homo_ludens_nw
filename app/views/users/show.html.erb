@@ -142,7 +142,7 @@
                 <div class="row mx-auto w-800">
                     <% @event_joins.each do |event_join| %>
                         <div class="col-4">
-                            <div class="card mx-auto" style="max-width: 20rem;">
+                            <div class="card mx-auto mb-4" style="max-width: 20rem;">
                                 <!--カード上部にレイアウトされる画像: card-img-top -->
                                 <!--画像はサンプルです。-->
                                 <a href="/events/<%= event_join.event.id %>"><%= attachment_image_tag event_join.event, :event_image, format: "jpg",class: "card-img-top",size:"200x200" %></a>
@@ -173,7 +173,7 @@
 
             </div>
 
-            <!-- ユーザー一覧のパネル -->
+            <!-- 主催イベントのパネル -->
             <div class="tab-pane fade" id="sponsor" role="tabpanel" aria-labelledby="sponsor-tab">
                 <h3 class="mb-5">主催イベント</h3>
 
@@ -186,7 +186,7 @@
 
                     
                         <div class="col-4">
-                            <div class="card mx-auto" style="max-width: 20rem;">
+                            <div class="card mx-auto mb-4" style="max-width: 20rem;">
                                 <!--カード上部にレイアウトされる画像: card-img-top -->
                                 <!--画像はサンプルです。-->
                                 <a href="/events/<%= event.id %>"><%= attachment_image_tag event, :event_image, format: "jpg",class: "card-img-top",size:"200x200" %></a>
