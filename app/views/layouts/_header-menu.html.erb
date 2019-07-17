@@ -4,9 +4,9 @@
 <div style="height: 150px; width: 120px;">
 </div>
 
-<h3><%= link_to "PLAY", plays_path %></h3>
+<h3><%= link_to "PLAY", plays_path, class: "menu-a" %></h3>
 <span class="mx-2"></span>
-<h3 class="mx-5"><%= link_to "EVENT", events_path %></h3>
+<h3 class="mx-5"><%= link_to "EVENT", events_path, class: "menu-a" %></h3>
 <span class="mx-2"></span>
 
 <!-- ログインしていたら、マイページとログアウトもメニューに出す。 -->
@@ -15,17 +15,17 @@
     <!-- 管理者の場合 -->
     <% if current_user.admin_flg == 1 %>
 
-        <h3 class="mr-5"><%= link_to "MYPAGE", admin_user_path %></h3>
+        <h3 class="mr-5"><%= link_to "MYPAGE", admin_user_path, class: "menu-a" %></h3>
 
     <!-- ユーザーの場合 -->
     <% else %>
 
-        <h3 class="mr-5"><%= link_to "MYPAGE", user_path(current_user.id) %></h3>
+        <h3 class="mr-5"><%= link_to "MYPAGE", user_path(current_user.id), class: "menu-a" %></h3>
 
     <% end %>
 
     <span class="mx-2"></span>
-    <h3><%= link_to "LOGOUT", destroy_user_session_path, method: :delete %></h3>
+    <h3><%= link_to "LOGOUT", destroy_user_session_path, method: :delete, class: "menu-a" %></h3>
 
 <!-- ログインしていない場合は、マイページ、ログアウトの代わりに余白を入れる -->
 <% else %>

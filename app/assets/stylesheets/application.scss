@@ -22,6 +22,11 @@
      margin-bottom: 0px;
  }
 
+ // メニューのaタグのリンクは白にする。
+.menu-a {
+    color: white;
+}
+
 .header-image {
     background-image: url("/assets/images/top-image.jpg");
     height: 600px;
@@ -59,6 +64,11 @@
 
 .fsize-40 {
     font-size: 40px;
+}
+
+// ヘッダーフッター用
+.bg-black {
+    background-color: black;
 }
 
 // topページ説明文用
@@ -146,6 +156,10 @@
 
 .h-40 {
     height: 40px;
+}
+
+.h-50 {
+    height: 50px;
 }
 
 .h-80 {
