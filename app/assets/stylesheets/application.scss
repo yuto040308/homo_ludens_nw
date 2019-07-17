@@ -96,7 +96,7 @@
     }
 }
 
-// 上部画像に文字を乗っける
+// 上部画像に白文字を乗っける
 .event-img-fix {
     position: relative;
     p {
@@ -114,6 +114,14 @@
     }
     img {
         width: 100%;
+    }
+}
+
+// 上部画像に黒文字を乗っける
+.event-img-fix-black {
+    @extend .event-img-fix; // event-img-fixを継承
+    p {
+        color: black;
     }
 }
 
