@@ -89,3 +89,6 @@ gem 'ransack'
 
 # font-awesome-sassのインストール
 gem 'font-awesome-sass', '~> 5.4.1'
+
+# エラーメッセージを日本語化する
+gem 'rails-i18n'

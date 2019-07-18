@@ -19,5 +19,11 @@ module HomoLudensNw
     config.time_zone = 'Tokyo'
     # DBに書かれる時間も日本時間に変更する。
     config.active_record.default_timezone = :local
+
+    # エラーメッセージを日本語化する
+    config.i18n.default_locale = :ja
+
+    # config/locales以下のディレクトリ内にある全てのymlファイルを読み込む
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.yml').to_s]
   end
 end

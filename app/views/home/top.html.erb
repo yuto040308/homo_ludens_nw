@@ -41,6 +41,13 @@
                     <span class="mx-5"></span>
                     <%= link_to "新規登録", new_user_registration_path, class: "btn btn-outline-light btn-lg" %>
                 <% end %>
+
+                <!-- 退会している場合、エラー文を出す -->
+                <% if current_user != nil%>
+                    <% if current_user.resignation_flg == 1 %>
+                        <h2 class="text-center text-warning">ユーザーが退会状態です。管理者にご連絡ください。</h1>
+                    <% end %>
+                <% end %>
                 
             </div>
             

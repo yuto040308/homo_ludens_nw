@@ -22,6 +22,11 @@
      margin-bottom: 0px;
  }
 
+ // メニューのaタグのリンクは白にする。
+.menu-a {
+    color: white;
+}
+
 .header-image {
     background-image: url("/assets/images/top-image.jpg");
     height: 600px;
@@ -61,6 +66,11 @@
     font-size: 40px;
 }
 
+// ヘッダーフッター用
+.bg-black {
+    background-color: black;
+}
+
 // topページ説明文用
 .bg-peachpuff {
     background-color: #ffce9f;
@@ -96,7 +106,7 @@
     }
 }
 
-// 上部画像に文字を乗っける
+// 上部画像に白文字を乗っける
 .event-img-fix {
     position: relative;
     p {
@@ -114,6 +124,14 @@
     }
     img {
         width: 100%;
+    }
+}
+
+// 上部画像に黒文字を乗っける
+.event-img-fix-black {
+    @extend .event-img-fix; // event-img-fixを継承
+    p {
+        color: black;
     }
 }
 
@@ -138,6 +156,10 @@
 
 .h-40 {
     height: 40px;
+}
+
+.h-50 {
+    height: 50px;
 }
 
 .h-80 {
