@@ -1,0 +1,281 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_self
+ */
+ @import "bootstrap";
+ @import "font-awesome-sprockets";
+ @import "font-awesome";
+
+ // bootstrapでpのボトムにパディングがかかっているので、削除
+ p {
+     margin-top: 0px;
+     margin-bottom: 0px;
+ }
+
+ // メニューのaタグのリンクは白にする。
+.menu-a {
+    color: white;
+}
+
+.header-image {
+    background-image: url("/assets/images/top-image.jpg");
+    height: 600px;
+    background-size: cover;
+}
+
+// フォントのサイズと色を設定できるミックスインを定義
+@mixin font-size-color($value, $color){
+    font: {
+        size: $value;
+    }
+    color: $color;
+    
+}
+
+.fa-search {
+    // フォントサイズを5倍にする。
+    font-size: 4em;
+    color: white;
+    text-align: center;
+}
+
+// 完了ボタンのレイアウト
+.fa-check-circle{
+    // 6倍で指定
+    @include font-size-color(7em, #4c6ef5);
+}
+
+// fontを中央揃えさせるための設定
+.align-center {
+    text-align: center;
+}
+
+
+
+.fsize-40 {
+    font-size: 40px;
+}
+
+// ヘッダーフッター用
+.bg-black {
+    background-color: black;
+}
+
+// topページ説明文用
+.bg-peachpuff {
+    background-color: #ffce9f;
+}
+
+// 遊び詳細ページ用
+.bg-lemonchiffon {
+    background-color: #fffacd;
+}
+
+// イベント一覧ページ用
+.bg-azure {
+    background-color: #f0ffff;
+}
+
+// イベント詳細ページ用
+.bg-lightskyblue {
+    background-color: #87cefa;
+}
+
+// 主催者情報ページ用
+.bg-palegreen {
+    background-color: #98fb98;
+}
+
+// イベント詳細の上部画像用
+.event-show-img {
+    width: 100%;
+    height: 400px;
+    // object-fitで画像を切り抜きできる。
+    object: {
+        fit: cover;
+    }
+}
+
+// 上部画像に白文字を乗っける
+.event-img-fix {
+    position: relative;
+    p {
+        font-size: 50px;
+        position: absolute;
+        color: white;
+        top: 50%;
+        left: 50%;
+        // 座標の移動
+        -ms-transform: translate(-50%,-50%);
+        -webkit-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%);
+        margin:0;
+        padding:0;
+    }
+    img {
+        width: 100%;
+    }
+}
+
+// 上部画像に黒文字を乗っける
+.event-img-fix-black {
+    @extend .event-img-fix; // event-img-fixを継承
+    p {
+        color: black;
+    }
+}
+
+// ユーザーマイページ　ユーザー画像用
+.user-img {
+    border: {
+        radius: 50%;
+    }
+    width: 200px;
+    height: 200px;
+}
+
+// topページの説明文に使う①とか②用
+.top-number {
+    font-size: 125px;
+}
+
+// 余白 150px用
+.m-150 {
+    height: 150px;
+}
+
+.h-40 {
+    height: 40px;
+}
+
+.h-50 {
+    height: 50px;
+}
+
+.h-80 {
+    height: 80px;
+}
+
+
+// これはなぜか動かなかった。
+.h-100 {
+    height: 100px;
+}
+
+.h-120 {
+    height: 120px;
+}
+
+// 余白 200px用
+.h-200 {
+    height: 200px;
+}
+
+// 余白 300px用
+.m-300 {
+    height: 300px;
+}
+
+// 余白 400px用
+.m-400 {
+    height: 300px;
+}
+
+// 横幅 50px用
+.w-50 {
+    width: 50px;
+}
+
+// 横幅 200px用
+.w-200 {
+    width: 200px;
+}
+
+// 横幅 300px用
+.w-300 {
+    width: 300px;
+}
+
+// 横幅 400px用
+.w-400 {
+    width: 400px;
+}
+
+// 横幅 800px用(マイページの参加イベント一覧で使用想定)
+.w-800 {
+    width: 800px;
+}
+
+// 横幅 1000px用(遊び詳細ページのイベント一覧で使用想定)
+.w-1000 {
+    width: 1000px;
+}
+
+// 横幅 1100px用(遊び、イベント一覧ページで使用想定)
+.w-1100 {
+    width: 1100px;
+}
+
+
+
+// 左右余白 250px用
+.x-250 {
+    margin: {
+        right: 250px;
+        left: 250px;
+    }
+}
+
+// 引数を使ったミックスインを定義
+@mixin y-margin($value){
+    margin: {
+        top: $value;
+        bottom: $value;
+    }
+}
+
+// 上下マージン 50px用
+.y-50 {
+    @include y-margin(50px);
+}
+
+// 遊び詳細ページのhr用
+.hr-play {
+    width: 70%;
+    border-top: 1px dashed #bbb;
+
+    // sass記法で記載
+    &:after {
+        content: '\002702';
+        display: inline-block;
+        position: relative;
+        top: -12px;
+        left: 80px;
+        padding: 0 3px;
+        background: #f0f0f0;
+        color: #bbb;
+        font: {
+            size: 18px;
+        }
+    }
+}
+
+// 主催者ページの用
+.hr-user {
+    border-top: 1px dashed black;
+}
+
+// イベント詳細ページのhr用
+.hr-event {
+    width: 70%;
+}

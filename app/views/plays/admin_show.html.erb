@@ -1,0 +1,69 @@
+<div class="container-fluid">
+    <!-- 上部マージン -->
+    <div class="h-80"></div>
+
+    <div class="row">
+        <div class="col-sm-1"></div>
+
+        <div class="col-sm-10">
+            <h1>遊び詳細</h1>
+            <%= attachment_image_tag @play, :play_image, format: "jpeg", fallback: "no_image.jpg",class: "mx-auto d-block mb-5 w-400" %>
+
+            <!-- タイトルの領域 -->
+            <div class="row">
+                <!-- 左マージン -->
+                <div class="col-sm-1"></div>
+
+                <div class="col-sm-4">タイトル</div>
+                <div class="col-sm-5"><p class="text-center"><%= @play.play_title %></p></div>
+
+                <!-- 右マージン -->
+                <div class="col-sm-2"></div>
+            </div>
+            <hr>
+
+            <!-- ジャンルの領域 -->
+            <div class="row">
+                <!-- 左マージン -->
+                <div class="col-sm-1"></div>
+
+                <div class="col-sm-4">ジャンル</div>
+                <div class="col-sm-5"><p class="text-center"><%= @play.category.category_name %></p></div>
+
+                <!-- 右マージン -->
+                <div class="col-sm-2"></div>
+            </div>
+            <hr>
+
+            <!-- 説明の領域 -->
+            <div class="row">
+                <!-- 左マージン -->
+                <div class="col-sm-1"></div>
+
+                <div class="col-sm-4">説明</div>
+                <div class="col-sm-5"><p class="text-center"><%= @play.play_explain %></p></div>
+
+                <!-- 右マージン -->
+                <div class="col-sm-2"></div>
+            </div>
+            <hr>
+
+
+        </div>
+
+        <div class="col-sm-1"></div>
+    </div>
+
+    <div class="d-flex justify-content-center">
+        <!-- button_to: buttonのヘルパー button_toは標準でpostで送られてしまうので、getに指定した。 -->
+        <%= button_to "編集", admin_edit_play_path(@play.id), class: "btn btn-outline-success w-200 mx-auto d-block mt-5", method: :get %>
+        <span class="mx-5"></span>
+        <%= button_to "削除", admin_destroy_play_path(@play.id), class: "btn btn-outline-danger w-200 mx-auto d-block mt-5", method: :delete, "data-confirm" => "この遊びを削除します。よろしいでしょうか？" %>
+    </div>
+
+    <%= button_to "戻る", admin_user_path, class: "btn btn-outline-secondary w-200 mx-auto d-block mt-5", method: :get %>
+
+    <!-- 下マージン -->
+    <div class="h-200"></div>
+</div>
+

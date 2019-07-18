@@ -1,0 +1,97 @@
+<div class="container">
+
+    <h1 class="my-5">遊び新規作成</h1>
+
+    <!-- エラー文を表示させる -->
+    <ul>
+        <% @play.errors.full_messages.each do |error| %>
+            <li><%= error %></li>
+        <% end %>
+    </ul>
+    
+
+    <%= form_for @play, url: admin_create_play_path do |f| %>
+
+        <hr>
+
+        <!-- 画像の領域 -->
+        <div class="row my-4">
+            <!-- 左端の余白 -->
+            <div class="col-1"></div>
+            <div class="col-4"><h5>画像</h5></div>
+            <div class="col-6"><%= f.attachment_field :play_image %></div>
+            <!-- 右端の余白 -->
+            <div class="col-1"></div>
+        </div>
+        <hr>
+
+        <!-- タイトルの領域 -->
+        <div class="row my-4">
+            <!-- 左端の余白 -->
+            <div class="col-1"></div>
+            <div class="col-4"><h5>タイトル<span class="badge badge-warning ml-3">必須</span></h5></div>
+            <div class="col-4">
+                <div class="field form-group">
+                    <%= f.text_field :play_title, class: "form-control" %>
+                </div>
+            </div>
+            <!-- 右端の余白 -->
+            <div class="col-3"></div>
+        </div>
+
+        <hr>
+
+        <!-- ジャンルの領域 -->
+        <div class="row my-4">
+            <!-- 左端の余白 -->
+            <div class="col-1"></div>
+            <div class="col-4"><h5>ジャンル<span class="badge badge-warning ml-3">必須</span></h5></div>
+            <div class="col-2">
+                <div class="field form-group">
+                    <!--
+                    <select class="form-control">
+                        <%# @categories.each do |category| %>
+                            <option><%#= category.category_name %></option>
+                        <%# end %>
+                    </select>
+                    -->
+                    <!-- map関数を使うことによって、カテゴリ名は表示され、value値にはidが入る -->
+                    <!-- 第二引数は配列で指定する。[["インドア",1],["アウトドア",2]] -->
+                    <!-- 第二引数の1項目目が画面に表示され、2項目目がvalue値にセットされる -->
+                    <%= f.select :category_id, @categories.map{|t| [t.category_name, t.id]} %>
+                    <%#= f.number_field :category_id, class: "form-control" %>
+                </div>
+            </div>
+            <!-- 右端の余白 -->
+            <div class="col-5"></div>
+        </div>
+        <hr>
+
+        <!-- 説明の領域 -->
+        <div class="row my-4">
+            <!-- 左端の余白 -->
+            <div class="col-1"></div>
+            <div class="col-4"><h5>説明文<span class="badge badge-warning ml-3">必須</span></h5></div>
+            <div class="col-6">
+                <div class="field form-group">
+                    <%= f.text_area :play_explain, class: "form-control", rows: "15" %>
+                </div>
+            </div>
+            <!-- 右端の余白 -->
+            <div class="col-1"></div>
+        </div>
+
+        <%= f.submit "作成", class: "btn btn-outline-primary w-200 mx-auto d-block" %>
+        
+
+        
+
+    <% end %>
+
+
+    <%= button_to "戻る", admin_user_path, class: "btn btn-outline-secondary w-200 mx-auto d-block mt-5", method: :get %>
+    
+    <!-- 下マージン -->
+    <div class="h-80"></div>
+
+</div>

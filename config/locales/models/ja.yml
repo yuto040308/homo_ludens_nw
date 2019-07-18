@@ -1,0 +1,29 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      play: 遊び
+      event: イベント
+    attributes:
+      user:
+        password: パスワード 
+        name_kanji_sei: 名前（性）
+        name_kanji_mei: 名前（名）
+        name_kana_sei: カナセイ
+        name_kana_mei: カナメイ
+        nickname: ニックネーム
+        phone_number: 電話番号
+      play:
+        play_title: タイトル
+        play_explain: 説明
+      event:
+        event_title: タイトル
+        event_explain: 説明
+        event_place: 開催場所
+        event_people_min: 最小催行人数
+        event_people_max: 最大催行人数
+        honorarium: 謝礼金
+        event_hold_start_time: イベント開始時刻
+        event_hold_finish_time: イベント終了時刻
+        event_start_time: 募集開始時刻
+        event_finish_time: 募集開始時刻
