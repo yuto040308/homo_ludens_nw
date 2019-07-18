@@ -1,5 +1,5 @@
 <div class="event-img-fix-black">
-    <%= image_tag  "play-detail.jpg", class: "event-show-img" %>
+    <%= image_tag  "/images/play-detail.jpg", class: "event-show-img" %>
     <p>遊び詳細</p>	
 </div>
 
@@ -10,7 +10,7 @@
 
     <!-- TOP画像 -->
     <!-- mx-auto d-block指定で、画像を中央揃えにすることができる。 -->
-    <%= attachment_image_tag @play, :play_image, format: "jpeg", fallback: "no_image.jpg", size: "800x400", class: "img-thumbnail mx-auto d-block mb-5" %>
+    <%= attachment_image_tag @play, :play_image, format: "jpeg", fallback: "/images/no_image.jpg", size: "800x400", class: "img-thumbnail mx-auto d-block mb-5" %>
     
     <!-- 見出し -->
     <div class="row">

@@ -1,5 +1,5 @@
 <div class="event-img-fix">
-    <%= image_tag  "my-page.jpg", class: "event-show-img" %>
+    <%= image_tag  "/images/my-page.jpg", class: "event-show-img" %>
     <p>マイページ</p>	
 </div>
 
@@ -31,7 +31,7 @@
             <!-- ユーザー情報のパネル -->
             <div class="tab-pane fade show active" id="user" role="tabpanel" aria-labelledby="user-tab">
                 <h3>会員登録情報</h3>
-                <%= attachment_image_tag @user, :user_image, format: "jpeg", fallback: "no_image.jpg",class: "user-img mx-auto d-block" %>
+                <%= attachment_image_tag @user, :user_image, format: "jpeg", fallback: "/images/no_image.jpg",class: "user-img mx-auto d-block" %>
                 <hr>
 
                 <div class="row">
