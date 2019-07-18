@@ -2,6 +2,9 @@ class PlaysController < ApplicationController
 
   # 管理者ページはユーザーが見れないように制御をかける
   before_action :admin_flg_check?, only: [:admin_show, :admin_new, :admin_create, :admin_edit, :admin_update, :admin_destroy]
+  # 退会しているユーザーは、一覧画面、詳細画面までしか見れないようにする
+  before_action :resignation_flag_and_login_check?, only: [:admin_show, :admin_new, :admin_create, :admin_edit, :admin_update, :admin_destroy]
+
 
   def index
     @plays = Play.all
@@ -10,9 +13,6 @@ class PlaysController < ApplicationController
   def show
     @play = Play.find(params[:id])
     @events = Event.where(play_id: @play.id)
-  end
-
-  def admin_index
   end
 
   def admin_show

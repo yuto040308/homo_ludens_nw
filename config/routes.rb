@@ -10,11 +10,11 @@ Rails.application.routes.draw do
   # usersコントローラ関連
   get     "users/:id/event"             => "users#event",             as: "event_user"
   get     "users/admin"                 => "users#admin",             as: "admin_user"
-  get     "users/admin/index"           => "users#admin_index",       as: "admin_index_user"
+  # get     "users/admin/index"           => "users#admin_index",       as: "admin_index_user"
   get     "users/admin/:id"             => "users#admin_show",        as: "admin_show_user"
 
   # playsコントローラ関連
-  get     "plays/admin"                 => "plays#admin_index",       as: "admin_index_play"
+  # get     "plays/admin"                 => "plays#admin_index",       as: "admin_index_play"
   get     "plays/admin/new"             => "plays#admin_new",         as: "admin_new_play"
   get     "plays/admin/:id"             => "plays#admin_show",        as: "admin_show_play"
   post    "plays/admin"                 => "plays#admin_create",      as: "admin_create_play"

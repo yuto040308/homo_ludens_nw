@@ -2,6 +2,8 @@ class EventsController < ApplicationController
 
   # 管理者ページはユーザーが見れないように制御をかける
   before_action :admin_flg_check?, only: [:admin_show, :admin_destroy, :admin_accept, :admin_rescission]
+  # 退会しているユーザーは、一覧画面、詳細画面までしか見れないようにする
+  before_action :resignation_flag_and_login_check?, only: [:join, :complete, :new, :create, :edit, :update, :destroy, :cansel, :admin_show, :admin_destroy, :admin_accept, :admin_rescission]
 
   def index
     # 承認フラグ立っているイベントのみ表示されるようにする
@@ -19,19 +21,29 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
 
+    
     # ユーザーがイベントに参加済みかを検索し、参加済みの場合フラグを立てる
-    if EventJoin.find_by(event_id: @event.id, user_id: current_user.id) != nil
-      @event_join_flg = 1
+    if current_user != nil
+      if EventJoin.find_by(event_id: @event.id, user_id: current_user.id) != nil
+        @event_join_flg = 1
+      else
+        @event_join_flg = 0
+      end
     else
       @event_join_flg = 0
     end
 
     # 自分自身が作成したイベントに参加できないようにする
-    if @event.user_id == current_user.id
-      @event_my_flg = 1
+    if current_user != nil
+      if @event.user_id == current_user.id
+        @event_my_flg = 1
+      else
+        @event_my_flg = 0
+      end
     else
       @event_my_flg = 0
     end
+    
 
     # 
     # 消費税を計算させる処理
@@ -92,19 +104,8 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.user_id = current_user.id
 
-    # テスト用 これ動いたから大丈夫そう
-    #event = @event
-    #create_array = Array.new
-    #sample_flg = event_save_before_check?(create_array, event)
-    #params_flg = @event.essential_params_check?
-    #binding.pry
-
-    # @eventは関数渡しができないので、違う変数に格納する
-    # event = @event
-
     # エラー文を格納する関数を定義する
     @create_error_array = Array.new
-    #create_error_array = Array.new
 
     # 必須のパラメータが入っているか確認し、入っていない場合は元の画面に戻す
     if @event.essential_params_check? == false
@@ -271,9 +272,6 @@ class EventsController < ApplicationController
     # マイページに戻す
     redirect_to user_path
     
-  end
-
-  def admin_index
   end
 
   def admin_show

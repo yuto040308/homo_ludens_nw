@@ -2,6 +2,8 @@ class UsersController < ApplicationController
 
   # 管理者ページはユーザーが見れないように制御をかける
   before_action :admin_flg_check?, only: [:admin, :admin_show]
+  # 退会しているユーザーは、一覧画面、詳細画面までしか見れないようにする
+  before_action :resignation_flag_and_login_check?, only: [:show, :edit, :update, :destroy, :event, :admin, :admin_show]
 
   def show
     @user = current_user
@@ -96,9 +98,6 @@ class UsersController < ApplicationController
     @events.each do |event|
       @event_counts_array.push(EventJoin.where(event_id: event.id).count)
     end
-  end
-
-  def admin_index
   end
 
   def admin_show
