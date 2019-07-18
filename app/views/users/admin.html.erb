@@ -50,7 +50,7 @@
                         <% @plays.each do |play| %>
                         
                             <tr>
-                                <td><a href="<%= "/plays/admin/#{play.id}" %>"><%= attachment_image_tag play, :play_image, format: "jpeg", fallback: "no_image.jpg", size: "100x100" %></a></td>
+                                <td><a href="<%= "/plays/admin/#{play.id}" %>"><%= attachment_image_tag play, :play_image, format: "jpeg", fallback: "/images/no_image.jpg", size: "100x100" %></a></td>
                                 <!-- align-middle: セル内で上下方向中央揃えする。 -->
                                 <td class="align-middle"><div class="d-flex align-items-center"><%= play.category.category_name %></div></td>
                                 <td class="align-middle"><a href="<%= "/plays/admin/#{play.id}" %>"><%= play.play_title %></a></td>
@@ -104,7 +104,7 @@
                             
                         
                             <tr>
-                                <td><a href="<%= "/events/admin/#{event.id}" %>"><%= attachment_image_tag event, :event_image, format: "jpeg", fallback: "no_image.jpg", size: "100x100" %></a></td>
+                                <td><a href="<%= "/events/admin/#{event.id}" %>"><%= attachment_image_tag event, :event_image, format: "jpeg", fallback: "/images/no_image.jpg", size: "100x100" %></a></td>
                                 <!-- align-middle: セル内で上下方向中央揃えする。 -->
                                 <td class="align-middle"><div class="d-flex align-items-center"><a href="<%= "/events/admin/#{event.id}" %>"><%= event.event_title %></a></div></td>
                                 <td class="align-middle"><%= event.play.play_title %></a></td>
@@ -163,7 +163,7 @@
                         <% @users.each do |user| %>
                         
                             <tr>
-                                <td><a href="<%= "/users/admin/#{user.id}" %>"><%= attachment_image_tag user, :user_image, format: "jpeg", fallback: "no_image.jpg", size: "100x100" %></a></td>
+                                <td><a href="<%= "/users/admin/#{user.id}" %>"><%= attachment_image_tag user, :user_image, format: "jpeg", fallback: "/images/no_image.jpg", size: "100x100" %></a></td>
                                 <!-- align-middle: セル内で上下方向中央揃えする。 -->
                                 <td class="align-middle">
                                     <div class="align-middle">
