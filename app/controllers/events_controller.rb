@@ -5,7 +5,14 @@ class EventsController < ApplicationController
 
   def index
     # 承認フラグ立っているイベントのみ表示されるようにする
-    @events = Event.where(event_confirm_flg: 1)
+    #@events = Event.where(event_confirm_flg: 1)
+
+    # 現在時刻の取得
+    time_now_tokyo = DateTime.now.in_time_zone('Tokyo')
+
+    # 承認フラグが立っており、かつ募集時刻が現在時刻を過ぎていないイベントを一覧で表示
+    @events = Event.where("event_finish_time > ?", time_now_tokyo).where(event_confirm_flg: 1)
+    #binding.pry
     #@events = Event.all
   end
 
@@ -78,12 +85,55 @@ class EventsController < ApplicationController
     @event = Event.new
     # プルダウンで遊びを選択させるため、遊びの一覧を渡す
     @plays = Play.all
+    @create_error_array = Array.new
   end
 
   def create
     @event = Event.new(event_params)
     @event.user_id = current_user.id
 
+    # テスト用 これ動いたから大丈夫そう
+    #event = @event
+    #create_array = Array.new
+    #sample_flg = event_save_before_check?(create_array, event)
+    #params_flg = @event.essential_params_check?
+    #binding.pry
+
+    # @eventは関数渡しができないので、違う変数に格納する
+    # event = @event
+
+    # エラー文を格納する関数を定義する
+    @create_error_array = Array.new
+    #create_error_array = Array.new
+
+    # 必須のパラメータが入っているか確認し、入っていない場合は元の画面に戻す
+    if @event.essential_params_check? == false
+      @create_error_array.push("入力されていない必須項目があります。")
+      # プルダウンで遊びを選択させるため、遊びの一覧を渡す
+      @plays = Play.all
+      # renderは表示させているだけなので、returnがないと先に処理がすすんでしまう。
+      return render "new"
+    end
+
+    if @event.event_save_before_check?(@create_error_array) == false
+      # プルダウンで遊びを選択させるため、遊びの一覧を渡す
+      @plays = Play.all
+      return render "new"
+    end
+
+    # save成功時はマイページ、失敗時はnew画面に戻す
+    if @event.save
+      flash[:notice] = "イベント新規作成が完了しました"
+      redirect_to user_path(current_user.id)
+    else
+      # プルダウンで遊びを選択させるため、遊びの一覧を渡す
+      @plays = Play.all
+      render "new"
+    end
+
+
+
+=begin 旧処理 一応正しく動くっぽい
     # 現在時刻よりも後に入力されているか確認し、エラーの場合は元の画面に戻す
     if @event.event_hold_start_time_now_after? && @event.event_hold_finish_time_now_after? &&
        @event.event_start_time_now_after? && @event.event_finish_time_now_after?
@@ -143,24 +193,54 @@ class EventsController < ApplicationController
       @plays = Play.all
       render "new"
     end
-
-    
+=end
 
   end
 
   def edit
     @event = Event.find(params[:id])
+    # プルダウンで遊びを選択させるため、遊びの一覧を渡す
+    @plays = Play.all
+    @edit_error_array = Array.new
   end
 
   def update
     @event = Event.find(params[:id])
+    check_event = Event.new(event_params)
+    # プルダウンで遊びを選択させるため、遊びの一覧を渡す
+    @plays = Play.all
 
+    # エラー文を格納する関数を定義する
+    @edit_error_array = Array.new
+
+    # 必須のパラメータが入っているか確認し、入っていない場合は元の画面に戻す
+    if check_event.essential_params_check? == false
+      @edit_error_array.push("入力されていない必須項目があります。")
+      # renderは表示させているだけなので、returnがないと先に処理がすすんでしまう。
+      return render "edit"
+    end
+
+    if check_event.event_save_before_check?(@edit_error_array) == false
+      return render "edit"
+    end
+
+    # save成功時はマイページ、失敗時はedit画面に戻す
     if @event.update(event_params)
       flash[:notice] = "イベント更新が完了しました"
       redirect_to user_path(current_user.id)
     else
       render "edit"
     end
+
+
+=begin 一応これでも動く
+    if @event.update(event_params)
+      flash[:notice] = "イベント更新が完了しました"
+      redirect_to user_path(current_user.id)
+    else
+      render "edit"
+    end
+=end
   end
 
   def destroy
@@ -232,6 +312,63 @@ class EventsController < ApplicationController
     redirect_to admin_user_path
 
   end
+
+  # 保存前に整合性を確認し、Arrayクラスにエラーをpushして最後にsave可否を返す
+  # @付きの変数は渡せないみたい。@event → eventにすると渡せた。
+  def event_save_before_check?(array, event)
+
+    save_flg = 1
+
+    if event.event_hold_start_time_now_after? == false
+      array.push("イベント開始時刻を、現在時刻よりも後に入力してください。")
+      save_flg = 0
+    end
+
+    if event.event_hold_finish_time_now_after? == false
+      array.push("イベント終了時刻を、現在時刻よりも後に入力してください。")
+      save_flg = 0
+    end
+
+    if event.event_start_time_now_after? == false
+      array.push("イベント募集開始時刻を、現在時刻よりも後に入力してください。")
+      save_flg = 0
+    end
+
+    if event.event_finish_time_now_after? == false
+      array.push("イベント募集終了時刻を、現在時刻よりも後に入力してください。")
+      save_flg = 0
+    end
+
+    if event.event_hold_time_from_to? == false
+      array.push("募集開始時刻が、募集終了時刻よりも前になっていません。")
+      save_flg = 0
+    end
+
+    if event.event_collect_time_from_to? == false
+      array.push("イベント開始時刻が、イベント終了時刻よりも前になっていません。")
+      save_flg = 0
+    end
+
+    # イベント開始時刻 > 募集終了時刻になっているか確認。
+    if event.event_collect_hold_time? == false
+      array.push("募集終了時刻が、イベント開始時刻よりも前になっていません。")
+      save_flg = 0
+    end
+
+    # 最小催行人数<最大催行人数になっているかチェックする
+    if event.event_join_peoples_min_max? == false
+      array.push("最大催行人数は、最小催行人数以上で入力してください")
+      save_flg = 0
+    end
+
+    if save_flg == 1
+      return true
+    else
+      return false
+    end
+
+  end
+
 
   # ストロングパラメーター
   private

@@ -10,6 +10,11 @@
     <!-- 上部余白 -->
     <div class="h-40"></div>
 
+    <!-- エラーメッセージ -->
+    <% @create_error_array.each do |error| %>
+        <p><%= "・" + error %><p>
+    <% end %>
+
     <!-- ログイン完了メッセージの場合、表示しない -->
     <% if flash[:notice] == "translation missing: ja.devise.sessions.user.signed_in" %>
     <% else %>

@@ -178,4 +178,74 @@ class Event < ApplicationRecord
 
     end
 
+    # 入力必須項目があるかチェックする関数
+    def essential_params_check?
+        # text_fieldsは何も入れないとき、nilではなく、空白が入る仕様みたい。
+        if self.event_title == nil || self.event_explain == "" || self.event_place == "" || 
+           self.event_people_min == nil || event_people_max == nil || self.honorarium == nil ||
+           self.event_hold_start_time == nil || self.event_hold_finish_time == nil || self.event_start_time == nil ||
+           self.event_finish_time == nil
+
+            return false
+        else
+            return true
+        end
+    end
+
+    # 保存前に整合性を確認し、Arrayクラスにエラーをpushして最後にsave可否を返す
+    # @付きの変数は渡せないみたい。@event → eventにすると渡せた。
+    def event_save_before_check?(array)
+
+        save_flg = 1
+
+        if self.event_hold_start_time_now_after? == false
+        array.push("イベント開始時刻を、現在時刻よりも後に入力してください。")
+        save_flg = 0
+        end
+
+        if self.event_hold_finish_time_now_after? == false
+        array.push("イベント終了時刻を、現在時刻よりも後に入力してください。")
+        save_flg = 0
+        end
+
+        if self.event_start_time_now_after? == false
+        array.push("イベント募集開始時刻を、現在時刻よりも後に入力してください。")
+        save_flg = 0
+        end
+
+        if self.event_finish_time_now_after? == false
+        array.push("イベント募集終了時刻を、現在時刻よりも後に入力してください。")
+        save_flg = 0
+        end
+
+        if self.event_hold_time_from_to? == false
+        array.push("募集開始時刻が、募集終了時刻よりも前になっていません。")
+        save_flg = 0
+        end
+
+        if self.event_collect_time_from_to? == false
+        array.push("イベント開始時刻が、イベント終了時刻よりも前になっていません。")
+        save_flg = 0
+        end
+
+        # イベント開始時刻 > 募集終了時刻になっているか確認。
+        if self.event_collect_hold_time? == false
+        array.push("募集終了時刻が、イベント開始時刻よりも前になっていません。")
+        save_flg = 0
+        end
+
+        # 最小催行人数<最大催行人数になっているかチェックする
+        if self.event_join_peoples_min_max? == false
+        array.push("最大催行人数は、最小催行人数以上で入力してください")
+        save_flg = 0
+        end
+
+        if save_flg == 1
+            return true
+        else
+            return false
+        end
+
+    end
+
 end
