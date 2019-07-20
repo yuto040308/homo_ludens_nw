@@ -205,9 +205,9 @@
                                         
                                         <p class="mb-3">現在参加者</p>
                                         <p class="mb-5"><%= @event_counts_array[i].to_s + "/" + event.event_people_min.to_s + "人"%></p>
-                                        <%= button_to "編集", edit_event_path(event.id), class: "btn btn-outline-success mx-auto d-block w-200 mb-3", method: :get %>
+                                        <%= link_to "編集", edit_event_path(event.id), class: "btn btn-outline-success mx-auto d-block w-200 mb-3", method: :get %>
                                         <!-- button_to: buttonのヘルパー button_toは標準でpostで送られてしまうので、getに指定した。 -->
-                                        <%= button_to "キャンセル", event_path(event.id), class: "btn btn-outline-danger mx-auto d-block w-200", method: :delete, "data-confirm" => "イベントを削除します。よろしいでしょうか？" %>
+                                        <%= link_to "イベント削除", event_path(event.id), class: "btn btn-outline-danger mx-auto d-block w-200", method: :delete, "data-confirm" => "イベントを削除します。よろしいでしょうか？" %>
 
                                     </p>
 
