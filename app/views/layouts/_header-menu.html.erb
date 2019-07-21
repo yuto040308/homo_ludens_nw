@@ -29,8 +29,12 @@
 
 <!-- ログインしていない場合は、マイページ、ログアウトの代わりに余白を入れる -->
 <% else %>
+
+    <h3 class="mr-5"><%= link_to "LOGIN", new_user_session_path, class: "menu-a" %></h3>
+    <span class="mx-2"></span>
+    <h3><%= link_to "SIGNUP", new_user_registration_path, class: "menu-a" %></h3>
     <!-- メニューが無くなるので、メニューの横幅分補足する。 -->
-    <div style="height: 150px; width: 290px;"></div>
+    <!--<div style="height: 150px; width: 290px;"></div>-->
 <% end %>
 
 <div style="height: 150px; width: 120px;">
