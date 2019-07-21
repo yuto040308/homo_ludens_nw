@@ -3,12 +3,12 @@
     <p>マイページ</p>	
 </div>
 
-<div class="container-fluid">
+<div class="container-fluid bg-user">
     <!-- 上方向の余白 -->
     <div class="h-40"></div>
 
     <!-- mx-auto: センタリング -->
-    <div style="width: 900px;" class="mx-auto">
+    <div style="width: 1000px;" class="mx-auto">
 
         <!-- ログイン完了メッセージの場合、表示しない -->
         <% if flash[:notice] == "translation missing: ja.devise.sessions.user.signed_in" || flash[:notice] == "translation missing: ja.devise.registrations.user.signed_up" %>

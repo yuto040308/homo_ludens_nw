@@ -1,10 +1,16 @@
-<div class="container-fluid">
+<div class="event-img-fix">
+    <%= image_tag  "/images/administrator.jpg", class: "event-show-img" %>
+    <p>管理者ページ</p>	
+</div>
+
+    
+<div class="container-fluid bg-admin">
 
     <!-- 上部の余白 -->
-    <div style="height: 200px;"></div>
+    <div class="h-80"></div>
 
     <!-- mx-auto: センタリング -->
-    <div style="width: 900px;" class="mx-auto">
+    <div style="width: 1000px;" class="mx-auto bg-admin-menu px-4 py-4 rounded">
 
         <!-- ログイン完了メッセージの場合、表示しない -->
         <% if flash[:notice] == "translation missing: ja.devise.sessions.user.signed_in" || flash[:notice] == "translation missing: ja.devise.registrations.user.signed_up"%>
