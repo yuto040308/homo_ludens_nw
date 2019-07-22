@@ -42,11 +42,20 @@
     
 }
 
+@mixin font-size($font-size, $color, $position){
+    font-size: $font-size;
+    color: $color;
+    text-align: $position;
+}
+
 .fa-search {
+    @include font-size(4em, white, center);
     // フォントサイズを5倍にする。
+    /*
     font-size: 4em;
     color: white;
     text-align: center;
+    */
 }
 
 // 完了ボタンのレイアウト
@@ -305,4 +314,62 @@
 .bg-user-menu {
     background-color: white;
     z-index: 10;
+}
+
+/*
+    
+    検索機能用
+
+*/
+
+#search-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgb(12, 0, 56);
+    color: #fff;
+    width: 100%;
+    min-height: 100%;
+    // 標準では、非表示にしておく
+    display: none;
+    z-index: 12;
+}
+
+// 検索ボタン用
+.fa-times {
+    @include font-size(4em, white, center);
+}
+
+// 検索ラジオボタンの設定
+
+.search-radio{
+    input[type="radio"]{
+        display: none;
+    }
+    input[type="radio"]:checked + label {
+        background: #31A9EE;/* マウス選択時の背景色を指定する */
+        color: #ffffff; /* マウス選択時のフォント色を指定する */
+    }
+}
+
+.search_label {
+    display: block;	/* ブロックレベル要素化する */ 
+    float: left;	/* 要素の左寄せ・回り込を指定する */ 
+    margin: 5px;	/* ボックス外側の余白を指定する */
+    width: 100px;	/* ボックスの横幅を指定する */
+    height: 45px;	/* ボックスの高さを指定する */
+    padding-left: 5px;	/* ボックス内左側の余白を指定する */
+    padding-right: 5px;	/* ボックス内御右側の余白を指定する */
+    color: black;	/* フォントの色を指定 */
+    text-align: center;	/* テキストのセンタリングを指定する */
+    line-height: 45px;	/* 行の高さを指定する */
+    cursor: pointer;	/* マウスカーソルの形（リンクカーソル）を指定する */
+    border: 2px solid #006DD9;/* ボックスの境界線を実線で指定する */
+    border-radius: 5px;	/* 角丸を指定する */
+    background: white;
+
+    &:hover{
+        background-color: #E2EDF9; /* マウスオーバー時の背景色を指定する */ 
+
+    }
 }

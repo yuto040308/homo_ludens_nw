@@ -1,0 +1,34 @@
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <a href="/"><%= image_tag "/images/logo-white.png" %></a>
+            
+        </div>
+        <div class="col-2">
+            <a class="fas fa-times menu-trigger text-right" href="#"></a>
+        </div>
+    </div>
+    
+    <!-- @付きの変数が使えない時は、form_forのヘルパーが使えないようだ -->
+    <!-- form_for内で新規で無理やり作成した。 -->
+    <%= form_for Play.new, url: search_path do |f| %>
+        <%= f.text_field :play_title %>
+        <div class="search-radio">
+            <!-- 遊び削除フラグをPlayかEventのどっちで選択されているか判断するキーとして利用する。 -->
+            <!-- デフォルトでPLAYをtrueにしておく -->
+            <%= f.radio_button :play_delete_flg, 0, {:checked => true} %>
+            <label for="play_play_delete_flg_0" class="search_label">PLAY</label>
+            <%= f.radio_button :play_delete_flg, 1 %>
+            <label for="play_play_delete_flg_1" class="search_label">EVENT</label>
+        </div>
+        
+        <br>
+        <%= f.submit "検索"%>
+    <% end %>
+
+    
+</div>
+<hr>

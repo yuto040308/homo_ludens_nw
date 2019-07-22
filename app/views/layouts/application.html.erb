@@ -10,6 +10,13 @@
   </head>
 
   <body>
+    <!-- メニュ-用 -->
+    <div id="search-menu">
+      <!-- 部分テンプレート読んでみる "_header.html.erb"が呼ばれる -->
+      <!-- 部分テンプレートは@変数を使えないので読み替えして渡す -->
+      <%= render 'layouts/search-menu', find_params: @find_params %>
+    </div>
+
     <!-- トップ画面のヘッダーは背景透過なので、処理を分ける -->
     <% if @top_flg != nil %>
       <%= yield %>

@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get     "plays/admin/:id/edit"        => "plays#admin_edit",        as: "admin_edit_play"
   patch   "plays/admin/:id"             => "plays#admin_update",      as: "admin_update_play"
   delete  "plays/admin/:id"             => "plays#admin_destroy",     as: "admin_destroy_play"
+  post    "plays/search"                => "plays#search",            as: "search"
 
   # eventコントローラ関連
   get     "events/:id/join"             => "events#join",             as: "join_event"
@@ -31,6 +32,9 @@ Rails.application.routes.draw do
   delete  "events/admin/:id"            => "events#admin_destroy",    as: "admin_destroy_event"
   patch   "events/admin/:id/accept"     => "events#admin_accept",     as: "admin_accept_event"
   patch   "events/admin/:id/rescission" => "events#admin_rescission", as: "admin_rescission_event"
+
+  # jQueryテスト用
+  get     "test"                       => "home#test",                as: "test"
 
 
   # resources指定
