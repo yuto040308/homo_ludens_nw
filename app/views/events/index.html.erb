@@ -1,6 +1,6 @@
 <div class="event-img-fix">
     <%= image_tag  "/images/event-index.jpg", class: "event-show-img" %>
-    <p>イベント一覧</p>	
+    <p class="menu-font">Event Index</p>	
 </div>
 
 <div class="container-fluid bg-azure">
@@ -18,7 +18,7 @@
                     <!-- カード本文:card-body -->
                     <div class="card-body">
                         <!-- カード見出し:card-title -->
-                        <h4 class="card-title"><%= event.event_title %></h4>
+                        <h4 class="card-title headline-font"><%= event.event_title %></h4>
                         
                         <!-- カードの内容文:card-text -->
                         <p class="card-text mb-5"><%= event.event_explain %></p>

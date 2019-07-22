@@ -1,6 +1,6 @@
 <div class="event-img-fix">
     <%= image_tag  "/images/my-page.jpg", class: "event-show-img" %>
-    <p>マイページ</p>	
+    <p class="menu-font">My Page</p>	
 </div>
 
 <div class="container-fluid bg-user">
@@ -30,7 +30,7 @@
             <!-- パネルの要素にはtab-paneクラスを指定し、最初のタブには、active+showクラスを追加。パネルをフェードインさせるためにfadeクラスを追加している。 -->
             <!-- ユーザー情報のパネル -->
             <div class="tab-pane fade show active" id="user" role="tabpanel" aria-labelledby="user-tab">
-                <h3>会員登録情報</h3>
+                <h3 class="headline-font">会員登録情報</h3>
                 <%= attachment_image_tag @user, :user_image, format: "jpeg", fallback: "/images/no_image.jpg",class: "user-img mx-auto d-block" %>
                 <hr>
 
@@ -136,7 +136,7 @@
 
             <!-- 参加イベント一覧のパネル -->
             <div class="tab-pane fade" id="event" role="tabpanel" aria-labelledby="event-tab">
-                <h3 class="mb-5">参加イベント</h3>
+                <h3 class="mb-5 headline-font">参加イベント</h3>
                 
                 <!-- カード部分 -->
                 <div class="row mx-auto w-800">
@@ -149,7 +149,7 @@
                                 <!-- カード本文:card-body -->
                                 <div class="card-body">
                                     <!-- カード見出し:card-title -->
-                                    <h5 class="card-title"><%= event_join.event.event_title %></h5>
+                                    <h5 class="card-title headline-font"><%= event_join.event.event_title %></h5>
                                     
                                     <!-- カードの内容文:card-text -->
                                     <p class="card-text mb-5">
@@ -175,7 +175,7 @@
 
             <!-- 主催イベントのパネル -->
             <div class="tab-pane fade" id="sponsor" role="tabpanel" aria-labelledby="sponsor-tab">
-                <h3 class="mb-5">主催イベント</h3>
+                <h3 class="mb-5 headline-font">主催イベント</h3>
 
                 <!-- カード部分 -->
                 <div class="row mx-auto w-800">
@@ -193,7 +193,7 @@
                                 <!-- カード本文:card-body -->
                                 <div class="card-body">
                                     <!-- カード見出し:card-title -->
-                                    <h5 class="card-title"><%= event.event_title %></h5>
+                                    <h5 class="card-title headline-font"><%= event.event_title %></h5>
 
                                     <!-- 承認フラグの状態を画面上にバッジで表示する。 -->
                                     <% if event.event_confirm_flg == 1 %>

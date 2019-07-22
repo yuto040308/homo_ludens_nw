@@ -1,6 +1,6 @@
 <div class="event-img-fix-black">
     <%= image_tag  "/images/play-detail.jpg", class: "event-show-img" %>
-    <p>イベント詳細</p>	
+    <p class="menu-font">Event Detail</p>	
 </div>
 
 <div class="container-fluid bg-lightskyblue">
@@ -16,7 +16,7 @@
         </div>
         <!-- タイトル、説明文部分 -->
         <div class="col-6">
-            <h1 class="mb-3"><%= @event.event_title %></h1>
+            <h1 class="mb-3 headline-font"><%= @event.event_title %></h1>
 
             <h5><%= @event.event_explain %></h5>
         </div>
@@ -29,7 +29,7 @@
         <div class="col-1"></div>
 
         <div class="col-10">
-            <h1>プログラム</h1>
+            <h1 class="headline-font">プログラム</h1>
             <!-- hrにbootstrapで中央揃えができなかったため、html構文で指定 -->
             <hr align="center">
             <div class="row">

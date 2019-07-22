@@ -1,6 +1,6 @@
 <div class="event-img-fix">
     <%= image_tag  "/images/play-index.jpg", class: "event-show-img" %>
-    <p>遊び一覧</p>	
+    <p class="menu-font">Play Index</p>	
 </div>
 
 <div class="container-fluid bg-peachpuff">
@@ -18,7 +18,7 @@
                     <!-- カード本文:card-body -->
                     <div class="card-body">
                         <!-- カード見出し:card-title -->
-                        <h4 class="card-title"><%= play.play_title %></h4>
+                        <h4 class="card-title headline-font"><%= play.play_title %></h4>
                         
                         <!-- カードの内容文:card-text -->
                         <p class="card-text mb-5"><%= play.play_explain %></p>
