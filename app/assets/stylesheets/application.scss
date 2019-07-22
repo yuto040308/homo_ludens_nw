@@ -185,9 +185,19 @@
     height: 120px;
 }
 
+// 検索画面で使用することを想定
+.h-150 {
+    height: 150px;
+}
+
 // 余白 200px用
 .h-200 {
     height: 200px;
+}
+
+// 余白 300px用
+.h-300 {
+    height: 300px;
 }
 
 // 余白 300px用
@@ -333,6 +343,10 @@
     // 標準では、非表示にしておく
     display: none;
     z-index: 12;
+}
+
+input.bg-search {
+    background-color: rgb(12, 0, 56);
 }
 
 // 検索ボタン用
