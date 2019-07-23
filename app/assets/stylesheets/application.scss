@@ -558,6 +558,12 @@ input.bg-search {
     }
 }
 
+// メニュータブのサイズ:レスポンシブ対応
+.admin-menu-tab-size {
+    @extend .menu-tab-size; // .menu-tab-sizeを継承
+    background-color: white;
+}
+
 // メニュータブのカードサイズ:レスポンシブ対応
 .menu-card-size {
     width: 76%;

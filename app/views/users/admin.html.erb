@@ -10,7 +10,7 @@
     <div class="h-80"></div>
 
     <!-- mx-auto: センタリング -->
-    <div style="width: 1000px;" class="mx-auto bg-admin-menu px-4 py-4 rounded">
+    <div style="width: 90%" class="mx-auto bg-admin-menu px-4 py-4 rounded">
 
         <!-- ログイン完了メッセージの場合、表示しない -->
         <% if flash[:notice] == "translation missing: ja.devise.sessions.user.signed_in" || flash[:notice] == "translation missing: ja.devise.registrations.user.signed_up"%>
@@ -35,42 +35,47 @@
                 <h3 class="headline-font">遊び一覧</h3>
                 <br>
 
-                <table class="table">
-                    <thead>
-                        <colgroup span="1" style="width:15%;">  <!-- 画像の列 -->
-                        <colgroup span="1" style="width:20%;">  <!-- カテゴリの列 -->
-                        <colgroup span="1" style="width:20%;">  <!-- 遊び名の列 -->
-                        <colgroup span="1" style="width:30%;">  <!-- 説明の列 -->
-                        <colgroup span="1" style="width:15%;">  <!-- ボタンの列 -->
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <!--<colgroup span="1" style="width:15%;"> --> <!-- 画像の列 -->
+                            <!--<colgroup span="1" style="width:20%;"> --> <!-- カテゴリの列 -->
+                            <!--<colgroup span="1" style="width:20%;"> --> <!-- 遊び名の列 -->
+                            <!--<colgroup span="1" style="width:30%;"> --> <!-- 説明の列 -->
+                            <!--<colgroup span="1" style="width:15%;"> --> <!-- ボタンの列 -->
 
-                        <th></th>
-                        <th>カテゴリ</th>
-                        <th>遊び名</th>
-                        <th>説明</th>
-                        <th></th>
-                    </div>
-                        
-                    </thead>
-                    
-                    <tbody>
-                        <% @plays.each do |play| %>
-                        
-                            <tr>
-                                <td><a href="<%= "/plays/admin/#{play.id}" %>"><%= attachment_image_tag play, :play_image, format: "jpeg", fallback: "/images/no_image.jpg", size: "100x100" %></a></td>
-                                <!-- align-middle: セル内で上下方向中央揃えする。 -->
-                                <td class="align-middle"><div class="d-flex align-items-center"><%= play.category.category_name %></div></td>
-                                <td class="align-middle"><a href="<%= "/plays/admin/#{play.id}" %>"><%= play.play_title %></a></td>
-                                <td class="align-middle"><%= play.play_explain %></td>
-                                <td class="align-middle">
-                                    <%= button_to "編集", admin_edit_play_path(play.id), class: "btn btn-outline-success btn-block mb-2", method: :get %>
-                                    <%= button_to "削除", admin_destroy_play_path(play.id), class: "btn btn-outline-danger btn-block", method: :delete, "data-confirm" => "この遊びを削除します。よろしいでしょうか？" %>
-                                </td>
-                            </tr>
+                            <th scope="col" class="text-nowrap"></th>
+                            <th scope="col" class="text-nowrap">カテゴリ</th>
+                            <th scope="col" class="text-nowrap">遊び名</th>
+                            <th scope="col" class="text-nowrap">説明</th>
+                            <th scope="col" class="text-nowrap"></th>
+                        </div>
                             
-                        <% end %>
-                    </tbody>
+                        </thead>
+                        
+                        <tbody>
+                            <% @plays.each do |play| %>
+                            
+                                <tr>
+                                    <th scope="row"><a href="<%= "/plays/admin/#{play.id}" %>"><%= attachment_image_tag play, :play_image, format: "jpeg", fallback: "/images/no_image.jpg", size: "100x100" %></a></th>
+                                    
+                                    <!-- align-middle: セル内で上下方向中央揃えする。 -->
+                                    <td class="align-middle"><div class="d-flex align-items-center"><%= play.category.category_name %></div></td>
+                                    <td class="align-middle"><a href="<%= "/plays/admin/#{play.id}" %>"><%= play.play_title %></a></td>
+                                    <td class="align-middle"><%= play.play_explain %></td>
+                                    <td class="align-middle">
+                                        <%= button_to "編集", admin_edit_play_path(play.id), class: "btn btn-outline-success btn-block mb-2", method: :get %>
+                                        <%= button_to "削除", admin_destroy_play_path(play.id), class: "btn btn-outline-danger btn-block", method: :delete, "data-confirm" => "この遊びを削除します。よろしいでしょうか？" %>
+                                    </td>
+                                </tr>
+                                
+                            <% end %>
+                        </tbody>
 
-                </table>
+                    </table>
+                </div>
+
+
 
 
 
