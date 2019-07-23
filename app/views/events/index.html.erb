@@ -6,11 +6,11 @@
 <div class="container-fluid bg-azure">
 
     <!-- 上マージン -->
-    <div class="m-150"></div>
+    <div class="event-margin-top"></div>
 
-    <div class="row mx-auto w-1100">
+    <div class="row mx-auto card-width">
         <% @events.each do |event| %>
-            <div class="col-4">
+            <div class="col-12 col-sm-4">
                 <div class="card mx-auto mb-4" style="max-width: 23rem;">
                     <!--カード上部にレイアウトされる画像: card-img-top -->
                     <!-- 画面遷移のアニメーション化:  classに"animsition-link", "data-animsition-out-class": "fade-out-left-sm"と指定する。 -->
@@ -36,7 +36,7 @@
     
 
     <!-- 下マージン -->
-    <div class="m-300"></div>
+    <div class="event-margin-bottom"></div>
 
 </div>
 

@@ -6,7 +6,7 @@
 <div class="container-fluid bg-lemonchiffon">
 
     <!-- 上マージン -->
-    <div class="m-150"></div>
+    <div class="play-margin-top"></div>
 
     <!-- TOP画像 -->
     <!-- mx-auto d-block指定で、画像を中央揃えにすることができる。 -->
@@ -34,16 +34,16 @@
     
 
     <!-- 本文 -->
-    <p class="x-250 y-50"><%= @play.play_explain %></p>
+    <div class="d-flex align-items-center h-120 justify-content-center"><p><%= @play.play_explain %></p></div>
 
     <div class="h-120"></div>
 
     <!-- イベント一覧はあとで追加する。 -->
     <h1 class="text-center mb-5 headline-font">開催中イベント</h1>
 
-    <div class="row mx-auto w-1000">
+    <div class="row mx-auto card-width">
         <% @events.each do |event| %>
-            <div class="col-4">
+            <div class="col-12 col-sm-4">
                 <div class="card mx-auto mb-4" style="max-width: 20rem;">
                     <!--カード上部にレイアウトされる画像: card-img-top -->
                     <!-- 画面遷移のアニメーション化:  classに"animsition-link", "data-animsition-out-class": "fade-out-left-sm"と指定する。 -->
@@ -70,7 +70,7 @@
     
 
     <!-- 下マージン -->
-    <div class="m-300"></div>
+    <div class="play-margin-bottom"></div>
 
 
 </div>

@@ -434,6 +434,25 @@ input.bg-search {
     @include sm {height: 100px;};
 }
 
+// 遊び一覧、詳細表示用の上マージン　レスポンシブ対応
+.play-margin-top {
+    @extend .h-150; // h-150を継承
+    @include sm {height: 75px;};
+}
+// 遊び一覧、詳細表示用の下マージン　レスポンシブ対応
+.play-margin-bottom {
+    @extend .h-300; // h-300を継承
+    @include sm {height: 150px;};
+}
+// イベント一覧表示用の上マージン　レスポンシブ対応
+.event-margin-top {
+    @extend .play-margin-top; // play-margin-topを継承
+}
+// 遊び一覧表示用の下マージン　レスポンシブ対応
+.event-margin-bottom {
+    @extend .play-margin-bottom; // play-margin-bottomを継承
+}
+
 // top-explain-pc : TOP画面の説明文用 スマホ画面では表示しない
 //.top-explain-pc {
 //    @include sm {display: none;};
@@ -509,6 +528,42 @@ input.bg-search {
     // スマホサイズの時だけ表示しない
     @include sm {
         display: none;
+    }
+}
+
+// カードの幅 レスポンシブ対応
+.card-width {
+    width: 1100px;
+    // スマホサイズの時だけ100%指定
+    @include sm {
+        width: 100%;
+    }
+}
+
+// event#showページ使用想定 スマホの時だけマージン設定する
+.event-show-img-margin {
+    height: 0px;
+    // スマホサイズの時だけ設定
+    @include sm {
+        height: 20px;
+    }
+}
+
+// メニュータブのサイズ:レスポンシブ対応
+.menu-tab-size {
+    width: 90%;
+    // スマホサイズの時だけ100%設定
+    @include sm {
+        width: 100%;
+    }
+}
+
+// メニュータブのカードサイズ:レスポンシブ対応
+.menu-card-size {
+    width: 76%;
+    // スマホサイズの時だけ100%設定
+    @include sm {
+        width: 100%;
     }
 }
 

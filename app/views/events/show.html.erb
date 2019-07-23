@@ -11,11 +11,14 @@
     <!-- 説明画像と、タイトル、説明文を分ける -->
     <div class="row">
         <!-- 画像部分 -->
-        <div class="col-6">
+        <div class="col-12 col-sm-6">
             <%= attachment_image_tag @event, :event_image, format: "jpg", size:"500x400",class: "mx-auto d-block" %>
+            <!-- スマホレイアウトの時だけマージンを設定 -->
+            <div class="event-show-img-margin"></div>
         </div>
+
         <!-- タイトル、説明文部分 -->
-        <div class="col-6">
+        <div class="col-12 col-sm-6">
             <h1 class="mb-3 headline-font"><%= @event.event_title %></h1>
 
             <h5><%= @event.event_explain %></h5>
