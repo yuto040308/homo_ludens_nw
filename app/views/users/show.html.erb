@@ -230,8 +230,8 @@
                 <!-- 表とボタンのマージン -->
                 <div class="h-40"></div>
 
-                <!-- button_to: buttonのヘルパー button_toは標準でpostで送られてしまうので、getに指定した。 -->
-                <%= button_to "新規作成", new_event_path, class: "btn btn-outline-primary rounded-pill w-200", method: :get %>
+                <!-- 画面遷移のアニメーション化:  classに"animsition-link", "data-animsition-out-class": "fade-out-left-sm"と指定する。 -->
+                <%= link_to "新規作成", new_event_path, class: "btn btn-outline-primary rounded-pill w-200 animsition-link", method: :get, "data-animsition-out-class": "fade-out-left-sm" %>
             </div>
 
         </div>

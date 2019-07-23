@@ -12,3 +12,8 @@ $(function() {
     });
    
 });
+
+// 画面遷移用
+$(function () {
+  $(".animsition").animsition();
+});

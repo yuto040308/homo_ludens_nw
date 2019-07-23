@@ -28,13 +28,13 @@
 
             <!-- ログアウト時:表示 -->
             <% else %>
-                <!-- ボタンは時間があったら、デザインを変えよう -->
-                <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-light btn-lg" %>
+                <!-- 画面遷移のアニメーション化:  classに"animsition-link", "data-animsition-out-class": "fade-out-left-sm"と指定する。 -->
+                <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-light btn-lg button animsition-link", "data-animsition-out-class": "fade-out-left-sm", data: {"turbolinks" => false} %>
                 <!-- ボタン間のマージン設定：合計15rem -->
                 <span class="mx-5"></span>
                 <span class="mx-5"></span>
                 <span class="mx-5"></span>
-                <%= link_to "新規登録", new_user_registration_path, class: "btn btn-outline-light btn-lg" %>
+                <%= link_to "新規登録", new_user_registration_path, class: "btn btn-outline-light btn-lg button animsition-link", "data-animsition-out-class": "fade-out-left-sm",data: {"turbolinks" => false} %>
             <% end %>
 
             <!-- 退会している場合、エラー文を出す -->

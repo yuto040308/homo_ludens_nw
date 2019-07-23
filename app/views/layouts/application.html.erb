@@ -4,13 +4,17 @@
     <title>HomoLudensNw</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <!-- 画面遷移用にanimation.cssを導入 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animsition/4.0.2/css/animsition.css" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animsition/4.0.2/js/animsition.js"></script>
+    
     <link href="https://fonts.googleapis.com/css?family=Kosugi+Maru|Noto+Serif+JP:600|Satisfy&display=swap" rel="stylesheet">
+
   </head>
 
-  <body>
+  <body class="animsition" data-animsition-in-class="fade-in">
     <!-- メニュ-用 -->
     <div id="search-menu">
       <!-- 部分テンプレート読んでみる "_header.html.erb"が呼ばれる -->
