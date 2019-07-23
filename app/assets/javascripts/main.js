@@ -17,3 +17,14 @@ $(function() {
 $(function () {
   $(".animsition").animsition();
 });
+
+// ハンバーガーメニュー用
+$(function() {
+
+  $('.ham-trigger').on('click', function() {
+    $(this).toggleClass('active');
+    $('#sp-menu').fadeToggle();
+    return false;
+  });
+
+});

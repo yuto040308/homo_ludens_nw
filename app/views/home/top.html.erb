@@ -1,12 +1,19 @@
+
+
+
 <!-- 画像貼り付け用の領域-->
 <div class="header-image">
     <!-- 上方向（余白）の領域 -->
-    <!-- ロゴや検索ボタンはあとから追加します-->
-    <!-- 余裕あったら、rowで分割した方が綺麗かも -->
+
+    <!-- スマホで見た時は表示出来ないようにする -->
+    <div class="top-menu-pc">
     <div style="height: 150px;" class="d-flex align-items-center justify-content-center">
 
+        
         <!-- 部分テンプレート読んでみる "_header-menu.html.erb"が呼ばれる -->
         <%= render 'layouts/header-menu' %>
+        
+    </div>
     </div>
 
 
@@ -28,13 +35,24 @@
 
             <!-- ログアウト時:表示 -->
             <% else %>
-                <!-- 画面遷移のアニメーション化:  classに"animsition-link", "data-animsition-out-class": "fade-out-left-sm"と指定する。 -->
-                <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-light btn-lg button animsition-link", "data-animsition-out-class": "fade-out-left-sm", data: {"turbolinks" => false} %>
-                <!-- ボタン間のマージン設定：合計15rem -->
-                <span class="mx-5"></span>
-                <span class="mx-5"></span>
-                <span class="mx-5"></span>
-                <%= link_to "新規登録", new_user_registration_path, class: "btn btn-outline-light btn-lg button animsition-link", "data-animsition-out-class": "fade-out-left-sm",data: {"turbolinks" => false} %>
+                <!-- スマホの場合は表示しない -->
+                <div class="top-pc-button">
+                    <!-- 画面遷移のアニメーション化:  classに"animsition-link", "data-animsition-out-class": "fade-out-left-sm"と指定する。 -->
+                    <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-light btn-lg button animsition-link", "data-animsition-out-class": "fade-out-left-sm", data: {"turbolinks" => false} %>
+                    <!-- ボタン間のマージン設定：合計15rem -->
+                    <span class="mx-5"></span>
+                    <span class="mx-5"></span>
+                    <span class="mx-5"></span>
+                    <%= link_to "新規登録", new_user_registration_path, class: "btn btn-outline-light btn-lg button animsition-link", "data-animsition-out-class": "fade-out-left-sm",data: {"turbolinks" => false} %>
+                </div>
+                <!-- スマホの場合だけ表示する-->
+                <div class="top-sm-button">
+                    <!-- 画面遷移のアニメーション化:  classに"animsition-link", "data-animsition-out-class": "fade-out-left-sm"と指定する。 -->
+                    <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-light btn-lg button animsition-link mb-5", "data-animsition-out-class": "fade-out-left-sm", data: {"turbolinks" => false} %>
+                    <br>
+                    <%= link_to "新規登録", new_user_registration_path, class: "btn btn-outline-light btn-lg button animsition-link", "data-animsition-out-class": "fade-out-left-sm",data: {"turbolinks" => false} %>
+                </div>
+                
             <% end %>
 
             <!-- 退会している場合、エラー文を出す -->
@@ -53,7 +71,7 @@
 <!--          -->
 <!-- 説明文部分 -->
 <!--          -->
-<div style="height: 1300px;" class="bg-peachpuff">
+<div style="height: 1300px;" class="bg-peachpuff top-explain-pc">
 
     <!-- 説明文上マージン -->
     <div style="height: 100px"></div>
@@ -67,7 +85,7 @@
         <span class="top-number mr-5">①</span>
         <p class="lead">遊びをその道の極め人から格安料金で教わることが出来ます</p>
     </div>
-    <%= image_tag  "/images/top-nouhaou.jpg", width: "550", height: "250", class: "mx-auto d-block" %>
+    <%= image_tag  "/images/top-nouhaou.jpg", class: "mx-auto d-block top-explainone-image-one" %>
 
     <!-- 説明文との間の余白 -->
     <div style="height: 100px"></div>
@@ -77,7 +95,7 @@
         <span class="top-number mr-5">②</span>
         <p class="lead">極め人となり、イベントを主催して、謝礼を頂けます　　　</p>
     </div>
-    <%= image_tag  "/images/top-event.jpg", width: "650", height: "250", class: "mx-auto d-block" %>
+    <%= image_tag  "/images/top-event.jpg", class: "mx-auto d-block top-explainone-image-two" %>
 
 </div>
     

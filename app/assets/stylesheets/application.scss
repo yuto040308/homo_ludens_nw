@@ -17,6 +17,15 @@
  @import "font-awesome-sprockets";
  @import "font-awesome";
 
+ $widthSm: 576px; //スマートフォン col-smに合わせた
+
+ // レスポンシブ対応用メディアクエリ
+ @mixin sm {
+    @media (max-width: ($widthSm)) {
+      @content;
+    }
+}
+
  // bootstrapでpのボトムにパディングがかかっているので、削除
  p {
      margin-top: 0px;
@@ -51,12 +60,15 @@
 
 .fa-search {
     @include font-size(4em, white, center);
-    // フォントサイズを5倍にする。
-    /*
-    font-size: 4em;
-    color: white;
-    text-align: center;
-    */
+    
+    // スマホの場合は、検索ボタンを固定化する。
+    @include sm {
+        font-size: 3.2em;
+        position: fixed;
+        right: 100px;
+        top: 20px;
+        z-index: 9;
+    }
 }
 
 // 完了ボタンのレイアウト
@@ -414,5 +426,178 @@ input.bg-search {
 // 強調したい見出し用
 .headline-font {
     font-family: 'Kosugi Maru', sans-serif;
+}
+
+// devise-margin :ログイン、ログアウト用のマージン　レスポンシブ対応
+.devise-margin{
+    @extend .h-200; // h-200を継承
+    @include sm {height: 100px;};
+}
+
+// top-explain-pc : TOP画面の説明文用 スマホ画面では表示しない
+//.top-explain-pc {
+//    @include sm {display: none;};
+//}
+
+// top-explain-image-sm / pc :トップ画像サイズ用
+.top-explainone-image-one {
+    width: 575px;
+    height: 280px;
+    // スマホサイズの場合、縮小する
+    @include sm {
+        width: 100%;
+        height: auto;
+    };
+}
+
+// top-explain-image-sm / pc :トップ画像サイズ用２
+.top-explainone-image-two {
+    width: 575px;
+    height: 220px;
+    // スマホサイズの場合、縮小する
+    @include sm {
+        width: 100%;
+        height: auto;
+    };
+}
+
+// PC用メニュー
+.top-menu-pc {
+    // スマホサイズの場合、見えなくする
+    @include sm {
+        display: none;
+    };
+}
+
+// ロゴ画像
+.logo-img {
+    // スマホサイズの場合、ロゴを縮小する。
+    @include sm{
+        width: 30%;
+        height: auto;
+    }
+}
+
+// PC用TOPボタン
+.top-pc-button{
+    // スマホサイズの場合、表示しない
+    @include sm {
+        display: none;
+    }
+}
+
+// スマホ用TOPボタン
+.top-sm-button {
+    display: none;
+    // スマホサイズの時だけ表示
+    @include sm {
+        display: block;
+    }
+}
+
+// スマホ用バー
+.top-bar-sm {
+    display: none;
+    // スマホサイズの時だけ表示
+    @include sm {
+        display: block;
+    }
+}
+
+// PC用メニューバー
+.pc-header {
+    // スマホサイズの時だけ表示しない
+    @include sm {
+        display: none;
+    }
+}
+
+/* ---------------------------- */
+/* --- ハンバーガーメニュー --- */
+/* ---------------------------- */
+#hm-icon{
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    z-index: 10;
+}
+
+.ham-trigger,
+.ham-trigger span {
+    display: inline-block;
+    transition: all .4s;
+    box-sizing: border-box;
+}
+
+.ham-trigger {
+    position: relative;
+    width: 50px;
+    height: 44px;
+}
+
+.ham-trigger span {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: white;
+    border-radius: 4px;
+}
+
+.ham-trigger span:nth-of-type(1) {
+    top: 0;
+}
+
+.ham-trigger span:nth-of-type(2) {
+    top: 20px;
+}
+
+.ham-trigger span:nth-of-type(3) {
+    bottom: 0;
+}
+
+.ham-trigger.active span:nth-of-type(1) {
+    -webkit-transform: translateY(20px) rotate(-45deg);
+    transform: translateY(20px) rotate(-45deg);
+    background-color: #fff;
+}
+
+.ham-trigger.active span:nth-of-type(2) {
+    opacity: 0;
+}
+
+.ham-trigger.active span:nth-of-type(3) {
+    -webkit-transform: translateY(-20px) rotate(45deg);
+    transform: translateY(-20px) rotate(45deg);
+    background-color: #fff;
+}
+
+
+/* ------------------------ */
+/* ------ spメニュー ------ */
+/* ------------------------ */
+
+
+#sp-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #000;
+    color: #fff;
+    width: 100%;
+    min-height: 100%;
+    display: none;
+    z-index: 9;
+}
+
+#sp-menu li{
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#sp-menu a{
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
 }
 
