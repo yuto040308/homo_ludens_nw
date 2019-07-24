@@ -5,9 +5,10 @@
     <%= form_for Play.new, url: search_path do |f| %>
 
         <div class="row">
-            <div class="col-1"></div>
-            <div class="col-2"><a href="/"><%= image_tag "/images/logo-white.png" %></a></div>
-            <div class="col-7">
+            <div class="col-12 col-sm-1"></div>
+            <!-- スマホ画面の時は、ロゴを非表示にする -->
+            <div class="col-1 col-sm-2"><a href="/" class="search-logo"><%= image_tag "/images/logo-white.png" %></a></div>
+            <div class="col-8 col-sm-7">
                 
                 <div class="d-flex align-items-center h-170">
                     <div class="form-group col-12">
@@ -33,22 +34,31 @@
 
         <div class="row">
             <div class="col-1"></div>
-            <div class="col-4">
+            <div class="col-5 col-sm-4">
                 <div class="d-flex align-items-center h-200">
                     <h4 class="ml-5">カテゴリ</h4>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-5 col-sm-6">
                 <div class="d-flex align-items-center h-200">
                     <div class="search-radio">
-                    <!-- 遊び削除フラグをPlayかEventのどっちで選択されているか判断するキーとして利用する。 -->
-                    <!-- デフォルトでPLAYをtrueにしておく -->
-                    <%= f.radio_button :play_delete_flg, 0, {:checked => true} %>
-                    <label for="play_play_delete_flg_0" class="search_label mx-5">PLAY</label>
-                    <span class="mx-5"></span>
-                    <%= f.radio_button :play_delete_flg, 1 %>
-                    <label for="play_play_delete_flg_1" class="search_label">EVENT</label>
-                </div>
+                        <div class="row">
+                            <div class="col-12 col-sm-6">
+                            <!-- 遊び削除フラグをPlayかEventのどっちで選択されているか判断するキーとして利用する。 -->
+                            <!-- デフォルトでPLAYをtrueにしておく -->
+                            <%= f.radio_button :play_delete_flg, 0, {:checked => true} %>
+                            <label for="play_play_delete_flg_0" class="search_label">PLAY</label>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <%= f.radio_button :play_delete_flg, 1 %>
+                                <label for="play_play_delete_flg_1" class="search_label">EVENT</label>
+                            </div>
+                        </div>
+                        
+                        
+                        
+                        
+                    </div>
                 </div>
             </div>
             <div class="col-1"></div>
