@@ -248,4 +248,20 @@ class Event < ApplicationRecord
 
     end
 
+    # 募集開始時刻 < 現在時刻 < 募集終了時刻の関係性が成り立つか確認する関数
+    def collect_start_now_finish?
+        
+        # 現在時刻の取得（日本時間）
+        time_now_tokyo = DateTime.now.in_time_zone('Tokyo')
+
+        # 現在時刻が開始時刻以上で、終了時刻未満か
+        if time_now_tokyo >= self.event_start_time.in_time_zone('Tokyo') &&
+           time_now_tokyo <  self.event_finish_time.in_time_zone('Tokyo')
+            return true
+        else
+            return false
+        end
+
+    end
+
 end

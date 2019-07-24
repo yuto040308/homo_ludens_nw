@@ -1,6 +1,6 @@
 <div class="event-img-fix">
     <%= image_tag  "/images/event-new.jpg", class: "event-show-img" %>
-    <p>イベント新規作成</p>	
+    <p class="menu-font">New Event</p>	
 </div>
 
 <div class="container">
@@ -16,7 +16,7 @@
     <% end %>
 
     <!-- ログイン完了メッセージの場合、表示しない -->
-    <% if flash[:notice] == "translation missing: ja.devise.sessions.user.signed_in" %>
+    <% if flash[:notice] == "translation missing: ja.devise.sessions.user.signed_in" || flash[:notice] == "translation missing: ja.devise.registrations.user.signed_up" %>
     <% else %>
         <%= flash[:notice] %>
     <% end %>

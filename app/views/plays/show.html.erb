@@ -1,12 +1,12 @@
 <div class="event-img-fix-black">
     <%= image_tag  "/images/play-detail.jpg", class: "event-show-img" %>
-    <p>遊び詳細</p>	
+    <p class="menu-font">Play Detail</p>	
 </div>
 
 <div class="container-fluid bg-lemonchiffon">
 
     <!-- 上マージン -->
-    <div class="m-150"></div>
+    <div class="play-margin-top"></div>
 
     <!-- TOP画像 -->
     <!-- mx-auto d-block指定で、画像を中央揃えにすることができる。 -->
@@ -18,10 +18,10 @@
         <div class="col-2"></div>
 
         <!-- 通し番号 -->
-        <div class="col-1"><h1><%= @play.id %></h1></div>
+        <div class="col-1"><h1 class="headline-font"><%= @play.id %></h1></div>
 
         <!-- タイトル -->
-        <div class="col-7"><h2><%= @play.play_title %><h2></div>
+        <div class="col-7"><h2 class="headline-font"><%= @play.play_title %><h2></div>
 
         <!-- 右の余白 -->
         <div class="col-2"></div>
@@ -34,22 +34,24 @@
     
 
     <!-- 本文 -->
-    <p class="x-250 y-50"><%= @play.play_explain %></p>
+    <div class="d-flex align-items-center h-120 justify-content-center"><p><%= @play.play_explain %></p></div>
+
+    <div class="h-120"></div>
 
     <!-- イベント一覧はあとで追加する。 -->
-    <h1 class="text-center mb-5">開催中イベント</h1>
+    <h1 class="text-center mb-5 headline-font">開催中イベント</h1>
 
-    <div class="row mx-auto w-1000">
+    <div class="row mx-auto card-width">
         <% @events.each do |event| %>
-            <div class="col-4">
-                <div class="card mx-auto" style="max-width: 20rem;">
+            <div class="col-12 col-sm-4">
+                <div class="card mx-auto mb-4" style="max-width: 20rem;">
                     <!--カード上部にレイアウトされる画像: card-img-top -->
-                    <!--画像はサンプルです。-->
-                    <a href="/events/<%= event.id %>"><%= attachment_image_tag event, :event_image, format: "jpg",class: "card-img-top",size:"190x290" %></a>
+                    <!-- 画面遷移のアニメーション化:  classに"animsition-link", "data-animsition-out-class": "fade-out-left-sm"と指定する。 -->
+                    <a href="/events/<%= event.id %>" class="animsition-link" data-animsition-out-class="fade-out-left-sm"><%= attachment_image_tag event, :event_image, format: "jpg",class: "card-img-top",size:"190x290" %></a>
                     <!-- カード本文:card-body -->
                     <div class="card-body">
                         <!-- カード見出し:card-title -->
-                        <h4 class="card-title"><%= event.event_title %></h4>
+                        <h4 class="card-title headline-font"><%= event.event_title %></h4>
                         
                         <!-- カードの内容文:card-text -->
                         <p class="card-text mb-5"><%= event.event_explain %></p>
@@ -68,7 +70,7 @@
     
 
     <!-- 下マージン -->
-    <div class="m-300"></div>
+    <div class="play-margin-bottom"></div>
 
 
 </div>
