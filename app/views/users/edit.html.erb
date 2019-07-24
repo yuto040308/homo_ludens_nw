@@ -1,6 +1,6 @@
 <div class="event-img-fix">
-    <%= image_tag  "user-edit.jpeg", class: "event-show-img" %>
-    <p>ユーザー編集</p>	
+    <%= image_tag  "/images/user-edit.jpg", class: "event-show-img" %>
+    <p class="menu-font">User Profile Edit</p>	
 </div>
 
 <div class="container-fluid">
@@ -15,7 +15,7 @@
             <!-- 画像部分 -->
             <div class="col-sm-5">
                 <!-- mx-auto d-block指定で、画像を中央揃えにすることができる。 -->
-                <%= attachment_image_tag @user, :user_image, format: "jpeg", fallback: "no_image.jpg", size: "300x300", class: "img-thumbnail mx-auto d-block mb-5" %>
+                <%= attachment_image_tag @user, :user_image, format: "jpeg", fallback: "/images/no_image.jpg", size: "300x300", class: "img-thumbnail mx-auto d-block mb-5" %>
                 <%= f.attachment_field :user_image, class: "mx-auto d-block" %>
 
                 

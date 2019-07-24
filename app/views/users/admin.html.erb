@@ -1,13 +1,19 @@
-<div class="container-fluid">
+<div class="event-img-fix">
+    <%= image_tag  "/images/administrator.jpg", class: "event-show-img" %>
+    <p class="menu-font">Administrator Pages</p>	
+</div>
+
+    
+<div class="container-fluid bg-admin">
 
     <!-- 上部の余白 -->
-    <div style="height: 200px;"></div>
+    <div class="h-80"></div>
 
     <!-- mx-auto: センタリング -->
-    <div style="width: 900px;" class="mx-auto">
+    <div style="width: 90%" class="mx-auto bg-admin-menu px-4 py-4 rounded">
 
         <!-- ログイン完了メッセージの場合、表示しない -->
-        <% if flash[:notice] == "translation missing: ja.devise.sessions.user.signed_in" %>
+        <% if flash[:notice] == "translation missing: ja.devise.sessions.user.signed_in" || flash[:notice] == "translation missing: ja.devise.registrations.user.signed_up"%>
         <% else %>
             <p class="mb-3"><%= flash[:notice] %></p>
         <% end %>
@@ -26,45 +32,50 @@
             <!-- パネルの要素にはtab-paneクラスを指定し、最初のタブには、active+showクラスを追加。パネルをフェードインさせるためにfadeクラスを追加している。 -->
             <!-- 遊び一覧のパネル -->
             <div class="tab-pane fade show active" id="play" role="tabpanel" aria-labelledby="play-tab">
-                <h3>遊び一覧</h3>
-                <p class="mb-3">遊び一覧のコンテンツが入ります。</p>
+                <h3 class="headline-font">遊び一覧</h3>
+                <br>
 
-                <table class="table">
-                    <thead>
-                        <colgroup span="1" style="width:15%;">  <!-- 画像の列 -->
-                        <colgroup span="1" style="width:20%;">  <!-- カテゴリの列 -->
-                        <colgroup span="1" style="width:20%;">  <!-- 遊び名の列 -->
-                        <colgroup span="1" style="width:30%;">  <!-- 説明の列 -->
-                        <colgroup span="1" style="width:15%;">  <!-- ボタンの列 -->
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <colgroup span="1" style="width:15%;">  <!-- 画像の列 -->
+                            <colgroup span="1" style="width:20%;">  <!-- カテゴリの列 -->
+                            <colgroup span="1" style="width:20%;">  <!-- 遊び名の列 -->
+                            <colgroup span="1" style="width:30%;">  <!-- 説明の列 -->
+                            <colgroup span="1" style="width:15%;">  <!-- ボタンの列 -->
 
-                        <th></th>
-                        <th>カテゴリ</th>
-                        <th>遊び名</th>
-                        <th>説明</th>
-                        <th></th>
-                    </div>
-                        
-                    </thead>
-                    
-                    <tbody>
-                        <% @plays.each do |play| %>
-                        
-                            <tr>
-                                <td><a href="<%= "/plays/admin/#{play.id}" %>"><%= attachment_image_tag play, :play_image, format: "jpeg", fallback: "no_image.jpg", size: "100x100" %></a></td>
-                                <!-- align-middle: セル内で上下方向中央揃えする。 -->
-                                <td class="align-middle"><div class="d-flex align-items-center"><%= play.category.category_name %></div></td>
-                                <td class="align-middle"><a href="<%= "/plays/admin/#{play.id}" %>"><%= play.play_title %></a></td>
-                                <td class="align-middle"><%= play.play_explain %></td>
-                                <td class="align-middle">
-                                    <%= button_to "編集", admin_edit_play_path(play.id), class: "btn btn-outline-success btn-block mb-2", method: :get %>
-                                    <%= button_to "削除", admin_destroy_play_path(play.id), class: "btn btn-outline-danger btn-block", method: :delete, "data-confirm" => "この遊びを削除します。よろしいでしょうか？" %>
-                                </td>
-                            </tr>
+                            <th scope="col" class="text-nowrap"></th>
+                            <th scope="col" class="text-nowrap">カテゴリ</th>
+                            <th scope="col" class="text-nowrap">遊び名</th>
+                            <th scope="col" class="text-nowrap">説明</th>
+                            <th scope="col" class="text-nowrap"></th>
+                        </div>
                             
-                        <% end %>
-                    </tbody>
+                        </thead>
+                        
+                        <tbody>
+                            <% @plays.each do |play| %>
+                            
+                                <tr>
+                                    <th scope="row"><a href="<%= "/plays/admin/#{play.id}" %>"><%= attachment_image_tag play, :play_image, format: "jpeg", fallback: "/images/no_image.jpg", size: "100x100" %></a></th>
+                                    
+                                    <!-- align-middle: セル内で上下方向中央揃えする。 -->
+                                    <td class="align-middle"><div class="d-flex align-items-center"><%= play.category.category_name %></div></td>
+                                    <td class="align-middle"><a href="<%= "/plays/admin/#{play.id}" %>"><%= play.play_title %></a></td>
+                                    <td class="align-middle"><%= play.play_explain %></td>
+                                    <td class="align-middle">
+                                        <%= button_to "編集", admin_edit_play_path(play.id), class: "btn btn-outline-success btn-block mb-2", method: :get %>
+                                        <%= button_to "削除", admin_destroy_play_path(play.id), class: "btn btn-outline-danger btn-block", method: :delete, "data-confirm" => "この遊びを削除します。よろしいでしょうか？" %>
+                                    </td>
+                                </tr>
+                                
+                            <% end %>
+                        </tbody>
 
-                </table>
+                    </table>
+                </div>
+
+
 
 
 
@@ -74,123 +85,134 @@
 
             <!-- イベント一覧のパネル -->
             <div class="tab-pane fade" id="event" role="tabpanel" aria-labelledby="event-tab">
-                <h3>イベント一覧</h3>
-                <p class="mb-3">イベント一覧のコンテンツが入ります。</p>
+                <h3 class="headline-font">イベント一覧</h3>
+                <br>
 
-                <table class="table">
-                    <thead>
-                        <colgroup span="1" style="width:15%;">  <!-- 画像の列 -->
-                        <colgroup span="1" style="width:20%;">  <!-- イベントの列 -->
-                        <colgroup span="1" style="width:20%;">  <!-- 遊びカテゴリ名の列 -->
-                        <colgroup span="1" style="width:20%;">  <!-- 承認状況の列 -->
-                        <colgroup span="1" style="width:15%;">  <!-- 催行人数の列 -->
-                        <colgroup span="1" style="width:10%;"> <!-- 削除ボタンの列 -->
+                <!-- テーブルをレスポンシブ対応にする -->
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <colgroup span="1" style="width:15%;">  <!-- 画像の列 -->
+                            <colgroup span="1" style="width:20%;">  <!-- イベントの列 -->
+                            <colgroup span="1" style="width:20%;">  <!-- 遊びカテゴリ名の列 -->
+                            <colgroup span="1" style="width:20%;">  <!-- 承認状況の列 -->
+                            <colgroup span="1" style="width:15%;">  <!-- 催行人数の列 -->
+                            <colgroup span="1" style="width:10%;">  <!-- 削除ボタンの列 -->
 
-                        <th></th>
-                        <th>イベント</th>
-                        <th>遊びカテゴリ</th>
-                        <th>承認状況</th>
-                        <th>催行人数</th>
-                        <th></th>
-                    </div>
-                        
-                    </thead>
-                    
-                    <tbody>
-                        <!-- 配列をループさせる変数を定義 -->
-                        <% i = 0 %>
-                        <% @events.each do |event| %>
-
+                            <th scope="col" class="text-nowrap"></th>
+                            <th scope="col" class="text-nowrap">イベント</th>
+                            <th scope="col" class="text-nowrap">遊びカテゴリ</th>
+                            <th scope="col" class="text-nowrap">承認状況</th>
+                            <th scope="col" class="text-nowrap">催行人数</th>
+                            <th scope="col" class="text-nowrap"></th>
+                        </div>
                             
+                        </thead>
                         
-                            <tr>
-                                <td><a href="<%= "/events/admin/#{event.id}" %>"><%= attachment_image_tag event, :event_image, format: "jpeg", fallback: "no_image.jpg", size: "100x100" %></a></td>
-                                <!-- align-middle: セル内で上下方向中央揃えする。 -->
-                                <td class="align-middle"><div class="d-flex align-items-center"><a href="<%= "/events/admin/#{event.id}" %>"><%= event.event_title %></a></div></td>
-                                <td class="align-middle"><%= event.play.play_title %></a></td>
-                                <td class="align-middle">
-                                    <%= event.event_confirm_flg_convert %>
-                                    <!-- 承認フラグの状態で表示させるボタンを変える -->
-                                    <% if event.event_confirm_flg == nil %>
-                                        <%= button_to "承認", admin_accept_event_path(event.id), class: "btn btn-outline-info mt-2", method: :patch, "data-confirm" => "このイベントを承認します。よろしいでしょうか？" %>
-                                    <% else %>
-                                        <% if event.event_confirm_flg == 0 %>
+                        <tbody>
+                            <!-- 配列をループさせる変数を定義 -->
+                            <% i = 0 %>
+                            <% @events.each do |event| %>
+
+                                
+                            
+                                <tr>
+                                    <th scope="row"><a href="<%= "/events/admin/#{event.id}" %>"><%= attachment_image_tag event, :event_image, format: "jpeg", fallback: "/images/no_image.jpg", size: "100x100" %></a></th>
+                                    <!-- align-middle: セル内で上下方向中央揃えする。 -->
+                                    <td class="align-middle"><div class="d-flex align-items-center"><a href="<%= "/events/admin/#{event.id}" %>"><%= event.event_title %></a></div></td>
+                                    <td class="align-middle"><%= event.play.play_title %></a></td>
+                                    <td class="align-middle">
+                                        <%= event.event_confirm_flg_convert %>
+                                        <!-- 承認フラグの状態で表示させるボタンを変える -->
+                                        <% if event.event_confirm_flg == nil %>
                                             <%= button_to "承認", admin_accept_event_path(event.id), class: "btn btn-outline-info mt-2", method: :patch, "data-confirm" => "このイベントを承認します。よろしいでしょうか？" %>
                                         <% else %>
-                                            <%= button_to "承認取消", admin_rescission_event_path(event.id), class: "btn btn-outline-warning mt-2", method: :patch, "data-confirm" => "このイベントの承認を取り消します。よろしいでしょうか？" %>
+                                            <% if event.event_confirm_flg == 0 %>
+                                                <%= button_to "承認", admin_accept_event_path(event.id), class: "btn btn-outline-info mt-2", method: :patch, "data-confirm" => "このイベントを承認します。よろしいでしょうか？" %>
+                                            <% else %>
+                                                <%= button_to "承認取消", admin_rescission_event_path(event.id), class: "btn btn-outline-warning mt-2", method: :patch, "data-confirm" => "このイベントの承認を取り消します。よろしいでしょうか？" %>
+                                            <% end %>
                                         <% end %>
-                                    <% end %>
-                                    
-                                </td>
-                                <td class="align-middle"><%= @event_counts_array[i].to_s + "/" + event.event_people_min.to_s + "人" %></td>
-                                <td class="align-middle">
-                                    <%= button_to "削除", admin_destroy_event_path(event.id), class: "btn btn-outline-danger mt-2", method: :delete, "data-confirm" => "このイベントを削除します。よろしいでしょうか？" %>
-                                </td>
-                            </tr>
+                                        
+                                    </td>
+                                    <td class="align-middle"><%= @event_counts_array[i].to_s + "/" + event.event_people_min.to_s + "人" %></td>
+                                    <td class="align-middle">
+                                        <%= button_to "削除", admin_destroy_event_path(event.id), class: "btn btn-outline-danger mt-2", method: :delete, "data-confirm" => "このイベントを削除します。よろしいでしょうか？" %>
+                                    </td>
+                                </tr>
 
-                            <!-- iをインクリメント -->
-                            <% i = i + 1 %>
-                            
-                        <% end %>
-                    </tbody>
+                                <!-- iをインクリメント -->
+                                <% i = i + 1 %>
+                                
+                            <% end %>
+                        </tbody>
 
-                </table>
+                    </table>
+                </div>
+
+                
             </div>
 
             <!-- ユーザー一覧のパネル -->
             <div class="tab-pane fade" id="user" role="tabpanel" aria-labelledby="user-tab">
-                <h3>ユーザー一覧</h3>
-                <p class="mb-3">ユーザー一覧のコンテンツが入ります。</p>
+                <h3 class="headline-font">ユーザー一覧</h3>
+                <br>
 
-                <table class="table">
-                    <thead>
-                        <colgroup span="1" style="width:15%;">  <!-- 画像の列 -->
-                        <colgroup span="1" style="width:22%;">  <!-- ユーザー名の列 -->
-                        <colgroup span="1" style="width:23%;">  <!-- ニックネームの列 -->
-                        <colgroup span="1" style="width:20%;">  <!-- 退会状態の列 -->
-                        <colgroup span="1" style="width:20%;">  <!-- ボタンの列 -->
+                <!-- テーブルをレスポンシブ対応にする -->
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <colgroup span="1" style="width:15%;">  <!-- 画像の列 -->
+                            <colgroup span="1" style="width:22%;">  <!-- ユーザー名の列 -->
+                            <colgroup span="1" style="width:23%;">  <!-- ニックネームの列 -->
+                            <colgroup span="1" style="width:20%;">  <!-- 退会状態の列 -->
+                            <colgroup span="1" style="width:20%;">  <!-- ボタンの列 -->
 
-                        <th></th>
-                        <th>ユーザー名</th>
-                        <th>ニックネーム</th>
-                        <th>退会状態</th>
-                        <th></th>
-                    </div>
+                            <!-- レスポンシブテーブルの設定 scope="col" class="text-nowrap"を設定-->
+                            <th scope="col" class="text-nowrap"></th>
+                            <th scope="col" class="text-nowrap">ユーザー名</th>
+                            <th scope="col" class="text-nowrap">ニックネーム</th>
+                            <th scope="col" class="text-nowrap">退会状態</th>
+                            <th scope="col" class="text-nowrap"></th>
+                        </div>
+                            
+                        </thead>
                         
-                    </thead>
-                    
-                    <tbody>
-                        <% @users.each do |user| %>
-                        
-                            <tr>
-                                <td><a href="<%= "/users/admin/#{user.id}" %>"><%= attachment_image_tag user, :user_image, format: "jpeg", fallback: "no_image.jpg", size: "100x100" %></a></td>
-                                <!-- align-middle: セル内で上下方向中央揃えする。 -->
-                                <td class="align-middle">
-                                    <div class="align-middle">
-                                        <a href="<%= "/users/admin/#{user.id}" %>"><%= user.name_kanji_sei + "　" + user.name_kanji_mei %></a><br>
-                                        <%= user.name_kana_sei + "　" + user.name_kana_mei %>
-                                    </div>
-                                </td>
-                                <td class="align-middle"><%= user.nickname %></a></td>
-                                <td class="align-middle"><a class="text-danger"><%= user.resignation_flg_message %></a></td>
-                                <td class="align-middle">
-                                    <% if user.resignation_flg == nil %>
-                                        <%= button_to "退会", user_path(user.id), class: "btn btn-outline-danger btn-block", method: :delete, "data-confirm" => "このユーザーを退会させます。よろしいでしょうか？" %>
-                                    <% else %>
-                                        <% if user.resignation_flg == 0 %>
+                        <tbody>
+                            <% @users.each do |user| %>
+                            
+                                <tr>
+                                    <!-- レスポンシブテーブルは先頭のレコードをthにしてclass(row)を指定する -->
+                                    <th scope="row"><a href="<%= "/users/admin/#{user.id}" %>"><%= attachment_image_tag user, :user_image, format: "jpeg", fallback: "/images/no_image.jpg", size: "100x100" %></a></th>
+                                    <!-- align-middle: セル内で上下方向中央揃えする。 -->
+                                    <td class="align-middle">
+                                        <div class="align-middle">
+                                            <a href="<%= "/users/admin/#{user.id}" %>"><%= user.name_kanji_sei + "　" + user.name_kanji_mei %></a><br>
+                                            <%= user.name_kana_sei + "　" + user.name_kana_mei %>
+                                        </div>
+                                    </td>
+                                    <td class="align-middle"><%= user.nickname %></a></td>
+                                    <td class="align-middle"><a class="text-danger"><%= user.resignation_flg_message %></a></td>
+                                    <td class="align-middle">
+                                        <% if user.resignation_flg == nil %>
                                             <%= button_to "退会", user_path(user.id), class: "btn btn-outline-danger btn-block", method: :delete, "data-confirm" => "このユーザーを退会させます。よろしいでしょうか？" %>
                                         <% else %>
-                                            <%= button_to "退会取消", user_path(user.id), class: "btn btn-outline-info btn-block", method: :delete, "data-confirm" => "このユーザーの退会を取消します。よろしいでしょうか？" %>
+                                            <% if user.resignation_flg == 0 %>
+                                                <%= button_to "退会", user_path(user.id), class: "btn btn-outline-danger btn-block", method: :delete, "data-confirm" => "このユーザーを退会させます。よろしいでしょうか？" %>
+                                            <% else %>
+                                                <%= button_to "退会取消", user_path(user.id), class: "btn btn-outline-info btn-block", method: :delete, "data-confirm" => "このユーザーの退会を取消します。よろしいでしょうか？" %>
+                                            <% end %>
                                         <% end %>
-                                    <% end %>
-                                    
-                                </td>
-                            </tr>
-                            
-                        <% end %>
-                    </tbody>
+                                        
+                                    </td>
+                                </tr>
+                                
+                            <% end %>
+                        </tbody>
 
-                </table>
+                    </table>
+                </div>
+                
 
             </div>
 

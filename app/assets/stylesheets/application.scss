@@ -10,11 +10,21 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require_tree .
  *= require_self
  */
  @import "bootstrap";
  @import "font-awesome-sprockets";
  @import "font-awesome";
+
+ $widthSm: 576px; //スマートフォン col-smに合わせた
+
+ // レスポンシブ対応用メディアクエリ
+ @mixin sm {
+    @media (max-width: ($widthSm)) {
+      @content;
+    }
+}
 
  // bootstrapでpのボトムにパディングがかかっているので、削除
  p {
@@ -28,7 +38,7 @@
 }
 
 .header-image {
-    background-image: url("/assets/images/top-image.jpg");
+    background-image: url("/images/top-image.jpg");
     height: 600px;
     background-size: cover;
 }
@@ -42,11 +52,23 @@
     
 }
 
+@mixin font-size($font-size, $color, $position){
+    font-size: $font-size;
+    color: $color;
+    text-align: $position;
+}
+
 .fa-search {
-    // フォントサイズを5倍にする。
-    font-size: 4em;
-    color: white;
-    text-align: center;
+    @include font-size(4em, white, center);
+    
+    // スマホの場合は、検索ボタンを固定化する。
+    @include sm {
+        font-size: 3.2em;
+        position: fixed;
+        right: 100px;
+        top: 20px;
+        z-index: 9;
+    }
 }
 
 // 完了ボタンのレイアウト
@@ -176,9 +198,31 @@
     height: 120px;
 }
 
+// 検索画面で使用することを想定
+.h-150 {
+    height: 150px;
+}
+
+.h-160 {
+    height: 150px;
+}
+
+.h-170 {
+    height: 170px;
+}
+
+.h-180 {
+    height: 180px;
+}
+
 // 余白 200px用
 .h-200 {
     height: 200px;
+}
+
+// 余白 300px用
+.h-300 {
+    height: 300px;
 }
 
 // 余白 300px用
@@ -279,3 +323,350 @@
 .hr-event {
     width: 70%;
 }
+
+// 管理者ページ用
+.bg-admin {
+    background-color: #dbdbdb;
+    z-index: 1;
+}
+.bg-admin-menu {
+    background-color: white;
+    z-index: 10;
+}
+
+// ユーザーページ用背景グラデーション
+/* mixinの定義 */
+// 縦の方向へ180deg 水色(#0bd)から、少し青より20%のグラデーション
+// adjust-hue($color, $amount)色相を変更 
+@mixin bg-gradient($angle: 180deg, $color: #0bd, $amount: 20%) {
+    background: linear-gradient($angle, $color, adjust-hue($color, $amount)) fixed;
+  }
+  
+  /* 必要箇所でmixinの呼び出し */
+.bg-user{
+    @include bg-gradient(180deg,#ffbf7f, -35%);
+}
+.bg-user-menu {
+    background-color: white;
+    z-index: 10;
+}
+
+/*
+    
+    検索機能用
+
+*/
+
+#search-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgb(12, 0, 56);
+    color: #fff;
+    width: 100%;
+    min-height: 100%;
+    // 標準では、非表示にしておく
+    display: none;
+    z-index: 12;
+}
+
+input.bg-search {
+    background-color: rgb(12, 0, 56);
+}
+
+// 検索ボタン用
+.fa-times {
+    @include font-size(4em, white, center);
+}
+
+// 検索ラジオボタンの設定
+
+.search-radio{
+    input[type="radio"]{
+        display: none;
+    }
+    input[type="radio"]:checked + label {
+        background: #31A9EE;/* マウス選択時の背景色を指定する */
+        color: #ffffff; /* マウス選択時のフォント色を指定する */
+    }
+}
+
+.search_label {
+    display: block;	/* ブロックレベル要素化する */ 
+    float: left;	/* 要素の左寄せ・回り込を指定する */ 
+    margin: 5px;	/* ボックス外側の余白を指定する */
+    width: 100px;	/* ボックスの横幅を指定する */
+    height: 45px;	/* ボックスの高さを指定する */
+    padding-left: 5px;	/* ボックス内左側の余白を指定する */
+    padding-right: 5px;	/* ボックス内御右側の余白を指定する */
+    color: black;	/* フォントの色を指定 */
+    text-align: center;	/* テキストのセンタリングを指定する */
+    line-height: 45px;	/* 行の高さを指定する */
+    cursor: pointer;	/* マウスカーソルの形（リンクカーソル）を指定する */
+    border: 2px solid #006DD9;/* ボックスの境界線を実線で指定する */
+    border-radius: 5px;	/* 角丸を指定する */
+    background: white;
+
+    &:hover{
+        background-color: #E2EDF9; /* マウスオーバー時の背景色を指定する */ 
+
+    }
+}
+
+// メニューバー用webフォント
+.menu-font {
+    font-family: 'Satisfy', cursive;
+}
+
+// トップページ用フォント
+.top-font {
+    font-family: 'Noto Serif JP', serif;
+}
+
+// 強調したい見出し用
+.headline-font {
+    font-family: 'Kosugi Maru', sans-serif;
+}
+
+// devise-margin :ログイン、ログアウト用のマージン　レスポンシブ対応
+.devise-margin{
+    @extend .h-200; // h-200を継承
+    @include sm {height: 100px;};
+}
+
+// 遊び一覧、詳細表示用の上マージン　レスポンシブ対応
+.play-margin-top {
+    @extend .h-150; // h-150を継承
+    @include sm {height: 75px;};
+}
+// 遊び一覧、詳細表示用の下マージン　レスポンシブ対応
+.play-margin-bottom {
+    @extend .h-300; // h-300を継承
+    @include sm {height: 150px;};
+}
+// イベント一覧表示用の上マージン　レスポンシブ対応
+.event-margin-top {
+    @extend .play-margin-top; // play-margin-topを継承
+}
+// 遊び一覧表示用の下マージン　レスポンシブ対応
+.event-margin-bottom {
+    @extend .play-margin-bottom; // play-margin-bottomを継承
+}
+
+// top-explain-pc : TOP画面の説明文用 スマホ画面では表示しない
+//.top-explain-pc {
+//    @include sm {display: none;};
+//}
+
+// top-explain-image-sm / pc :トップ画像サイズ用
+.top-explainone-image-one {
+    width: 575px;
+    height: 280px;
+    // スマホサイズの場合、縮小する
+    @include sm {
+        width: 100%;
+        height: auto;
+    };
+}
+
+// top-explain-image-sm / pc :トップ画像サイズ用２
+.top-explainone-image-two {
+    width: 575px;
+    height: 220px;
+    // スマホサイズの場合、縮小する
+    @include sm {
+        width: 100%;
+        height: auto;
+    };
+}
+
+// PC用メニュー
+.top-menu-pc {
+    // スマホサイズの場合、見えなくする
+    @include sm {
+        display: none;
+    };
+}
+
+// ロゴ画像
+.logo-img {
+    // スマホサイズの場合、ロゴを縮小する。
+    @include sm{
+        width: 30%;
+        height: auto;
+    }
+}
+
+// PC用TOPボタン
+.top-pc-button{
+    // スマホサイズの場合、表示しない
+    @include sm {
+        display: none;
+    }
+}
+
+// スマホ用TOPボタン
+.top-sm-button {
+    display: none;
+    // スマホサイズの時だけ表示
+    @include sm {
+        display: block;
+    }
+}
+
+// スマホ用バー
+.top-bar-sm {
+    display: none;
+    // スマホサイズの時だけ表示
+    @include sm {
+        display: block;
+    }
+}
+
+// PC用メニューバー
+.pc-header {
+    // スマホサイズの時だけ表示しない
+    @include sm {
+        display: none;
+    }
+}
+
+// カードの幅 レスポンシブ対応
+.card-width {
+    width: 1100px;
+    // スマホサイズの時だけ100%指定
+    @include sm {
+        width: 100%;
+    }
+}
+
+// event#showページ使用想定 スマホの時だけマージン設定する
+.event-show-img-margin {
+    height: 0px;
+    // スマホサイズの時だけ設定
+    @include sm {
+        height: 20px;
+    }
+}
+
+// メニュータブのサイズ:レスポンシブ対応
+.menu-tab-size {
+    width: 90%;
+    // スマホサイズの時だけ100%設定
+    @include sm {
+        width: 100%;
+    }
+}
+
+// メニュータブのサイズ:レスポンシブ対応
+.admin-menu-tab-size {
+    @extend .menu-tab-size; // .menu-tab-sizeを継承
+    background-color: white;
+}
+
+// メニュータブのカードサイズ:レスポンシブ対応
+.menu-card-size {
+    width: 76%;
+    // スマホサイズの時だけ100%設定
+    @include sm {
+        width: 100%;
+    }
+}
+
+// 検索画面用のロゴ、スマホ画面時には、表示しない
+.search-logo {
+    // スマホサイズの時だけ表示しない
+    @include sm {
+        display: none;
+    }
+}
+
+/* ---------------------------- */
+/* --- ハンバーガーメニュー --- */
+/* ---------------------------- */
+#hm-icon{
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    z-index: 10;
+}
+
+.ham-trigger,
+.ham-trigger span {
+    display: inline-block;
+    transition: all .4s;
+    box-sizing: border-box;
+}
+
+.ham-trigger {
+    position: relative;
+    width: 50px;
+    height: 44px;
+}
+
+.ham-trigger span {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: white;
+    border-radius: 4px;
+}
+
+.ham-trigger span:nth-of-type(1) {
+    top: 0;
+}
+
+.ham-trigger span:nth-of-type(2) {
+    top: 20px;
+}
+
+.ham-trigger span:nth-of-type(3) {
+    bottom: 0;
+}
+
+.ham-trigger.active span:nth-of-type(1) {
+    -webkit-transform: translateY(20px) rotate(-45deg);
+    transform: translateY(20px) rotate(-45deg);
+    background-color: #fff;
+}
+
+.ham-trigger.active span:nth-of-type(2) {
+    opacity: 0;
+}
+
+.ham-trigger.active span:nth-of-type(3) {
+    -webkit-transform: translateY(-20px) rotate(45deg);
+    transform: translateY(-20px) rotate(45deg);
+    background-color: #fff;
+}
+
+
+/* ------------------------ */
+/* ------ spメニュー ------ */
+/* ------------------------ */
+
+
+#sp-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #000;
+    color: #fff;
+    width: 100%;
+    min-height: 100%;
+    display: none;
+    z-index: 9;
+}
+
+#sp-menu li{
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#sp-menu a{
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+

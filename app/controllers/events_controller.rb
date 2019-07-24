@@ -35,7 +35,8 @@ class EventsController < ApplicationController
 
     # 自分自身が作成したイベントに参加できないようにする
     if current_user != nil
-      if @event.user_id == current_user.id
+      # 管理者もイベント参加できないようにする
+      if @event.user_id == current_user.id || current_user.admin_flg == 1
         @event_my_flg = 1
       else
         @event_my_flg = 0
@@ -43,7 +44,6 @@ class EventsController < ApplicationController
     else
       @event_my_flg = 0
     end
-    
 
     # 
     # 消費税を計算させる処理
@@ -68,8 +68,10 @@ class EventsController < ApplicationController
     event = Event.find(params[:id])
     event_join = EventJoin.new
 
-    # すでに参加している場合は保存できなくする
-    if EventJoin.find_by(event_id: event.id, user_id: current_user.id) != nil
+    # すでに参加している場合と、募集時間外は保存できなくする
+    if EventJoin.find_by(event_id: event.id, user_id: current_user.id) != nil ||
+      event.collect_start_now_finish? == false
+
       # 処理しません
       redirect_to event_path(event.id)
     # 参加をまだしていない場合

@@ -6,8 +6,8 @@
         <div class="col-sm-1"></div>
 
         <div class="col-sm-10">
-            <h1>遊び詳細</h1>
-            <%= attachment_image_tag @play, :play_image, format: "jpeg", fallback: "no_image.jpg",class: "mx-auto d-block mb-5 w-400" %>
+            <h1 class="headline-font">遊び詳細</h1>
+            <%= attachment_image_tag @play, :play_image, format: "jpeg", fallback: "/images/no_image.jpg",class: "mx-auto d-block mb-5 w-400" %>
 
             <!-- タイトルの領域 -->
             <div class="row">

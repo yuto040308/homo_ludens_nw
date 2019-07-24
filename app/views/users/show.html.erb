@@ -1,17 +1,17 @@
 <div class="event-img-fix">
-    <%= image_tag  "my-page.jpg", class: "event-show-img" %>
-    <p>マイページ</p>	
+    <%= image_tag  "/images/my-page.jpg", class: "event-show-img" %>
+    <p class="menu-font">My Page</p>	
 </div>
 
-<div class="container-fluid">
+<div class="container-fluid bg-user">
     <!-- 上方向の余白 -->
     <div class="h-40"></div>
 
     <!-- mx-auto: センタリング -->
-    <div style="width: 900px;" class="mx-auto">
+    <div class="mx-auto menu-tab-size">
 
         <!-- ログイン完了メッセージの場合、表示しない -->
-        <% if flash[:notice] == "translation missing: ja.devise.sessions.user.signed_in" %>
+        <% if flash[:notice] == "translation missing: ja.devise.sessions.user.signed_in" || flash[:notice] == "translation missing: ja.devise.registrations.user.signed_up" %>
         <% else %>
             <p class="mb-3"><%= flash[:notice] %></p>
         <% end %>
@@ -30,8 +30,8 @@
             <!-- パネルの要素にはtab-paneクラスを指定し、最初のタブには、active+showクラスを追加。パネルをフェードインさせるためにfadeクラスを追加している。 -->
             <!-- ユーザー情報のパネル -->
             <div class="tab-pane fade show active" id="user" role="tabpanel" aria-labelledby="user-tab">
-                <h3>会員登録情報</h3>
-                <%= attachment_image_tag @user, :user_image, format: "jpeg", fallback: "no_image.jpg",class: "user-img mx-auto d-block" %>
+                <h3 class="headline-font">会員登録情報</h3>
+                <%= attachment_image_tag @user, :user_image, format: "jpeg", fallback: "/images/no_image.jpg",class: "user-img mx-auto d-block" %>
                 <hr>
 
                 <div class="row">
@@ -136,12 +136,12 @@
 
             <!-- 参加イベント一覧のパネル -->
             <div class="tab-pane fade" id="event" role="tabpanel" aria-labelledby="event-tab">
-                <h3 class="mb-5">参加イベント</h3>
+                <h3 class="mb-5 headline-font">参加イベント</h3>
                 
                 <!-- カード部分 -->
-                <div class="row mx-auto w-800">
+                <div class="row mx-auto menu-card-size">
                     <% @event_joins.each do |event_join| %>
-                        <div class="col-4">
+                        <div class="col-12 col-sm-4">
                             <div class="card mx-auto mb-4" style="max-width: 20rem;">
                                 <!--カード上部にレイアウトされる画像: card-img-top -->
                                 <!--画像はサンプルです。-->
@@ -149,7 +149,7 @@
                                 <!-- カード本文:card-body -->
                                 <div class="card-body">
                                     <!-- カード見出し:card-title -->
-                                    <h5 class="card-title"><%= event_join.event.event_title %></h5>
+                                    <h5 class="card-title headline-font"><%= event_join.event.event_title %></h5>
                                     
                                     <!-- カードの内容文:card-text -->
                                     <p class="card-text mb-5">
@@ -161,7 +161,7 @@
                                         <p class="mb-3"><%= event_join.event.event_explain %></p>
 
                                         <!-- button_to: buttonのヘルパー button_toは標準でpostで送られてしまうので、getに指定した。 -->
-                                        <%= button_to "キャンセル", cansel_event_path(event_join.event.id), class: "btn btn-danger mx-auto d-block w-200", method: :delete, "data-confirm" => "イベント参加をキャンセルします。よろしいでしょうか？" %>
+                                        <%= link_to "キャンセル", cansel_event_path(event_join.event.id), class: "btn btn-danger mx-auto d-block", method: :delete, "data-confirm" => "イベント参加をキャンセルします。よろしいでしょうか？" %>
 
                                     </p>
 
@@ -175,17 +175,17 @@
 
             <!-- 主催イベントのパネル -->
             <div class="tab-pane fade" id="sponsor" role="tabpanel" aria-labelledby="sponsor-tab">
-                <h3 class="mb-5">主催イベント</h3>
+                <h3 class="mb-5 headline-font">主催イベント</h3>
 
                 <!-- カード部分 -->
-                <div class="row mx-auto w-800">
+                <div class="row mx-auto menu-card-size">
 
                 <!-- 参加人数を格納する変数 -->
                 <% i = 0 %>
                     <% @events.each do |event| %>
 
                     
-                        <div class="col-4">
+                        <div class="col-12 col-sm-4">
                             <div class="card mx-auto mb-4" style="max-width: 20rem;">
                                 <!--カード上部にレイアウトされる画像: card-img-top -->
                                 <!--画像はサンプルです。-->
@@ -193,7 +193,15 @@
                                 <!-- カード本文:card-body -->
                                 <div class="card-body">
                                     <!-- カード見出し:card-title -->
-                                    <h5 class="card-title"><%= event.event_title %></h5>
+                                    <h5 class="card-title headline-font"><%= event.event_title %></h5>
+
+                                    <!-- 承認フラグの状態を画面上にバッジで表示する。 -->
+                                    <% if event.event_confirm_flg == 1 %>
+                                        <p><span class="badge badge-pill badge-success">承認済み</span></p>
+                                    <% else %>
+                                        <p><span class="badge badge-pill badge-warning">未承認</span></p>
+                                    <% end %>
+                                    
                                     
                                     <!-- カードの内容文:card-text -->
                                     <p class="card-text mb-5">
@@ -205,9 +213,9 @@
                                         
                                         <p class="mb-3">現在参加者</p>
                                         <p class="mb-5"><%= @event_counts_array[i].to_s + "/" + event.event_people_min.to_s + "人"%></p>
-                                        <%= button_to "編集", edit_event_path(event.id), class: "btn btn-outline-success mx-auto d-block w-200 mb-3", method: :get %>
+                                        <%= link_to "編集", edit_event_path(event.id), class: "btn btn-outline-success mx-auto d-block mb-3", method: :get %>
                                         <!-- button_to: buttonのヘルパー button_toは標準でpostで送られてしまうので、getに指定した。 -->
-                                        <%= button_to "キャンセル", event_path(event.id), class: "btn btn-outline-danger mx-auto d-block w-200", method: :delete, "data-confirm" => "イベントを削除します。よろしいでしょうか？" %>
+                                        <%= link_to "イベント削除", event_path(event.id), class: "btn btn-outline-danger mx-auto d-block", method: :delete, "data-confirm" => "イベントを削除します。よろしいでしょうか？" %>
 
                                     </p>
 
@@ -222,8 +230,8 @@
                 <!-- 表とボタンのマージン -->
                 <div class="h-40"></div>
 
-                <!-- button_to: buttonのヘルパー button_toは標準でpostで送られてしまうので、getに指定した。 -->
-                <%= button_to "新規作成", new_event_path, class: "btn btn-outline-primary rounded-pill w-200", method: :get %>
+                <!-- 画面遷移のアニメーション化:  classに"animsition-link", "data-animsition-out-class": "fade-out-left-sm"と指定する。 -->
+                <%= link_to "新規作成", new_event_path, class: "btn btn-outline-primary rounded-pill w-200 animsition-link", method: :get, "data-animsition-out-class": "fade-out-left-sm" %>
             </div>
 
         </div>

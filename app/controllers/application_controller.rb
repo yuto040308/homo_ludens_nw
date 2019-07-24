@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::Base
 
-    # deviseのストロングパラメータを呼び出す。
-    before_action :configure_permitted_parameters, if: :devise_controller?
+	# deviseのストロングパラメータを呼び出す。
+	# deviseは最後に呼ばないとエラーになるみたいだ。
+    before_action :configure_permitted_parameters, :search_params, if: :devise_controller?
 
     # devise標準で動くメゾット、sign_in(ログイン)が完了した場合に後から呼ばれるメゾット
     def after_sign_in_path_for(resourse)
@@ -50,7 +51,14 @@ class ApplicationController < ActionController::Base
 			end
 
 		end
-    end
+	
+	end
+
+	#　検索用の変数を渡す関数
+	def search_params
+		@find_params = Play.new
+	end
+	
     
     #デバイスでeメールパスワード以外を許可する
 	protected
