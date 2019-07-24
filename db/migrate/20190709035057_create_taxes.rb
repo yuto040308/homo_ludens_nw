@@ -1,6 +1,6 @@
 class CreateTaxes < ActiveRecord::Migration[5.2]
   def change
-    create_table :taxes do |t|
+    create_table :taxes, :options => 'ENGINE=InnoDB ROW_FORMAT=DYNAMIC' do |t|
 
       # 追加カラム
       t.float :tax

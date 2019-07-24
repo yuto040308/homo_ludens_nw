@@ -1,6 +1,6 @@
 class CreateEventJoins < ActiveRecord::Migration[5.2]
   def change
-    create_table :event_joins do |t|
+    create_table :event_joins, :options => 'ENGINE=InnoDB ROW_FORMAT=DYNAMIC' do |t|
 
       # 追加カラム
       t.integer :event_id

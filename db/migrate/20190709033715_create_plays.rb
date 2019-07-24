@@ -1,6 +1,6 @@
 class CreatePlays < ActiveRecord::Migration[5.2]
   def change
-    create_table :plays do |t|
+    create_table :plays, :options => 'ENGINE=InnoDB ROW_FORMAT=DYNAMIC' do |t|
 
       # 追加カラム
       t.integer :category_id

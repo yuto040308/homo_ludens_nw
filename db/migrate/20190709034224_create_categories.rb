@@ -1,6 +1,6 @@
 class CreateCategories < ActiveRecord::Migration[5.2]
   def change
-    create_table :categories do |t|
+    create_table :categories, :options => 'ENGINE=InnoDB ROW_FORMAT=DYNAMIC' do |t|
 
       # 追加カラム
       t.string :category_name

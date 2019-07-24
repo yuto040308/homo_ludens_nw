@@ -1,0 +1,14 @@
+current directory: /var/www/html/homo_ludens_nw/vendor/bundle/ruby/2.3/gems/json-2.2.0/ext/json
+/usr/bin/ruby2.3 -r ./siteconf20190718-30036-ekdj3h.rb extconf.rb
+creating Makefile
+
+current directory: /var/www/html/homo_ludens_nw/vendor/bundle/ruby/2.3/gems/json-2.2.0/ext/json
+make "DESTDIR=" clean
+rm -f .so  *.o  *.bak mkmf.log .*.time
+
+current directory: /var/www/html/homo_ludens_nw/vendor/bundle/ruby/2.3/gems/json-2.2.0/ext/json
+make "DESTDIR="
+make: `all' に対して行うべき事はありません.
+
+current directory: /var/www/html/homo_ludens_nw/vendor/bundle/ruby/2.3/gems/json-2.2.0/ext/json
+make "DESTDIR=" install

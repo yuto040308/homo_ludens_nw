@@ -1,0 +1,81 @@
+current directory: /var/www/html/homo_ludens_nw/vendor/bundle/ruby/2.3/gems/sqlite3-1.4.1/ext/sqlite3
+/usr/bin/ruby2.3 -r ./siteconf20190718-30036-g31fgr.rb extconf.rb
+checking for sqlite3.h... yes
+checking for pthread_create() in -lpthread... yes
+checking for main() in -ldl... yes
+checking for sqlite3_libversion_number() in -lsqlite3... yes
+checking for rb_proc_arity()... yes
+checking for rb_integer_pack()... yes
+checking for sqlite3_initialize()... yes
+checking for sqlite3_backup_init()... yes
+checking for sqlite3_column_database_name()... yes
+checking for sqlite3_enable_load_extension()... yes
+checking for sqlite3_load_extension()... yes
+checking for sqlite3_open_v2()... yes
+checking for sqlite3_prepare_v2()... yes
+checking for sqlite3_int64 in sqlite3.h... yes
+checking for sqlite3_uint64 in sqlite3.h... yes
+creating Makefile
+
+To see why this extension failed to compile, please check the mkmf.log which can be found here:
+
+  /var/www/html/homo_ludens_nw/vendor/bundle/ruby/2.3/extensions/x86_64-linux/2.3/sqlite3-1.4.1/mkmf.log
+
+current directory: /var/www/html/homo_ludens_nw/vendor/bundle/ruby/2.3/gems/sqlite3-1.4.1/ext/sqlite3
+make "DESTDIR=" clean
+rm -f 
+rm -f sqlite3_native.so  *.o  *.bak mkmf.log .*.time
+
+current directory: /var/www/html/homo_ludens_nw/vendor/bundle/ruby/2.3/gems/sqlite3-1.4.1/ext/sqlite3
+make "DESTDIR="
+gcc -I. -I/usr/include/ruby/2.3 -I/usr/include/ruby/2.3/ruby/backward -I/usr/include/ruby/2.3 -I.  -DHAVE_RB_PROC_ARITY -DHAVE_RB_INTEGER_PACK -DHAVE_SQLITE3_INITIALIZE -DHAVE_SQLITE3_BACKUP_INIT -DHAVE_SQLITE3_COLUMN_DATABASE_NAME -DHAVE_SQLITE3_ENABLE_LOAD_EXTENSION -DHAVE_SQLITE3_LOAD_EXTENSION -DHAVE_SQLITE3_OPEN_V2 -DHAVE_SQLITE3_PREPARE_V2 -DHAVE_TYPE_SQLITE3_INT64 -DHAVE_TYPE_SQLITE3_UINT64    -fPIC -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -mtune=generic -fPIC  -m64 -o aggregator.o -c aggregator.c
+gcc -I. -I/usr/include/ruby/2.3 -I/usr/include/ruby/2.3/ruby/backward -I/usr/include/ruby/2.3 -I.  -DHAVE_RB_PROC_ARITY -DHAVE_RB_INTEGER_PACK -DHAVE_SQLITE3_INITIALIZE -DHAVE_SQLITE3_BACKUP_INIT -DHAVE_SQLITE3_COLUMN_DATABASE_NAME -DHAVE_SQLITE3_ENABLE_LOAD_EXTENSION -DHAVE_SQLITE3_LOAD_EXTENSION -DHAVE_SQLITE3_OPEN_V2 -DHAVE_SQLITE3_PREPARE_V2 -DHAVE_TYPE_SQLITE3_INT64 -DHAVE_TYPE_SQLITE3_UINT64    -fPIC -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -mtune=generic -fPIC  -m64 -o backup.o -c backup.c
+gcc -I. -I/usr/include/ruby/2.3 -I/usr/include/ruby/2.3/ruby/backward -I/usr/include/ruby/2.3 -I.  -DHAVE_RB_PROC_ARITY -DHAVE_RB_INTEGER_PACK -DHAVE_SQLITE3_INITIALIZE -DHAVE_SQLITE3_BACKUP_INIT -DHAVE_SQLITE3_COLUMN_DATABASE_NAME -DHAVE_SQLITE3_ENABLE_LOAD_EXTENSION -DHAVE_SQLITE3_LOAD_EXTENSION -DHAVE_SQLITE3_OPEN_V2 -DHAVE_SQLITE3_PREPARE_V2 -DHAVE_TYPE_SQLITE3_INT64 -DHAVE_TYPE_SQLITE3_UINT64    -fPIC -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -mtune=generic -fPIC  -m64 -o database.o -c database.c
+database.c: In function ‘rb_sqlite3_open_v2’:
+database.c:38:9: warning: unused variable ‘flags’ [-Wunused-variable]
+   VALUE flags;
+         ^
+database.c: In function ‘exec_batch’:
+database.c:724:5: warning: passing argument 3 of ‘sqlite3_exec’ from incompatible pointer type [enabled by default]
+     status = sqlite3_exec(ctx->db, StringValuePtr(sql), hash_callback_function, callback_ary, &errMsg);
+     ^
+In file included from ./sqlite3_ruby.h:25:0,
+                 from database.c:1:
+/usr/include/sqlite3.h:379:16: note: expected ‘int (*)(void *, int,  char **, char **)’ but argument is of type ‘int (*)(VALUE,  int,  char **, char **)’
+ SQLITE_API int sqlite3_exec(
+                ^
+database.c:724:5: warning: passing argument 4 of ‘sqlite3_exec’ makes pointer from integer without a cast [enabled by default]
+     status = sqlite3_exec(ctx->db, StringValuePtr(sql), hash_callback_function, callback_ary, &errMsg);
+     ^
+In file included from ./sqlite3_ruby.h:25:0,
+                 from database.c:1:
+/usr/include/sqlite3.h:379:16: note: expected ‘void *’ but argument is of type ‘VALUE’
+ SQLITE_API int sqlite3_exec(
+                ^
+database.c:726:5: warning: passing argument 3 of ‘sqlite3_exec’ from incompatible pointer type [enabled by default]
+     status = sqlite3_exec(ctx->db, StringValuePtr(sql), regular_callback_function, callback_ary, &errMsg);
+     ^
+In file included from ./sqlite3_ruby.h:25:0,
+                 from database.c:1:
+/usr/include/sqlite3.h:379:16: note: expected ‘int (*)(void *, int,  char **, char **)’ but argument is of type ‘int (*)(VALUE,  int,  char **, char **)’
+ SQLITE_API int sqlite3_exec(
+                ^
+database.c:726:5: warning: passing argument 4 of ‘sqlite3_exec’ makes pointer from integer without a cast [enabled by default]
+     status = sqlite3_exec(ctx->db, StringValuePtr(sql), regular_callback_function, callback_ary, &errMsg);
+     ^
+In file included from ./sqlite3_ruby.h:25:0,
+                 from database.c:1:
+/usr/include/sqlite3.h:379:16: note: expected ‘void *’ but argument is of type ‘VALUE’
+ SQLITE_API int sqlite3_exec(
+                ^
+gcc -I. -I/usr/include/ruby/2.3 -I/usr/include/ruby/2.3/ruby/backward -I/usr/include/ruby/2.3 -I.  -DHAVE_RB_PROC_ARITY -DHAVE_RB_INTEGER_PACK -DHAVE_SQLITE3_INITIALIZE -DHAVE_SQLITE3_BACKUP_INIT -DHAVE_SQLITE3_COLUMN_DATABASE_NAME -DHAVE_SQLITE3_ENABLE_LOAD_EXTENSION -DHAVE_SQLITE3_LOAD_EXTENSION -DHAVE_SQLITE3_OPEN_V2 -DHAVE_SQLITE3_PREPARE_V2 -DHAVE_TYPE_SQLITE3_INT64 -DHAVE_TYPE_SQLITE3_UINT64    -fPIC -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -mtune=generic -fPIC  -m64 -o exception.o -c exception.c
+gcc -I. -I/usr/include/ruby/2.3 -I/usr/include/ruby/2.3/ruby/backward -I/usr/include/ruby/2.3 -I.  -DHAVE_RB_PROC_ARITY -DHAVE_RB_INTEGER_PACK -DHAVE_SQLITE3_INITIALIZE -DHAVE_SQLITE3_BACKUP_INIT -DHAVE_SQLITE3_COLUMN_DATABASE_NAME -DHAVE_SQLITE3_ENABLE_LOAD_EXTENSION -DHAVE_SQLITE3_LOAD_EXTENSION -DHAVE_SQLITE3_OPEN_V2 -DHAVE_SQLITE3_PREPARE_V2 -DHAVE_TYPE_SQLITE3_INT64 -DHAVE_TYPE_SQLITE3_UINT64    -fPIC -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -mtune=generic -fPIC  -m64 -o sqlite3.o -c sqlite3.c
+gcc -I. -I/usr/include/ruby/2.3 -I/usr/include/ruby/2.3/ruby/backward -I/usr/include/ruby/2.3 -I.  -DHAVE_RB_PROC_ARITY -DHAVE_RB_INTEGER_PACK -DHAVE_SQLITE3_INITIALIZE -DHAVE_SQLITE3_BACKUP_INIT -DHAVE_SQLITE3_COLUMN_DATABASE_NAME -DHAVE_SQLITE3_ENABLE_LOAD_EXTENSION -DHAVE_SQLITE3_LOAD_EXTENSION -DHAVE_SQLITE3_OPEN_V2 -DHAVE_SQLITE3_PREPARE_V2 -DHAVE_TYPE_SQLITE3_INT64 -DHAVE_TYPE_SQLITE3_UINT64    -fPIC -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -mtune=generic -fPIC  -m64 -o statement.o -c statement.c
+rm -f sqlite3_native.so
+gcc -shared -o sqlite3_native.so aggregator.o backup.o database.o exception.o sqlite3.o statement.o -L. -L/usr/lib64 -L. -fstack-protector -rdynamic -Wl,-export-dynamic   -m64  -L/usr/lib64/ruby/2.3 -lruby -lsqlite3 -ldl -lpthread  -lsqlite3 -lpthread -ldl -lcrypt -lm   -lc
+
+current directory: /var/www/html/homo_ludens_nw/vendor/bundle/ruby/2.3/gems/sqlite3-1.4.1/ext/sqlite3
+make "DESTDIR=" install
+/bin/mkdir -p . ./.gem.20190718-30036-1b3ebg/sqlite3
+exit > .RUBYARCHDIR.-.sqlite3.time
+/usr/bin/install -c -m 0755 sqlite3_native.so ./.gem.20190718-30036-1b3ebg/sqlite3
