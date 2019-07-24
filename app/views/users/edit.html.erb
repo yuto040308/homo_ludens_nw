@@ -13,24 +13,30 @@
         <!-- ユーザー画像部分と、ユーザー名、ニックネーム欄を分割する -->
         <div class="row">
             <!-- 画像部分 -->
-            <div class="col-sm-5">
+            <div class="col-12 col-sm-5">
                 <!-- mx-auto d-block指定で、画像を中央揃えにすることができる。 -->
                 <%= attachment_image_tag @user, :user_image, format: "jpeg", fallback: "/images/no_image.jpg", size: "300x300", class: "img-thumbnail mx-auto d-block mb-5" %>
                 <%= f.attachment_field :user_image, class: "mx-auto d-block" %>
+                <br>
 
                 
 
             </div>
-            <div class="col-sm-7">
+            <div class="col-12 col-sm-7">
                 <div class="row">
 
 
-                    <div class="col-sm-4">
+                    <div class="col-6 col-sm-4">
                         <h4 class="mb-5">ユーザー名<span class="badge badge-warning ml-3">必須</span></h4>
-                        <h4 class="mb-5">ユーザーメイ<span class="badge badge-warning ml-3">必須</span></h4>
-                        <h4 class="mb-5">ニックネーム<span class="badge badge-warning ml-3">必須</span></h4>
+                        <!-- スマホレイアウトの時だけマージンをつける -->
+                        <div class="user-edit-name-margin"></div>
+                        <h4 class="mb-3">ユーザーメイ<span class="badge badge-warning ml-3">必須</span></h4>
+                        <!-- スマホレイアウトの時だけマージンをつける -->
+                        <div class="user-edit-nickname-margin"></div>
+                        <br>
+                        <h4 class="mt-5">ニックネーム<span class="badge badge-warning ml-3">必須</span></h4>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-5 col-sm-6">
                         <!-- ユーザー漢字名フォーム -->
                         <div class="row mb-5">
                             <div class="col-sm-6"><%= f.text_field :name_kanji_sei, class: "form-control" %></div>
@@ -44,10 +50,11 @@
                         </div>
 
                         <!-- ニックネーム入力フォーム -->
+                        <br>
                         <div><%= f.text_field :nickname, class: "form-control" %></div>
                         
                     </div>
-                    <div class="col-sm-2"></div>
+                    <div class="col-1 col-sm-2"></div>
                 </div>
                 
             </div>
@@ -132,7 +139,7 @@
                     <div class="col-sm-3">
                         支払い方法
                     </div>
-                    <div class="col-sm-7　btn-group" data-toggle="buttons">
+                    <div class="col-sm-7　btn-group ml-5" data-toggle="buttons">
                         <label class="btn btn-outline-secondary">
                         <%= f.radio_button :payment_method, 0 %><span class="mr-2"></span>銀行振込
                         </label>

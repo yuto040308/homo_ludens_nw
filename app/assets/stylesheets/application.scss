@@ -581,6 +581,34 @@ input.bg-search {
     }
 }
 
+// 編集画面のユーザー名とユーザーメイの間のマージン
+.user-edit-name-margin {
+    height: 60px;
+    display: none;
+    // スマホサイズの時だけマージンを設定
+    @include sm {
+        display: block;
+    }
+}
+// 編集画面のユーザーメイとニックネームの間のマージン
+.user-edit-nickname-margin {
+    height: 20px;
+    display: none;
+    // スマホサイズの時だけマージンを設定
+    @include sm {
+        display: block;
+    }
+}
+
+.user-edit-name-margin-sm {
+    height: 5px;
+    display: none;
+    // スマホサイズの時だけマージンを設定
+    @include sm {
+        display: block;
+    }
+}
+
 /* ---------------------------- */
 /* --- ハンバーガーメニュー --- */
 /* ---------------------------- */
