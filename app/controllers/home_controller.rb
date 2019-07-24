@@ -4,8 +4,4 @@ class HomeController < ApplicationController
     @top_flg = 1
   end
 
-  # jQuery動作テスト用
-  def test
-  end
-
 end
