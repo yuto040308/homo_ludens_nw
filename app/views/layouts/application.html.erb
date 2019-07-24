@@ -4,12 +4,79 @@
     <title>HomoLudensNw</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    
+    <!-- レスポンシブ対応には、viewportの設定をする必要がある。 -->
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!-- 画面遷移用にanimation.cssを導入 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animsition/4.0.2/css/animsition.css" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animsition/4.0.2/js/animsition.js"></script>
+    
+    <link href="https://fonts.googleapis.com/css?family=Kosugi+Maru|Noto+Serif+JP:600|Satisfy&display=swap" rel="stylesheet">
+
   </head>
 
-  <body>
+  <body class="animsition" data-animsition-in-class="fade-in">
+
+    <!-- レスポンシブ対応用(スマホ幅のみ表示) -->
+    <div class="h-120 bg-dark top-bar-sm">
+        <a href="/"><%= image_tag "/images/logo-white.png",class: "logo-img" %></a>
+        <div id="sp-menu">
+            <!-- 上部マージン -->
+            <div class="h-40"></div>
+            <br>
+            <br>
+            <h2 class="text-center"><%= link_to "PLAY", plays_path, class: "menu-a animsition-link", "data-animsition-out-class": "fade-out-left-sm" %></h2>
+            <h2 class="text-center"><%= link_to "EVENT", events_path, class: "menu-a animsition-link", "data-animsition-out-class": "fade-out-left-sm" %></h2>
+            <!--<h2 class="text-center"><a href="#">MENU3</a></h2>-->
+            <!--<h2 class="text-center"><a href="#">MENU4</a></h2>-->
+            <!-- ログインしていたら、マイページとログアウトもメニューに出す。 -->
+            <% if user_signed_in? %>
+
+                <!-- 管理者の場合 -->
+                <% if current_user.admin_flg == 1 %>
+
+                    <!-- 画面遷移のアニメーション化:  classに"animsition-link", "data-animsition-out-class": "fade-out-left-sm"と指定する。 -->
+                    <h2 class="text-center"><%= link_to "MYPAGE", admin_user_path, class: "menu-a animsition-link", "data-animsition-out-class": "fade-out-left-sm" %></h2>
+
+                <!-- ユーザーの場合 -->
+                <% else %>
+
+                    <h2 class="text-center"><%= link_to "MYPAGE", user_path(current_user.id), class: "menu-a animsition-link", "data-animsition-out-class": "fade-out-left-sm" %></h2>
+
+                <% end %>
+
+                <h2 class="text-center"><%= link_to "LOGOUT", destroy_user_session_path, method: :delete, class: "menu-a animsition-link", "data-animsition-out-class": "fade-out-left-sm" %></h2>
+
+            <!-- ログインしていない場合は、マイページ、ログアウトの代わりに余白を入れる -->
+            <% else %>
+
+                <h2 class="text-center"><%= link_to "LOGIN", new_user_session_path, class: "menu-a animsition-link", "data-animsition-out-class": "fade-out-left-sm" %></h2>
+                <h2 class="text-center"><%= link_to "SIGNUP", new_user_registration_path, class: "menu-a animsition-link", "data-animsition-out-class": "fade-out-left-sm" %></h2>
+            <% end %>
+
+
+        </div>
+
+        <a class="fas fa-search menu-trigger" href="#"></a>
+
+        <div id="hm-icon">
+            <a class="ham-trigger" href="#">
+            <span></span>
+            <span></span>
+            <span></span>
+            </a>
+        </div>
+    </div>
+
+    <!-- メニュ-用 -->
+    <div id="search-menu">
+      <!-- 部分テンプレート読んでみる "_header.html.erb"が呼ばれる -->
+      <!-- 部分テンプレートは@変数を使えないので読み替えして渡す -->
+      <%= render 'layouts/search-menu', find_params: @find_params %>
+    </div>
+
     <!-- トップ画面のヘッダーは背景透過なので、処理を分ける -->
     <% if @top_flg != nil %>
       <%= yield %>

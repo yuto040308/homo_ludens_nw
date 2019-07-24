@@ -71,9 +71,33 @@ class PlaysController < ApplicationController
     redirect_to admin_user_path
   end
 
+  # 検索用
+  def search
+    @search = Play.new(play_params)
+    
+
+    # play_delete_flgを処理分岐の材料として使う。
+    # play_delete_flg: 0 => 遊びの検索
+    # play_delete_flg: 1 => イベントの検索
+    if @search.play_delete_flg == 0
+      @plays = Play.where(play_title: @search.play_title)
+      render "index"
+    else
+      # 現在時刻の取得
+      time_now_tokyo = DateTime.now.in_time_zone('Tokyo')
+      # 承認フラグが立っており、かつ募集時刻が現在時刻を過ぎていないイベントかつ、検索文字に該当するレコードを一覧で表示
+      @events = Event.where("event_finish_time > ?", time_now_tokyo).where(event_confirm_flg: 1, event_title: @search.play_title)
+      # eventコントローラのindex.htmlに遷移させる。
+      render "events/index"
+    end
+
+    #binding.pry
+    
+  end
+
   # ストロングパラメーター
   private
   def play_params
-    params.require(:play).permit(:id ,:category_id, :play_title, :play_explain, :play_image)
+    params.require(:play).permit(:id ,:category_id, :play_title, :play_explain, :play_image, :play_delete_flg)
   end
 end
