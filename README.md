@@ -28,6 +28,13 @@ JavaScriptライブラリ	(JQuery、Chart.js)＊現段階では使用してい�
 insert into categories (category_name, created_at, updated_at) values ("インドア","2019-07-20 17:00:00","2019-07-20 17:00:00");    
 insert into categories (category_name, created_at, updated_at) values ("アウトドア","2019-07-20 17:00:00","2019-07-20 17:00:00");    
 insert into categories (category_name, created_at, updated_at) values ("マリンスポーツ","2019-07-20 17:00:00","2019-07-20 17:00:00");    
+insert into categories (category_name, created_at, updated_at) values ("エンターテイメント","2019-07-25 13:58:00","2019-07-25 13:58:00");  
+insert into categories (category_name, created_at, updated_at) values ("スポーツ","2019-07-25 13:58:00","2019-07-25 13:58:00");  
+insert into categories (category_name, created_at, updated_at) values ("DIY","2019-07-25 13:58:00","2019-07-25 13:58:00");  
+insert into categories (category_name, created_at, updated_at) values ("リラクゼーション","2019-07-25 13:58:00","2019-07-25 13:58:00");  
+insert into categories (category_name, created_at, updated_at) values ("観光・旅行","2019-07-25 13:58:00","2019-07-25 13:58:00");  
+insert into categories (category_name, created_at, updated_at) values ("文化","2019-07-25 13:58:00","2019-07-25 13:58:00");  
+
 
 2.本システムは消費税計算をDBの値をもとに実施  
 しております。必ず1件以上の消費税レコードがないとエラーになりますので、以下のSQLをご利用ください  

@@ -21,7 +21,7 @@
         <div class="col-12 col-sm-6">
             <h1 class="mb-3 headline-font"><%= @event.event_title %></h1>
 
-            <h5><%= @event.event_explain %></h5>
+            <h5><%= simple_format(h(@event.event_explain)) %></h5>
         </div>
     </div>
     
