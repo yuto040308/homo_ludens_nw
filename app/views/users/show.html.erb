@@ -158,7 +158,8 @@
                                         <p><%= event_join.event.event_hold_start_time.strftime("%Y月%m月%d日(#{%w(日 月 火 水 木 金 土)[event_join.event.event_hold_start_time.wday]})%H:%M") %></p>
                                         <p class="text-center">〜</p>
                                         <p class="mb-3"><%= event_join.event.event_hold_finish_time.strftime("%Y月%m月%d日(#{%w(日 月 火 水 木 金 土)[event_join.event.event_hold_finish_time.wday]})%H:%M") %></p>
-                                        <p class="mb-3"><%= event_join.event.event_explain %></p>
+                                        <p class="mb-3"><%= simple_format(h(event_join.event.event_explain)) %></p>
+                                        <br>
 
                                         <!-- button_to: buttonのヘルパー button_toは標準でpostで送られてしまうので、getに指定した。 -->
                                         <%= link_to "キャンセル", cansel_event_path(event_join.event.id), class: "btn btn-danger mx-auto d-block", method: :delete, "data-confirm" => "イベント参加をキャンセルします。よろしいでしょうか？" %>
