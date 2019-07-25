@@ -41,7 +41,7 @@
                 <div class="col-sm-1"></div>
 
                 <div class="col-sm-4">説明</div>
-                <div class="col-sm-5"><p class="text-center"><%= @play.play_explain %></p></div>
+                <div class="col-sm-5"><p class="text-center"><%= simple_format(h(@play.play_explain)) %></p></div>
 
                 <!-- 右マージン -->
                 <div class="col-sm-2"></div>

@@ -21,7 +21,7 @@
         <div class="col-1"><h1 class="headline-font"><%= @play.id %></h1></div>
 
         <!-- タイトル -->
-        <div class="col-7"><h2 class="headline-font"><%= @play.play_title %><h2></div>
+        <div class="col-7"><h2 class="headline-font mt-1"><%= @play.play_title %><h2></div>
 
         <!-- 右の余白 -->
         <div class="col-2"></div>
@@ -34,7 +34,17 @@
     
 
     <!-- 本文 -->
-    <div class="d-flex align-items-center h-120 justify-content-center"><p><%= @play.play_explain %></p></div>
+    <div class="row">
+        <div class="col-12 col-sm-2"></div>
+        <div class="col-12 col-sm-8">
+            <div class="d-flex align-items-center h-120 justify-content-center">
+                <%= simple_format(h(@play.play_explain),class: "mt-5") %>
+            </div>
+        </div>
+        <div class="col-12 col-sm-2"></div>
+    </div>
+
+    
 
     <div class="h-120"></div>
 
@@ -47,14 +57,14 @@
                 <div class="card mx-auto mb-4" style="max-width: 20rem;">
                     <!--カード上部にレイアウトされる画像: card-img-top -->
                     <!-- 画面遷移のアニメーション化:  classに"animsition-link", "data-animsition-out-class": "fade-out-left-sm"と指定する。 -->
-                    <a href="/events/<%= event.id %>" class="animsition-link" data-animsition-out-class="fade-out-left-sm"><%= attachment_image_tag event, :event_image, format: "jpg",class: "card-img-top",size:"190x290" %></a>
+                    <a href="/events/<%= event.id %>" class="animsition-link" data-animsition-out-class="fade-out-left-sm"><%= attachment_image_tag event, :event_image, format: "jpg", fallback: "/images/no_image.jpg", class: "card-img-top",size:"190x290" %></a>
                     <!-- カード本文:card-body -->
                     <div class="card-body">
                         <!-- カード見出し:card-title -->
                         <h4 class="card-title headline-font"><%= event.event_title %></h4>
                         
                         <!-- カードの内容文:card-text -->
-                        <p class="card-text mb-5"><%= event.event_explain %></p>
+                        <p class="card-text mb-5"><%= simple_format(h(event.event_explain)) %></p>
                     </div>
                 </div>
             </div>
