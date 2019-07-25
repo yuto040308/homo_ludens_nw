@@ -94,7 +94,7 @@
                 <div class="col-sm-1"></div>
 
                 <div class="col-sm-4">プロフィール</div>
-                <div class="col-sm-5"><p class="text-center"><%= @user.user_profile %></p></div>
+                <div class="col-sm-5"><p class="text-center"><%= simple_format(h(@user.user_profile)) %></p></div>
 
                 <!-- 右マージン -->
                 <div class="col-sm-2"></div>

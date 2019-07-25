@@ -14,15 +14,16 @@
                 <div class="card mx-auto mb-4" style="max-width: 23rem;">
                     <!--カード上部にレイアウトされる画像: card-img-top -->
                     <!-- 画面遷移のアニメーション化:  classに"animsition-link", "data-animsition-out-class": "fade-out-left-sm"と指定する。 -->
-                    <a href="/plays/<%= play.id %>" class="animsition-link" data-animsition-out-class="fade-out-left-sm"><%= attachment_image_tag play, :play_image, format: "jpg",class: "card-img-top",size:"190x290" %></a>
+                    <a href="/plays/<%= play.id %>" class="animsition-link" data-animsition-out-class="fade-out-left-sm"><%= attachment_image_tag play, :play_image, format: "jpg",fallback: "/images/no_image.jpg" ,class: "card-img-top",size:"190x290" %></a>
                     <!-- カード本文:card-body -->
                     <div class="card-body">
                         <!-- カード見出し:card-title -->
                         <h4 class="card-title headline-font"><%= play.play_title %></h4>
                         
                         <!-- カードの内容文:card-text -->
-                        <p class="card-text mb-5"><%= play.play_explain %></p>
+                        <p class="card-text mb-5"><%= simple_format(h(play.play_explain)) %></p>
 
+                        <br>
                         <!-- カードの副見出し:card-subtitle -->
                         <h6><%= "#" + play.category.category_name %></h6>
                     </div>

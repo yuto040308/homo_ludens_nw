@@ -62,7 +62,14 @@
                                     <!-- align-middle: セル内で上下方向中央揃えする。 -->
                                     <td class="align-middle"><div class="d-flex align-items-center"><%= play.category.category_name %></div></td>
                                     <td class="align-middle"><a href="<%= "/plays/admin/#{play.id}" %>"><%= play.play_title %></a></td>
-                                    <td class="align-middle"><%= play.play_explain %></td>
+                                    <td class="align-middle">
+                                        <!-- 長すぎた場合は、文字数をカットする。 -->
+                                        <% if play.play_explain.length >= 50 %>
+                                            <%= play.play_explain.slice(0..49) + "・・・" %>
+                                        <% else %>
+                                            <%= play.play_explain %>
+                                        <% end %>
+                                    </td>
                                     <td class="align-middle">
                                         <%= button_to "編集", admin_edit_play_path(play.id), class: "btn btn-outline-success btn-block mb-2", method: :get %>
                                         <%= button_to "削除", admin_destroy_play_path(play.id), class: "btn btn-outline-danger btn-block", method: :delete, "data-confirm" => "この遊びを削除します。よろしいでしょうか？" %>
