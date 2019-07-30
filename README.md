@@ -11,7 +11,7 @@ Title:Homo ludens Network(ホモルーデンス ネットワーク)
 
 ＜サーバーサイド＞  
 本番環境       AWS 
-WEBサーバー    Apache  
+WEBサーバー    Apache    
 データベース    MySQL  
 言語	    Ruby  
 フレームワーク	  Ruby On Rails  
