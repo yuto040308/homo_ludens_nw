@@ -33,9 +33,6 @@ Rails.application.routes.draw do
   patch   "events/admin/:id/accept"     => "events#admin_accept",     as: "admin_accept_event"
   patch   "events/admin/:id/rescission" => "events#admin_rescission", as: "admin_rescission_event"
 
-  # jQueryテスト用
-  get     "test"                       => "home#test",                as: "test"
-
 
   # resources指定
   # index create new edit show update destroy が自動設定される
