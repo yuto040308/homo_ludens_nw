@@ -1,5 +1,8 @@
 class Tax < ApplicationRecord
 
+    # 空白を不許可にするバリデーション設定
+    validates :tax, :tax_start_day, presence: true
+
     # tax_start_day < 現在時刻 < tax_finish_dayが取得できるか調べる関数
     def tax_start_finish_now?
 
