@@ -9,7 +9,7 @@ class Event < ApplicationRecord
     belongs_to :user, optional: true
 
     # 空白を不許可にするバリデーション設定
-    validates :event_title, :event_explain, :event_place, :event_people_min, :event_people_max,
+    validates :play_id, :user_id, :event_title, :event_explain, :event_place, :event_people_min, :event_people_max,
               :honorarium, :event_hold_start_time, :event_hold_finish_time, :event_start_time, :event_finish_time,
               presence: true
 
