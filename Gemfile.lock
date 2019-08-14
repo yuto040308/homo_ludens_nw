@@ -100,6 +100,7 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.5)
     crass (1.0.4)
+    database_cleaner (1.7.0)
     debug_inspector (0.0.3)
     devise (4.6.2)
       bcrypt (~> 3.0)
@@ -112,6 +113,11 @@ GEM
       unf (>= 0.0.5, < 1.0.0)
     erubi (1.8.0)
     execjs (2.7.0)
+    factory_bot (5.0.2)
+      activesupport (>= 4.2.0)
+    factory_bot_rails (5.0.2)
+      factory_bot (~> 5.0.2)
+      railties (>= 4.2.0)
     ffi (1.11.1)
     font-awesome-sass (5.4.1)
       sassc (>= 1.11)
@@ -310,7 +316,9 @@ DEPENDENCIES
   capybara (>= 2.15)
   chromedriver-helper
   coffee-rails (~> 4.2)
+  database_cleaner
   devise
+  factory_bot_rails
   font-awesome-sass (~> 5.4.1)
   jbuilder (~> 2.5)
   jquery-rails
