@@ -1,6 +1,14 @@
 # 複数のfactoryを書く場合は、以下のように、class: User(model)の部分だけを統一し、
 # factoryの後ろの:user, :another_userの部分のように、それぞれのfactoryに名前を付けられます。
 
+# FactoryBotはgemでinstallしないと動かない
+# group :test do
+#   gem 'factory_bot_rails'
+#   gem 'database_cleaner'
+# end
+#
+
+
 # FactoryBot.define で使用するユーザーをあらかじめ定義しておく
 FactoryBot.define do
 
