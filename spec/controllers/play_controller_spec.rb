@@ -268,5 +268,135 @@ RSpec.describe PlaysController, type: :controller do
         end
     end
 
+    describe '管理者遊び削除 #admin_destroy' do
+        context "投稿が1件正常に削除されているか" do
+
+            before do
+                # あらかじめFacrotyBotで登録しておいた管理者ユーザーを作成する
+                @user = FactoryBot.create(:admin_user)
+
+                # 削除するためのデータを作成
+                @play = Play.new(
+                    category_id: 1,
+                    play_title: "テストタイトル",
+                    play_explain: "テスト説明です",
+                    play_image: Refile::FileDouble.new("dummy", "logo.png", content_type: "image/png"),
+                    play_delete_flg: 1
+                )
+
+                @play.save
+                
+            end
+    
+            it '1件削除されていること' do
+                # deviseのヘルパー@userをログイン状態にする。
+                sign_in @user
+
+                # DBに正常値を入れる
+                expect { 
+                    delete :admin_destroy, params: { id: @play.id }
+                # change : 状態が変わったか検証する by(-1)をつけたことにより、1行減ったかを確認
+                }.to change(Play, :count).by(-1)
+
+            end
+
+
+            it 'リダイレクトされること' do
+
+                # deviseのヘルパー@userをログイン状態にする。
+                sign_in @user
+
+                # DBから削除する。
+                delete :admin_destroy, params: { id: @play.id }
+
+                # 正常型のリダイレクト先に移動していること
+                expect(response).to redirect_to admin_user_path
+
+            end
+
+            it 'flash[:notice]にメッセージが含まれているか' do
+
+                # deviseのヘルパー@userをログイン状態にする。
+                sign_in @user
+
+                # DBから削除する。
+                delete :admin_destroy, params: { id: @play.id }
+            
+                # flash[:notice]に想定通りのメッセージが含まれているか
+                expect(flash[:notice]).to eq("遊びを削除しました")
+
+            end
+
+        end
+    end
+
+    describe "検索 #search" do
+        # ログインは不要だと思う
+        # まずは遊びの検索をする
+        # ストロングパラメーターにplay_titleをいれる（これがキーになる）
+        # @search.play_delete_flg == 0: 遊びの検索
+        context "遊びの検索が出来る" do
+
+            # あらかじめ検索対象のデータをDBに保存しておく
+            before do
+                @play = Play.new(
+                    category_id: 1,
+                    play_title: "テストタイトル",
+                    play_explain: "テスト説明です",
+                    play_image: Refile::FileDouble.new("dummy", "logo.png", content_type: "image/png"),
+                    play_delete_flg: 1
+                )
+
+                # 保存
+                @play.save
+
+                @play = Play.new(
+                    category_id: 1,
+                    play_title: "テストタイトル",
+                    play_explain: "テスト2件目説明です",
+                    play_image: Refile::FileDouble.new("dummy", "logo.png", content_type: "image/png"),
+                    play_delete_flg: 0
+                )
+
+                # 保存
+                @play.save
+            end
+
+            # 遊びが検索できるか
+            it "遊びが検索できること" do
+
+                post :search, params: {
+                    id: @play.id,
+                    play: {
+                        play_title: "テストタイトル",
+                        play_delete_flg: 0  # 0:遊び検索 1:イベント検索
+                    }
+                }
+
+                # 2件検索ができたか確認する。
+                # controller.instance_variable_get("@plays") でコントローラ内の変数を見れる。
+                expect(controller.instance_variable_get("@plays").length).to eq 2
+
+            end
+
+            # 正しくrender先を読み込めているか
+            it "render先があっている事" do
+
+                post :search, params: {
+                    id: @play.id,
+                    play: {
+                        play_title: "テストタイトル",
+                        play_delete_flg: 0  # 0:遊び検索 1:イベント検索
+                    }
+                }
+
+                # index.htmlが呼ばれること
+                expect(response).to render_template(:index)
+            end
+
+        end
+
+    end
+
 
 end

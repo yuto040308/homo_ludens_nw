@@ -69,6 +69,8 @@ group :test do
   # database_cleanerはFactoryBotでDB登録したデータをテスト終了後にクリアするために使う。
   gem 'factory_bot_rails'
   gem 'database_cleaner'
+  # Rspecのコントローラのテストで必要
+  gem 'rails-controller-testing'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
