@@ -383,7 +383,6 @@ RSpec.describe PlaysController, type: :controller do
             it "render先があっている事" do
 
                 post :search, params: {
-                    id: @play.id,
                     play: {
                         play_title: "テストタイトル",
                         play_delete_flg: 0  # 0:遊び検索 1:イベント検索
@@ -395,6 +394,47 @@ RSpec.describe PlaysController, type: :controller do
             end
 
         end
+
+        context "イベントの検索が出来る" do
+            before do
+                # spec/factories/event.rbに定義してあるevent1とevent2のを2つを作成する。
+                FactoryBot.create(:event1)
+                FactoryBot.create(:event2)
+            end
+
+            # イベントが検索できるか
+            it "イベントが検索できること" do
+
+                post :search, params: {
+                    play: {
+                        play_title: "テストタイトル",
+                        play_delete_flg: 1  # 0:遊び検索 1:イベント検索
+                    }
+                }
+
+                # 1件検索ができたか確認する。
+                # controller.instance_variable_get("@events") でコントローラ内の変数を見れる。
+                expect(controller.instance_variable_get("@events").length).to eq 2
+
+            end
+
+            # 正しくrender先を読み込めているか
+            it "render先があっている事" do
+
+                post :search, params: {
+                    play: {
+                        play_title: "テストタイトル",
+                        play_delete_flg: 1  # 0:遊び検索 1:イベント検索
+                    }
+                }
+
+                # events/index.htmlが呼ばれること
+                expect(response).to render_template("events/index")
+            end
+
+        end
+
+        
 
     end
 
