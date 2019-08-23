@@ -331,10 +331,8 @@ RSpec.describe PlaysController, type: :controller do
     end
 
     describe "検索 #search" do
-        # ログインは不要だと思う
         # まずは遊びの検索をする
         # ストロングパラメーターにplay_titleをいれる（これがキーになる）
-        # @search.play_delete_flg == 0: 遊びの検索
         context "遊びの検索が出来る" do
 
             # あらかじめ検索対象のデータをDBに保存しておく

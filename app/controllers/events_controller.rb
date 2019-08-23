@@ -6,16 +6,13 @@ class EventsController < ApplicationController
   before_action :resignation_flag_and_login_check?, only: [:join, :complete, :new, :create, :edit, :update, :destroy, :cansel, :admin_show, :admin_destroy, :admin_accept, :admin_rescission]
 
   def index
-    # 承認フラグ立っているイベントのみ表示されるようにする
-    #@events = Event.where(event_confirm_flg: 1)
 
     # 現在時刻の取得
     time_now_tokyo = DateTime.now.in_time_zone('Tokyo')
 
     # 承認フラグが立っており、かつ募集時刻が現在時刻を過ぎていないイベントを一覧で表示
     @events = Event.where("event_finish_time > ?", time_now_tokyo).where(event_confirm_flg: 1)
-    #binding.pry
-    #@events = Event.all
+
   end
 
   def show
@@ -134,70 +131,6 @@ class EventsController < ApplicationController
       render "new"
     end
 
-
-
-=begin 旧処理 一応正しく動くっぽい
-    # 現在時刻よりも後に入力されているか確認し、エラーの場合は元の画面に戻す
-    if @event.event_hold_start_time_now_after? && @event.event_hold_finish_time_now_after? &&
-       @event.event_start_time_now_after? && @event.event_finish_time_now_after?
-
-
-      # 募集開始時刻 < 募集終了時刻、開催開始時刻 < 開催終了時刻 になっているか確認し、
-      # 整合性が合わない場合は、元の画面に戻す
-      if @event.event_hold_time_from_to? && @event.event_collect_time_from_to?
-
-        # イベント開始時刻 < 募集終了時刻になっているか確認。整合性が合わない場合は元の画面に戻す
-        if @event.event_collect_hold_time?
-
-          # 最小催行人数<最大催行人数になっているかチェックする
-          if @event.event_join_peoples_min_max?
-            # save成功時はマイページ、失敗時はnew画面に戻す
-            if @event.save
-              flash[:notice] = "イベント新規作成が完了しました"
-              redirect_to user_path(current_user.id)
-            else
-              # プルダウンで遊びを選択させるため、遊びの一覧を渡す
-              @plays = Play.all
-              render "new"
-            end
-          else
-            flash[:notice] = "最大催行人数は、最小催行人数以上で入力してください"
-            # プルダウンで遊びを選択させるため、遊びの一覧を渡す
-            @plays = Play.all
-            render "new"
-          end
-
-          
-
-        # 整合性が合わない場合、エラーメッセージを渡す
-        else
-          flash[:notice] = "イベント開始時刻は、募集終了時刻より後の時刻で入力してください"
-          # プルダウンで遊びを選択させるため、遊びの一覧を渡す
-          @plays = Play.all
-          render "new"
-        end
-
-        
-
-      # 整合性が合わない場合、エラーメッセージを渡す
-      else
-        flash[:notice] = "開始時刻 < 終了時刻 で入力してください"
-        # プルダウンで遊びを選択させるため、遊びの一覧を渡す
-        @plays = Play.all
-        render "new"
-      end
-
-      
-
-    # エラーの場合
-    else
-      flash[:notice] = "現在時刻よりも後の時刻を入力してください"
-      # プルダウンで遊びを選択させるため、遊びの一覧を渡す
-      @plays = Play.all
-      render "new"
-    end
-=end
-
   end
 
   def edit
@@ -234,16 +167,6 @@ class EventsController < ApplicationController
     else
       render "edit"
     end
-
-
-=begin 一応これでも動く
-    if @event.update(event_params)
-      flash[:notice] = "イベント更新が完了しました"
-      redirect_to user_path(current_user.id)
-    else
-      render "edit"
-    end
-=end
   end
 
   def destroy
