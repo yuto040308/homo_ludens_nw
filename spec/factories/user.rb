@@ -39,4 +39,19 @@ FactoryBot.define do
         admin_flg {1}
     end
 
+    # マイページ用。user1が作ったイベントに参加しているユーザー
+    factory :user2, class: User do
+        # factoryBotの変数は{}の中に記述してあげる必要がある
+        name_kanji_sei {"試験"}
+        name_kanji_mei {"三郎"}
+        name_kana_sei {"シケン"}
+        name_kana_mei {"サブロウ"}
+        nickname {"サブちゃん"}
+        email {"test3@user"}
+        password {"12345678"}
+        phone_number {"09023456789"}
+        payment_method {1}
+        admin_flg {0}
+    end
+
 end

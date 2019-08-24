@@ -18,4 +18,10 @@ FactoryBot.define do
         user_id {1}
     end
 
+    factory :eventjoin2, class: EventJoin do
+        # factoryBotの変数は{}の中に記述してあげる必要がある
+        event_id {2}
+        user_id {2}
+    end
+
 end

@@ -443,7 +443,7 @@ RSpec.describe EventsController, type: :controller do
 
     end
 
-    describe "管理者イベント承認解除 #admin_rescission" do
+    describe "管理者イベント承認解除 e#admin_rescission" do
         context "1件正常に承認解除されるか" do
 
             before do

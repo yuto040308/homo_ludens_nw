@@ -91,7 +91,6 @@ class PlaysController < ApplicationController
       render "events/index"
     end
 
-    #binding.pry
     
   end
 
