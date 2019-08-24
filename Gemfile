@@ -39,6 +39,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # RSpecのインストール
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -62,6 +64,13 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
+
+  # Rspecのテスト用で使用する
+  # database_cleanerはFactoryBotでDB登録したデータをテスト終了後にクリアするために使う。
+  gem 'factory_bot_rails'
+  gem 'database_cleaner'
+  # Rspecのコントローラのテストで必要
+  gem 'rails-controller-testing'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
