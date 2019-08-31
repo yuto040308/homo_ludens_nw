@@ -16,7 +16,8 @@ WEBサーバー    Apache
 言語	    Ruby  
 フレームワーク	  Ruby On Rails  
 使用Gem	      devise、refile、refile-mini_magick、bootstrap、view_source_map、  
-             annotate、better_errors、binding_of_caller、pry-byebug、font-awesome-sass、rails-i18n   
+             annotate、better_errors、binding_of_caller、pry-byebug、font-awesome-sass、rails-i18n、  
+	     rspec-rails、factorybot、database-cleaner  
 	  
 ＜フロントエンド＞	  
 CSSフレームワーク	  Bootstrap、Sass    
